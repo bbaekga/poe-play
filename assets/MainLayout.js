@@ -2,6 +2,7 @@ import { c as createComponent, h as hSlot, a as hUniqueSlot, b as hMergeSlot } f
 import { c as computed, h, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, a as onBeforeUnmount, n as noop, d as nextTick, g as getCurrentInstance, l as listenOpts, e as inject, f as emptyRenderFn, w as watch, j as layoutKey, p as provide, k as pageContainerKey, m as reactive, q as onUnmounted, s as defineComponent, u as useRouter, t as resolveComponent, v as openBlock, x as createBlock, y as withCtx, z as createVNode, A as createBaseVNode, B as createTextVNode, C as normalizeStyle } from "./index.js";
 import { Q as QBtn } from "./QBtn.js";
 import { g as getScrollTarget, a as getVerticalScrollPosition, b as getHorizontalScrollPosition, c as getScrollbarWidth } from "./scroll.js";
+import "./vm.js";
 var QToolbarTitle = createComponent({
   name: "QToolbarTitle",
   props: {

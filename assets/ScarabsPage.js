@@ -1,5 +1,5 @@
-import { c as computed, N as onDeactivated, a as onBeforeUnmount, g as getCurrentInstance, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, h, T as Transition, w as watch, O as toRaw, K as stopAndPrevent, P as Platform, E as isKeyCode, L as prevent, d as nextTick, F as addEvt, G as cleanEvt, l as listenOpts, Q as globalConfig, q as onUnmounted, R as injectProp, S as Teleport, U as client, s as defineComponent, v as openBlock, x as createBlock, y as withCtx, z as createVNode, J as withDirectives, V as vShow, A as createBaseVNode, W as normalizeClass, X as createElementBlock, Y as renderList, Z as Fragment, C as normalizeStyle, B as createTextVNode, _ as toDisplayString, $ as createCommentVNode, a0 as pushScopeId, a1 as popScopeId } from "./index.js";
-import { v as vmIsDestroyed, a as QSpinner, u as useSize, b as useSizeProps, d as QIcon, e as vmHasRouter, Q as QBtn } from "./QBtn.js";
+import { c as computed, N as onDeactivated, a as onBeforeUnmount, g as getCurrentInstance, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, h, T as Transition, w as watch, O as toRaw, J as stopAndPrevent, P as Platform, D as isKeyCode, K as prevent, d as nextTick, E as addEvt, F as cleanEvt, l as listenOpts, Q as globalConfig, q as onUnmounted, R as injectProp, S as Teleport, U as client, s as defineComponent, v as openBlock, x as createBlock, y as withCtx, z as createVNode, I as withDirectives, V as vShow, A as createBaseVNode, W as normalizeClass, X as createElementBlock, Y as renderList, Z as Fragment, C as normalizeStyle, B as createTextVNode, _ as toDisplayString, $ as createCommentVNode, a0 as pushScopeId, a1 as popScopeId } from "./index.js";
+import { d as vmIsDestroyed, b as QSpinner, a as useSize, u as useSizeProps, Q as QIcon, v as vmHasRouter } from "./vm.js";
 import { c as createComponent, h as hSlot, b as hMergeSlot } from "./render.js";
 import { c as getScrollbarWidth, g as getScrollTarget } from "./scroll.js";
 import { Q as QPage } from "./QPage.js";
@@ -1715,7 +1715,7 @@ var _export_sfc = (sfc, props) => {
   }
   return target2;
 };
-const _withScopeId = (n) => (pushScopeId("data-v-5ac680dd"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-cb05b0b4"), n = n(), popScopeId(), n);
 const _hoisted_1 = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
@@ -1754,7 +1754,7 @@ const _sfc_main = defineComponent({
       await getMetaData();
       registerInterval(async () => {
         await getMetaData();
-      }, 1e3 * 5);
+      }, 1e3 * 60 * 10);
     });
     onBeforeUnmount(() => {
       removeInterval();
@@ -1823,9 +1823,6 @@ const _sfc_main = defineComponent({
         fetchLoading.value = false;
       }, 3e3);
     }
-    function toggleLoading() {
-      fetchLoading.value = !fetchLoading.value;
-    }
     return (_ctx, _cache) => {
       return openBlock(), createBlock(QPage, { class: "t-page" }, {
         default: withCtx(() => [
@@ -1837,7 +1834,7 @@ const _sfc_main = defineComponent({
               withDirectives(createBaseVNode("div", _hoisted_1, [
                 createBaseVNode("div", _hoisted_2, [
                   createVNode(QImg, {
-                    src: "/icons/chaos.png",
+                    src: "icons/chaos.png",
                     width: "30px"
                   })
                 ])
@@ -1854,7 +1851,7 @@ const _sfc_main = defineComponent({
               onClick: _cache[0] || (_cache[0] = ($event) => currencyType.value = "chaos")
             }, [
               createVNode(QImg, {
-                src: "/icons/chaos.png",
+                src: "icons/chaos.png",
                 width: "32px"
               })
             ], 2),
@@ -1863,7 +1860,7 @@ const _sfc_main = defineComponent({
               onClick: _cache[1] || (_cache[1] = ($event) => currencyType.value = "exalted")
             }, [
               createVNode(QImg, {
-                src: "/icons/exalted.png",
+                src: "icons/exalted.png",
                 width: "32px"
               })
             ], 2),
@@ -1872,7 +1869,7 @@ const _sfc_main = defineComponent({
               onClick: _cache[2] || (_cache[2] = ($event) => currencyType.value = "divine")
             }, [
               createVNode(QImg, {
-                src: "/icons/divine.png",
+                src: "icons/divine.png",
                 width: "32px"
               })
             ], 2),
@@ -1882,12 +1879,7 @@ const _sfc_main = defineComponent({
               "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => hightlight.value = $event),
               dense: "",
               style: { "margin-left": "32px" }
-            }, null, 8, ["modelValue"]),
-            createVNode(QBtn, {
-              label: "loading",
-              color: "blue-3",
-              onClick: toggleLoading
-            })
+            }, null, 8, ["modelValue"])
           ]),
           createBaseVNode("div", null, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(scarabData.value, (data, index) => {
@@ -1936,21 +1928,21 @@ const _sfc_main = defineComponent({
                               createBaseVNode("div", _hoisted_8, [
                                 createBaseVNode("div", _hoisted_9, [
                                   createVNode(QImg, {
-                                    src: "/icons/chaos.png",
+                                    src: "icons/chaos.png",
                                     width: "20px"
                                   }),
                                   createBaseVNode("div", _hoisted_10, toDisplayString(scarab.chaos), 1)
                                 ]),
                                 createBaseVNode("div", _hoisted_11, [
                                   createVNode(QImg, {
-                                    src: "/icons/exalted.png",
+                                    src: "icons/exalted.png",
                                     width: "20px"
                                   }),
                                   createBaseVNode("div", _hoisted_12, toDisplayString(scarab.exalted), 1)
                                 ]),
                                 createBaseVNode("div", _hoisted_13, [
                                   createVNode(QImg, {
-                                    src: "/icons/divine.png",
+                                    src: "icons/divine.png",
                                     width: "20px"
                                   }),
                                   createBaseVNode("div", _hoisted_14, toDisplayString(scarab.divine), 1)
@@ -1979,5 +1971,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5ac680dd"]]);
+var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-cb05b0b4"]]);
 export { ScarabsPage as default };

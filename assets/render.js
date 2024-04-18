@@ -1,4 +1,4 @@
-import { M as markRaw, s as defineComponent } from "./index.js";
+import { L as markRaw, s as defineComponent } from "./index.js";
 const createComponent = (raw) => markRaw(defineComponent(raw));
 const createDirective = (raw) => markRaw(raw);
 function hSlot(slot, otherwise) {
