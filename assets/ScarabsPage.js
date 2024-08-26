@@ -1,9 +1,9 @@
-import { c as computed, N as onDeactivated, a as onBeforeUnmount, g as getCurrentInstance, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, h, T as Transition, w as watch, O as toRaw, J as stopAndPrevent, P as Platform, D as isKeyCode, K as prevent, d as nextTick, E as addEvt, F as cleanEvt, l as listenOpts, Q as globalConfig, q as onUnmounted, R as injectProp, S as Teleport, U as client, s as defineComponent, v as openBlock, x as createBlock, y as withCtx, z as createVNode, I as withDirectives, V as vShow, A as createBaseVNode, W as normalizeClass, X as createElementBlock, Y as renderList, Z as Fragment, C as normalizeStyle, B as createTextVNode, _ as toDisplayString, $ as createCommentVNode, a0 as pushScopeId, a1 as popScopeId } from "./index.js";
+import { c as computed, N as onDeactivated, a as onBeforeUnmount, g as getCurrentInstance, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, h, T as Transition, w as watch, O as toRaw, J as stopAndPrevent, P as Platform, D as isKeyCode, K as prevent, d as nextTick, E as addEvt, F as cleanEvt, l as listenOpts, Q as globalConfig, q as onUnmounted, R as injectProp, S as Teleport, U as client, s as defineComponent, v as openBlock, V as createElementBlock, z as createVNode, A as createBaseVNode, W as Fragment, B as createTextVNode, X as toDisplayString, Y as createCommentVNode, Z as normalizeClass, y as withCtx, _ as renderList, x as createBlock, I as withDirectives, $ as vShow, C as normalizeStyle, a0 as pushScopeId, a1 as popScopeId } from "./index.js";
 import { d as vmIsDestroyed, b as QSpinner, a as useSize, u as useSizeProps, Q as QIcon, v as vmHasRouter } from "./vm.js";
 import { c as createComponent, h as hSlot, b as hMergeSlot } from "./render.js";
-import { c as getScrollbarWidth, g as getScrollTarget } from "./scroll.js";
 import { Q as QPage } from "./QPage.js";
 import { a as axios } from "./axios2.js";
+import { c as getScrollbarWidth, g as getScrollTarget } from "./scroll.js";
 const useRatioProps = {
   ratio: [String, Number]
 };
@@ -533,6 +533,285 @@ var QCheckbox = createComponent({
     return useCheckbox("checkbox", getInner);
   }
 });
+function useInterval() {
+  let timer = null;
+  const vm = getCurrentInstance();
+  function removeInterval() {
+    if (timer !== null) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+  onDeactivated(removeInterval);
+  onBeforeUnmount(removeInterval);
+  return {
+    removeInterval,
+    registerInterval(fn, delay) {
+      removeInterval();
+      if (vmIsDestroyed(vm) === false) {
+        timer = setInterval(fn, delay);
+      }
+    }
+  };
+}
+const Titanic = {
+  icon: "",
+  list: Array(
+    { id: "titanic-scarab", name: "\uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "titanic-scarab-of-treasures", name: "\uBCF4\uBB3C\uC758 \uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "titanic-scarab-of-legend", name: "\uC804\uC124\uC758 \uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Sulphite = {
+  icon: "",
+  list: Array(
+    { id: "sulphite-scarab", name: "\uC544\uD669\uC0B0\uC5FC \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uB2C8\uCF54 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "sulphite-scarab-of-fumes", name: "\uC5F0\uAE30\uC758 \uC544\uD669\uC0B0\uC5FC \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC544\uD669\uC0B0\uC5FC\uC774 \uACA9\uC559\uC2DC\uD0A4\uB294 \uC5F0\uAE30 \uBC29\uCD9C", "\uACA9\uC559\uC2DC\uD0A4\uB294 \uC5F0\uAE30\uC758 \uC601\uD5A5\uC744 \uBC1B\uB294 \uC801\uC740 \uC544\uC774\uD15C \uC218\uB7C9 500% \uC99D\uAC00", "\uC9C0\uB3C4 \uB0B4 \uC544\uD669\uC0B0\uC5FC\uC744 \uB0A8\uB3D9\uC11D \uAD11\uC0B0\uC758 \uBAAC\uC2A4\uD130\uAC00 \uBC29\uC5B4"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Divination = {
+  icon: "",
+  list: Array(
+    { id: "divination-scarab-of-the-cloister", name: "\uD68C\uB791\uC758 \uC810\uC220 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "divination-scarab-of-plenty", name: "\uD48D\uBD80\uD568\uC758 \uC810\uC220 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "divination-scarab-of-pilfering", name: "\uD6D4\uCCD0\uB0C4\uC758 \uC810\uC220 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Anarchy = {
+  icon: "",
+  list: Array(
+    { id: "anarchy-scarab", name: "\uD63C\uB780 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0C8\uC8FC \uC720\uBC30\uC790 4\uBA85 \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "anarchy-scarab-of-gigantification", name: "\uBE44\uB300\uD654\uC758 \uD63C\uB780 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0C8\uC8FC \uC720\uBC30\uC790\uAC00 30%\uC758 \uD655\uB960\uB85C \uD0C8\uC8FC \uAC70\uC778\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "anarchy-scarab-of-partnership", name: "\uD611\uB825\uC758 \uD63C\uB780 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0C8\uC8FC \uC720\uBC30\uC790\uAC00 50%\uC758 \uD655\uB960\uB85C \uC30D\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Ritual = {
+  icon: "",
+  list: Array(
+    { id: "ritual-scarab-of-selectiveness", name: "\uC120\uD0DD\uC758 \uC758\uC2DD \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC758\uC2DD \uC81C\uB2E8\uC5D0\uC11C \uD5CC\uC815\uD488\uC744 \uBB34\uC791\uC704 \uBCC0\uACBD\uD560 \uB54C \uCCAB 2\uD68C\uB294 \uBE44\uC6A9 \uC5C6\uC74C", "\uC9C0\uC5ED \uB0B4 \uC758\uC2DD \uC81C\uB2E8\uC5D0\uC11C \uD5CC\uC815\uD488\uC744 1\uD68C \uCD94\uAC00\uB85C \uBB34\uC791\uC704 \uBCC0\uACBD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ritual-scarab-of-wisps", name: "\uB3C4\uAE68\uBE44\uBD88\uC758 \uC758\uC2DD \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC758\uC2DD \uC81C\uB2E8\uC774 \uC57C\uC0DD\uB9BC \uB3C4\uAE68\uBE44\uBD88 \uC0DD\uC131", "\uC57C\uC0DD\uB9BC \uB3C4\uAE68\uBE44\uBD88\uC774 \uC8FC\uBCC0\uC758 \uD50C\uB808\uC774\uC5B4\uB4E4\uC5D0\uAC8C \uACF5\uBB3C \uC810\uC218 \uD68D\uB4DD\uB7C9 70% \uC99D\uAC00 \uBD80\uC5EC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ritual-scarab-of-abundance", name: "\uD48D\uBD80\uD568\uC758 \uC758\uC2DD \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC758\uC2DD\uC73C\uB85C \uC5BB\uB294 \uD5CC\uC815\uD488 100% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Harvest = {
+  icon: "",
+  list: Array(
+    { id: "harvest-scarab", name: "\uC218\uD655 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2E0\uC131\uD55C \uC232 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "harvest-scarab-of-doubling", name: "\uBCF5\uC81C\uC758 \uC218\uD655 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC218\uD655 \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC0DD\uAE30\uAC00 \uBCF5\uC81C\uB428", "\uC9C0\uC5ED \uB0B4 \uC218\uD655 \uBAAC\uC2A4\uD130\uC758 \uC0DD\uBA85\uB825 100% \uC99D\uD3ED"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "harvest-scarab-of-cornucopia", name: "\uD48D\uC694\uC758 \uBFD4\uC758 \uC218\uD655 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2E0\uC131\uD55C \uC232\uC774 \uB4F1\uC7A5\uD560 \uC2DC, \uAC00\uB2A5\uD560 \uACBD\uC6B0 \uC2E0\uC131\uD55C \uC232\uC5D0 \uAC01 \uC720\uD615\uC758 4\uB4F1\uAE09 \uC528\uC557 \uCD5C\uB300 1\uAC1C\uC529 \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Bestiary = {
+  icon: "",
+  list: Array(
+    { id: "bestiary-scarab", name: "\uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC544\uC778\uD558\uB974 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "bestiary-scarab-of-the-herd", name: "\uB5BC\uC758 \uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC544\uC778\uD558\uB974\uAC00 \uB4F1\uC7A5\uD558\uB294 \uC9C0\uC5ED\uC5D0 \uBD89\uC740 \uC57C\uC218 5\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "bestiary-scarab-of-duplicating", name: "\uBCF5\uC81C\uC758 \uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uD3EC\uD68D\uD558\uB294 \uC57C\uC218\uC758 \uBCF5\uC81C\uBCF8 \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Influencing = {
+  icon: "",
+  list: Array(
+    { id: "influencing-scarab-of-the-shaper", name: "\uC250\uC774\uD37C\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC250\uC774\uD37C \uC601\uD5A5\uB825 \uACB0\uACFC\uBB3C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "influencing-scarab-of-the-elder", name: "\uC5D8\uB354\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC5D8\uB354 \uC601\uD5A5\uB825 \uACB0\uACFC\uBB3C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "influencing-scarab-of-hordes", name: "\uAD70\uB2E8\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC601\uD5A5\uC744 \uBC1B\uC740 \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uC758 \uBB34\uB9AC \uADDC\uBAA8 40% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "influencing-scarab-of-conversion", name: "\uC804\uD5A5\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 14\uB4F1\uAE09 \uC774\uC0C1\uC758 \uC9C0\uB3C4\uAC00 \uC77C\uC815 \uD655\uB960\uB85C \uC250\uC774\uD37C \uC218\uD638\uC790, \uC5D8\uB354 \uC218\uD638\uC790, \uC815\uBCF5\uC790 \uB610\uB294 \uACE0\uC720 \uACB0\uD569 \uC9C0\uB3C4\uB85C \uB5A8\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Harbinger = {
+  icon: "",
+  list: Array(
+    { id: "harbinger-scarab", name: "\uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790 3\uBA85 \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "harbinger-scarab-of-obelisks", name: "\uC624\uBCA8\uB9AC\uC2A4\uD06C\uC758 \uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 \uAC15\uD68C\uB41C \uC624\uBCA8\uB9AC\uC2A4\uD06C \uC0DD\uC131", "\uAC15\uD68C\uB41C \uC624\uBCA8\uB9AC\uC2A4\uD06C\uB294 \uD30C\uAD34\uB420 \uC2DC \uC77C\uC815 \uD655\uB960\uB85C \uD654\uD3D0 \uD30C\uD3B8\uC744 \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "harbinger-scarab-of-regency", name: "\uC12D\uC815\uC758 \uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 50%\uC758 \uD655\uB960\uB85C \uAC15\uB825\uD55C \uC120\uAD6C\uC790 \uBCF4\uC2A4\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "harbinger-scarab-of-warhoards", name: "\uC804\uC7C1\uBE44\uCD95\uBB3C\uC758 \uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uD654\uD3D0 \uD30C\uD3B8\uC774 \uBCF5\uC81C\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Incursion = {
+  icon: "",
+  list: Array(
+    { id: "incursion-scarab", name: "\uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC54C\uBC14 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "incursion-scarab-of-invasion", name: "\uCE68\uB7B5\uC758 \uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uAE30\uC2B5 \uBAAC\uC2A4\uD130 \uBB34\uB9AC 12~16\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "incursion-scarab-of-champions", name: "\uC6A9\uC0AC\uC758 \uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["35%\uC758 \uD655\uB960\uB85C \uC9C0\uC5ED \uB0B4 \uAE30\uC2B5\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130\uAC00 \uB9C8\uBC95 \uC774\uC0C1\uC73C\uB85C \uB4F1\uC7A5", "\uC9C0\uC5ED \uB0B4 \uAE30\uC2B5\uC758 \uBB34\uB9AC \uADDC\uBAA8 15% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "incursion-scarab-of-timelines", name: "\uC2DC\uAC04\uC120\uC758 \uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uCC98\uCE58\uD558\uB294 \uCD5C\uC885 \uAC74\uCD95\uAC00\uAC00 \uC544\uC774\uD15C\uD654\uB41C \uC0AC\uC6D0\uC744 \uB5A8\uC5B4\uB728\uB9BC", "\uC9C0\uC5ED\uC5D0\uC11C \uB5A8\uC5B4\uC9C0\uB294 \uC544\uC774\uD15C\uD654\uB41C \uC0AC\uC6D0\uC774 \uD604\uC7AC \uC0AC\uC6D0 \uAD6C\uC870\uC5D0 \uAE30\uBC18\uD574 \uC0DD\uC131\uB418\uC9C0\uB9CC, \uBC29\uC758 \uB4F1\uAE09\uC740 \uBB34\uC791\uC704 \uBCC0\uACBD"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Betrayal = {
+  icon: "",
+  list: Array(
+    { id: "betrayal-scarab", name: "\uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC900 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "betrayal-scarab-of-intelligence", name: "\uC9C0\uB2A5\uC758 \uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uB4F1\uC7A5\uD558\uB294 \uBD88\uBA78\uC790 \uC5F0\uD569 \uB300\uC0C1\uC73C\uB85C\uBD80\uD130 \uC5BB\uB294 \uC815\uBCF4 150% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "betrayal-scarab-of-reinforcements", name: "\uBCF4\uAC15\uC758 \uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBD88\uBA78\uC790 \uC5F0\uD569 \uB2E8\uC6D0\uC774 \uC9C0\uC6D0\uAD70\uC744 \uB3D9\uBC18\uD560 \uD655\uB960 50% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Domination = {
+  icon: "",
+  list: Array(
+    { id: "domination-scarab", name: "\uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC131\uC18C 2\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "domination-scarab-of-apparitions", name: "\uC720\uB839\uC758 \uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC720\uB839 \uC131\uC18C 2\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "domination-scarab-of-evolution", name: "\uC9C4\uD654\uC758 \uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC9C4\uD654\uC758 \uC131\uC18C 1\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "domination-scarab-of-terrors", name: "\uACF5\uD3EC\uC758 \uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC131\uC18C\uB97C 1\uB9C8\uB9AC\uC758 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uAC00 \uBC29\uC5B4", "\uC9C0\uB3C4\uC758 \uB9C8\uC9C0\uB9C9 \uBCF4\uC2A4\uC5D0 \uB300\uD55C \uC18D\uC131\uC774 \uC774 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uC5D0\uB3C4 \uC801\uC6A9"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Torment = {
+  icon: "",
+  list: Array(
+    { id: "torment-scarab", name: "\uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31 3\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5", "\uC0AC\uB85C\uC7A1\uD78C \uBAAC\uC2A4\uD130 \uCC98\uCE58\uC2DC \uC9C0\uC5ED \uB0B4 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 25%\uC758 \uD655\uB960\uB85C \uD574\uBC29"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "torment-scarab-of-peculiarity", name: "\uAE30\uC774\uD568\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uB0B4 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 \uD2B9\uC774\uD55C \uBCC0\uD654\uD615\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "torment-scarab-of-possession", name: "\uC0AC\uB85C\uC7A1\uD798\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 1/4 \uD655\uB960\uB85C \uCD5C\uB300 1\uB9C8\uB9AC\uC758 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC5D0\uAC8C \uC0AC\uB85C\uC7A1\uD798"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Cartography = {
+  icon: "",
+  list: Array(
+    { id: "cartography-scarab-of-escalation", name: "\uC99D\uB300\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC601\uD5A5\uC744 \uC8FC\uB294 \uC9C0\uB3C4 \uC18D\uC131 \uD558\uB098\uB2F9 \uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC9C0\uB3C4 10% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "cartography-scarab-of-risk", name: "\uC704\uD5D8\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uBB34\uC791\uC704 \uC18D\uC131 1\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "cartography-scarab-of-corruption", name: "\uD0C0\uB77D\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uBE44-\uACE0\uC720 \uC9C0\uB3C4\uAC00 \uC18D\uC131 8\uAC1C\uAC00 \uBD80\uC5EC\uB41C \uD0C0\uB77D\uD55C \uC9C0\uB3C4\uB85C \uB5A8\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "cartography-scarab-of-the-multitude", name: "\uAD70\uC911\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1\uC774 \uB192\uC740 \uBAAC\uC2A4\uD130\uB85C \uC774\uB8E8\uC5B4\uC9C4 \uBB34\uB9AC\uAC00 8~12\uAC1C \uB4F1\uC7A5", "\uC774\uB7EC\uD55C \uBAAC\uC2A4\uD130\uB294 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC9C0\uB3C4 \uC218\uB7C9\uC774 300% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Beyond = {
+  icon: "",
+  list: Array(
+    { id: "beyond-scarab", name: "\uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uC11C\uB85C \uAC00\uAE4C\uC774 \uC788\uB294 \uC801\uC744 \uCC98\uCE58\uD558\uBA74 \uC774\uACC4 \uBAAC\uC2A4\uD130\uB97C \uBD88\uB7EC\uC634"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "beyond-scarab-of-haemophilia", name: "\uD608\uC6B0\uBCD1\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC758 \uBCD1\uD569 \uBC94\uC704 30% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "beyond-scarab-of-resurgence", name: "\uC7AC\uAE30\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uBCF4\uC2A4\uAC00 \uB0AE\uC740 \uC0DD\uBA85\uB825 \uC0C1\uD0DC\uC5D0\uC11C \uACA9\uC559\uD568", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uBCF4\uC2A4\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uB354\uB7FD\uD600\uC9C4 \uD654\uD3D0 100% \uC99D\uAC00", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC774 \uACE0\uC720 \uBCF4\uC2A4\uB97C \uC0DD\uC131\uD560 \uD655\uB960 30% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "beyond-scarab-of-the-invasion", name: "\uCE68\uB7B5\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC774\uACC4 \uD3EC\uD0C8 8~12\uAC1C \uCD94\uAC00 \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Ambush = {
+  icon: "",
+  list: Array(
+    { id: "ambush-scarab", name: "\uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0 5\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ambush-scarab-of-hidden-compartments", name: "\uBE44\uBC00 \uACF5\uAC04\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0\uB97C 15%\uC758 \uD655\uB960\uB85C \uB2E4\uC2DC \uC5F4 \uC218 \uC788\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ambush-scarab-of-potency", name: "\uC7A0\uC7AC\uB825\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0\uC758 \uBE44\uACE0\uC815 \uC18D\uC131 \uD6A8\uACFC 75% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ambush-scarab-of-containment", name: "\uBD09\uC1C4\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uB2E4\uC218\uC758 \uAE08\uACE0 \uCD94\uAC00", "\uC9C0\uC5ED \uB0B4 \uBAAC\uC2A4\uD130\uAC00 \uB9E4\uBCF5 \uC911"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ambush-scarab-of-discernment", name: "\uBD84\uBCC4\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0\uAC00 \uBCF4\uB2E4 \uD76C\uADC0\uD55C \uC885\uB958\uC77C \uD655\uB960\uC774 \uB192\uC544\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Ultimatum = {
+  icon: "",
+  list: Array(
+    { id: "ultimatum-scarab", name: "\uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ultimatum-scarab-of-bribing", name: "\uB9E4\uC218\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uACB0\uC804 \uBAAC\uC2A4\uD130\uAC00 \uC8FC\uB294 \uACBD\uD5D8\uCE58 150% \uC99D\uAC00", "\uACB0\uC804 \uC778\uCE74\uC6B4\uD130\uAC00 \uB77C\uC6B4\uB4DC 2\uAC1C\uB97C \uCD94\uAC00\uB85C \uC644\uB8CC\uD55C \uAC83\uCC98\uB7FC \uBCF4\uC0C1\uC744 \uC90C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ultimatum-scarab-of-dueling", name: "\uACB0\uD22C\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uAC00\uB2A5\uD560 \uACBD\uC6B0 \uC9C0\uC5ED \uB0B4 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130\uAC00 \uD56D\uC0C1 \uACE0\uC720 \uBCF4\uC2A4\uB85C \uC774\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ultimatum-scarab-of-catalysing", name: "\uAE30\uD3ED\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uBCF4\uC0C1\uC73C\uB85C \uAE30\uD3ED\uC81C\uB9CC \uD68D\uB4DD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "ultimatum-scarab-of-inscription", name: "\uC0C8\uAE40\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uAE30\uD3ED\uC81C\uB97C \uC8FC\uB294 \uC9C0\uC5ED \uB0B4 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130 \uBCF4\uC0C1\uC774 \uAE30\uD3ED\uC81C\uAC00 \uC544\uB2CC \uC0C8\uACA8\uC9C4 \uACB0\uC804\uC744 \uC90C"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Expedition = {
+  icon: "",
+  list: Array(
+    { id: "expedition-scarab", name: "\uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "expedition-scarab-of-runefinding", name: "\uB8EC \uD0D0\uC0C9\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uC758 \uB8EC \uBAAC\uC2A4\uD130 \uD45C\uC2DC\uBB3C \uC218\uB7C9 100% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "expedition-scarab-of-verisium-powder", name: "\uBCA0\uB9AC\uC2DC\uC6C0 \uD654\uC57D\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uC758 \uD3ED\uBC1C\uBB3C \uC218\uB7C9 20% \uC99D\uAC00", "\uD3ED\uBC1C\uBB3C \uBC18\uACBD 80 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "expedition-scarab-of-archaeology", name: "\uACE0\uACE0\uD559\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uC758 \uC720\uBB3C\uC5D0 \uC811\uBBF8\uC5B4 \uBC0F \uC811\uB450\uC5B4 2\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Delirium = {
+  icon: "",
+  list: Array(
+    { id: "delirium-scarab", name: "\uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uD658\uC601\uC758 \uAC70\uC6B8 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "delirium-scarab-of-mania", name: "\uAD11\uC99D\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uD658\uC601 \uBCF4\uC0C1 \uB9C9\uB300\uAC00 100% \uBE68\uB9AC \uCC44\uC6CC\uC9D0", "\uC9C0\uC5ED \uB0B4 \uD658\uC601\uC774 \uAC70\uC6B8\uACFC\uC758 \uAC70\uB9AC\uC5D0 \uBE44\uB840\uD574 50% \uB354 \uBE60\uB974\uAC8C \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "delirium-scarab-of-paranoia", name: "\uD3B8\uC9D1\uC99D\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD658\uC601 \uC778\uCE74\uC6B4\uD130\uAC00 \uBCF4\uC0C1 \uC720\uD615 2\uAC1C \uCD94\uAC00 \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "delirium-scarab-of-neuroses", name: "\uC2E0\uACBD\uC99D\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD658\uC601 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uBAA8\uB4E0 \uACE0\uC720 \uD658\uC601 \uBCF4\uC2A4 \uB4F1\uC7A5", "11\uB4F1\uAE09 \uC774\uC0C1\uC758 \uC9C0\uB3C4\uC5D0\uB9CC \uC0AC\uC6A9 \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "delirium-scarab-of-delusions", name: "\uB9DD\uC0C1\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC9C0\uB3C4\uC5D0 \uD658\uC601 \uD604\uC0C1 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Legion = {
+  icon: "icons/legion.png",
+  list: Array(
+    { id: "legion-scarab", name: "\uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uCD94\uAC00 \uAD70\uB2E8 \uC778\uCE74\uC6B4\uD130 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "legion-scarab-of-officers", name: "\uC7A5\uAD50\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uC9C4\uC601\uC5D0 \uBCD1\uC7A5 5\uBA85 \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "legion-scarab-of-command", name: "\uC9C0\uD718\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uC9C4\uC601\uC774 \uC7A5\uAD70 \uB300\uB3D9"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "legion-scarab-of-eternal-conflict", name: "\uC601\uC6D0\uD55C \uBD84\uC7C1\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uBAAC\uC2A4\uD130\uB97C \uC5EC\uB7EC \uBC88 \uAE68\uC6B8 \uC218 \uC788\uC74C", "\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uBAAC\uC2A4\uD130\uB97C \uAE68\uC6B8 \uB54C\uB9C8\uB2E4 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Blight = {
+  icon: "",
+  list: Array(
+    { id: "blight-scarab", name: "\uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "blight-scarab-of-the-blightheart", name: "\uBA54\uB9C8\uB978 \uC2EC\uC7A5\uC758 \uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uC5ED\uBCD1 \uAC78\uB9B0 \uC0C1\uC790 1\uAC1C \uB4F1\uC7A5", "\uC9C0\uC5ED \uB0B4 \uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uC0DD\uC131\uB418\uB294 \uC801 \uC6E8\uC774\uBE0C \uC218\uAC00 \uD06C\uAC8C \uC99D\uD3ED", "\uC5ED\uBCD1 \uAC78\uB9B0 \uC801\uC744 \uB9CE\uC774 \uCC98\uCE58\uD560\uC218\uB85D \uC9C0\uC5ED \uB0B4 \uC5ED\uBCC4 \uAC78\uB9B0 \uC0C1\uC7A5\uC758 \uD06C\uAE30\uAC00 \uCEE4\uC9C0\uACE0 \uBCF4\uC0C1\uC774 \uB298\uC5B4\uB0A8"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "blight-scarab-of-blooming", name: "\uAC1C\uD654\uC758 \uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uACE0\uC720 \uBCF4\uC2A4 \uCD5C\uB300 3\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5", "\uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130 \uB0B4 \uACE0\uC720 \uC801\uC758 \uC0DD\uBA85\uB825 100% \uC99D\uAC00", "\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 14\uB4F1\uAE09 \uC774\uC0C1\uC758 \uC5ED\uBCD1 \uAC78\uB9B0 \uC9C0\uB3C4\uAC00 \uC5ED\uBCD1\uC5D0 \uC720\uB9B0\uB2F9\uD55C \uC9C0\uB3C4\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "blight-scarab-of-invigoration", name: "\uACE0\uBB34\uC758 \uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAC15\uD654\uC758 \uD0D1\uC774 \uAC01\uAC01 \uBC94\uC704 \uB0B4 \uC5ED\uBCD1 \uBAAC\uC2A4\uD130\uC758 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1\uC744 \uC99D\uAC00\uC2DC\uD0B4"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Abyss = {
+  icon: "",
+  list: Array(
+    { id: "abyss-scarab", name: "\uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2EC\uC5F0 1\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "abyss-scarab-of-multitudes", name: "\uAD70\uC911\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC5D0\uC11C \uC0DD\uC131\uB418\uB294 \uBAAC\uC2A4\uD130 75% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "abyss-scarab-of-edifice", name: "\uAC74\uCD95\uBB3C\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0 \uC9C0\uD558\uB85C \uC5F0\uACB0\uB418\uC9C0 \uC54A\uB294 \uC2EC\uC5F0\uC774 \uBA85\uACC4\uC758 \uCCA8\uD0D1\uC73C\uB85C \uC774\uC5B4\uC9D0", "\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC774 \uC774\uB3D9\uD558\uBA70 \uBE44\uCD95\uBB3C \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "abyss-scarab-of-profound-depth", name: "\uC2EC\uC6D0\uD55C \uAE4A\uC774\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uD574\uB2F9 \uC2EC\uC5F0 \uB0B4\uC5D0 \uBA3C\uC800 \uB4F1\uC7A5\uD558\uB294 \uAD6C\uB369\uC774\uC758 \uC218\uC5D0 \uB530\uB77C \uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC5D0\uC11C \uB098\uC628 \uBAAC\uC2A4\uD130\uC758 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Essence = {
+  icon: "",
+  list: Array(
+    { id: "essence-scarab", name: "\uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC5D0\uC13C\uC2A4 2\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "essence-scarab-of-ascent", name: "\uC0C1\uC2B9\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC5D0\uC13C\uC2A4\uAC00 1\uB4F1\uAE09 \uB192\uAC8C \uBC1C\uACAC\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "essence-scarab-of-stability", name: "\uC548\uC815\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uD0C0\uB77D\uC758 \uC720\uBB3C \uC0AC\uC6A9 \uC2DC \uC5D0\uC13C\uC2A4\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uB610\uB294 \uBCC0\uD654\uC2DC\uD0A4\uB294 \uACB0\uACFC\uB9CC \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "essence-scarab-of-calcification", name: "\uC11D\uD68C\uD654\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC790\uC5F0\uC801\uC73C\uB85C \uC11C\uC2DD\uD558\uB294 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC5D0\uC13C\uC2A4\uC5D0 \uAC07\uD798"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "essence-scarab-of-adaptation", name: "\uC11D\uD68C\uD654\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC790\uC5F0\uC801\uC73C\uB85C \uC11C\uC2DD\uD558\uB294 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC5D0\uC13C\uC2A4\uC5D0 \uAC07\uD798"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const Breach = {
+  icon: "",
+  list: Array(
+    { id: "breach-scarab", name: "\uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4 2\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "breach-scarab-of-lordship", name: "\uC9C0\uC704\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC758 \uAC01 \uADE0\uC5F4\uC5D0 \uADE0\uC5F4 \uAD70\uC8FC \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "breach-scarab-of-splintering", name: "\uD30C\uD3B8\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4 \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uADE0\uC5F4 \uD30C\uD3B8 50% \uC99D\uD3ED", "\uC9C0\uC5ED \uB0B4 \uC6C0\uCF1C\uC7A1\uB294 \uC190\uC774 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uADE0\uC5F4 \uD30C\uD3B8 50% \uC99D\uD3ED"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "breach-scarab-of-snares", name: "\uC62C\uAC00\uBBF8\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4\uC5D0 \uC6C0\uCF1C\uC7A1\uB294 \uC190 5~10\uAC1C \uCD94\uAC00 \uB4F1\uC7A5", "\uC9C0\uC5ED \uB0B4 \uC6C0\uCF1C\uC7A1\uB294 \uC190\uC744 \uD76C\uADC0 \uADE0\uC5F4 \uBAAC\uC2A4\uD130\uAC00 \uBC29\uC5B4"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "breach-scarab-of-resonant-cascade", name: "\uACF5\uBA85\uD558\uB294 \uD3ED\uD3EC\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC774\uBBF8 \uC5F4\uB9B0 \uADE0\uC5F4 \uD558\uB098\uB2F9 \uC9C0\uC5ED \uB0B4 \uADE0\uC5F4\uC774 10% \uB354 \uBE60\uB974\uAC8C \uC5F4\uB9AC\uACE0 \uB2EB\uD798", "\uC774\uBBF8 \uC5F4\uB9B0 \uADE0\uC5F4\uC758 \uC218\uC5D0 \uB530\uB77C \uC9C0\uC5ED \uB0B4 \uADE0\uC5F4 \uBAAC\uC2A4\uD130\uC758 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const NewScarabs1 = {
+  icon: "",
+  list: Array(
+    { id: "scarab-of-monstrous-lineage", name: "\uAE30\uAD34\uD55C \uD608\uD1B5\uC758 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "scarab-of-adversaries", name: "\uC801\uC218\uC758 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "scarab-of-divinity", name: "\uC2E0\uC131\uC758 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "scarab-of-hunted-traitors", name: "\uCAD3\uAE30\uB294 \uBC30\uC2E0\uC790\uC758 \uAC11\uCDA9\uC11D", icon: "", description: [""], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const NewScarabs2 = {
+  icon: "",
+  list: Array(
+    { id: "horned-scarab-of-bloodlines", name: "\uD608\uB9F9\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC758 \uB9C8\uBC95 \uBAAC\uC2A4\uD130 150% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "horned-scarab-of-nemeses", name: "\uCC9C\uBC8C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC18D\uC131 2\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "horned-scarab-of-preservation", name: "\uBCF4\uC804\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uB2E4\uB978 \uAC11\uCDA9\uC11D\uB4E4\uC774 \uC0AC\uC6A9\uD574\uB3C4 \uC18C\uBAA8\uB418\uC9C0 \uC54A\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "horned-scarab-of-awakening", name: "\uAC01\uC131\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC7A5\uCE58\uC5D0\uC11C \uBD80\uC5EC\uB41C \uC81C\uC791 \uC635\uC158 1\uAC1C \uC120\uD0DD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "horned-scarab-of-tradition", name: "\uC804\uD1B5\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAA8\uB4E0 \uD76C\uADC0 \uBC0F \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC544\uC774\uD15C\uC774 \uBCF4\uC0C1 \uC18D\uC131\uC5D0 \uC758\uD574 \uBCC0\uD654\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const NewScarabs3 = {
+  icon: "",
+  list: Array(
+    { id: "scarab-of-stability", name: "\uC548\uC815\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC73C\uB85C \uC774\uC5B4\uC9C0\uB294 \uD3EC\uD0C8\uC774 50%\uC758 \uD655\uB960\uB85C \uC0AC\uC6A9\uD574\uB3C4 \uC18C\uBAA8\uB418\uC9C0 \uC54A"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "scarab-of-wisps", name: "\uB3C4\uAE68\uBE44\uBD88\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAAC\uC2A4\uD130\uAC00 \uC77C\uC815 \uD655\uB960\uB85C \uC57C\uC0DD\uB9BC \uB3C4\uAE68\uBE44\uBD88 2000\uB9C8\uB9AC\uB85C \uAC15\uD654"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "scarab-of-radiant-storms", name: "\uCC2C\uB780\uD55C \uD3ED\uD48D\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uCC2C\uC5F0\uD55C \uD3ED\uD48D \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "scarab-of-bisection", name: "\uC591\uB2E8\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC7A5\uCE58\uC5D0\uC11C \uC811\uB450\uC5B4 \uBB34\uD6A8\uD654 \uB610\uB294 \uC811\uBBF8\uC5B4 \uBB34\uD6A8\uD654 \uC81C\uC791 \uC635\uC158 \uC120\uD0DD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
+const NewScarabs4 = {
+  icon: "",
+  list: Array(
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "horned-scarab-of-glittering", name: "\uBC88\uCA4D\uC784\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD50C\uB808\uC774\uC5B4\uAC00 \uCD5C\uADFC 4\uCD08 \uC774\uB0B4 \uCC98\uCE58\uD55C \uBAAC\uC2A4\uD130 \uC218\uC5D0 \uB530\uB77C \uC544\uC774\uD15C \uD76C\uADC0\uB3C4\uAC00 \uCD5C\uB300 200% \uAE4C\uC9C0,", "\uC544\uC774\uD15C \uC218\uB7C9\uC774 \uCD5C\uB300 100%\uAE4C\uC9C0 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "horned-scarab-of-pandemonium", name: "\uD63C\uB780 \uC720\uBC1C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uAC00 15% \uD655\uB960\uB85C \uBB34\uC791\uC704 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4 1\uB9C8\uB9AC\uB85C \uB4F1\uC7A5", "\uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uBCF4\uC2A4\uC5D0 \uB300\uD55C \uC18D\uC131\uC774 \uD574\uB2F9 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uC5D0\uB3C4 \uC801\uC6A9"], chaos: 0, exalted: 0, divine: 0, level: 0 },
+    { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
+  )
+};
 function clearSelection() {
   if (window.getSelection !== void 0) {
     const selection = window.getSelection();
@@ -1525,189 +1804,7 @@ var QTooltip = createComponent({
     return renderPortal;
   }
 });
-function useInterval() {
-  let timer = null;
-  const vm = getCurrentInstance();
-  function removeInterval() {
-    if (timer !== null) {
-      clearInterval(timer);
-      timer = null;
-    }
-  }
-  onDeactivated(removeInterval);
-  onBeforeUnmount(removeInterval);
-  return {
-    removeInterval,
-    registerInterval(fn, delay) {
-      removeInterval();
-      if (vmIsDestroyed(vm) === false) {
-        timer = setInterval(fn, delay);
-      }
-    }
-  };
-}
-const Reliquary = Array(
-  { id: "reliquary-scarab", name: "\uC131\uC720\uBB3C \uBCF4\uAD00\uC2E4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uACE0\uC720 \uC544\uC774\uD15C 100% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "reliquary-scarab-of-overlords", name: "\uB300\uAD70\uC8FC\uC758 \uC131\uC720\uBB3C \uBCF4\uAD00\uC2E4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uACE0\uC720 \uC544\uC774\uD15C 1\uAC1C\uB97C \uCD94\uAC00\uB85C \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "reliquary-scarab-of-vision", name: "\uC2DC\uAC01\uC758 \uC131\uC720\uBB3C \uBCF4\uAD00\uC2E4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC774\uB984 \uC5C6\uB294 \uC608\uACAC\uC790 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Sulphite = Array(
-  { id: "sulphite-scarab", name: "\uC544\uD669\uC0B0\uC5FC \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uB2C8\uCF54 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "sulphite-scarab-of-greed", name: "\uD0D0\uC695\uC758 \uC544\uD669\uC0B0\uC5FC \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC18C\uC720\uC790\uAC00 \uD68D\uB4DD\uD558\uB294 \uC544\uD669\uC0B0\uC5FC 150% \uC99D\uD3ED"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "sulphite-scarab-of-fumes", name: "\uC5F0\uAE30\uC758 \uC544\uD669\uC0B0\uC5FC \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC544\uD669\uC0B0\uC5FC\uC774 \uACA9\uC559\uC2DC\uD0A4\uB294 \uC5F0\uAE30 \uBC29\uCD9C", "\uACA9\uC559\uC2DC\uD0A4\uB294 \uC5F0\uAE30\uC758 \uC601\uD5A5\uC744 \uBC1B\uB294 \uC801\uC740 \uC544\uC774\uD15C \uC218\uB7C9 500% \uC99D\uAC00", "\uC9C0\uB3C4 \uB0B4 \uC544\uD669\uC0B0\uC5FC\uC744 \uB0A8\uB3D9\uC11D \uAD11\uC0B0\uC758 \uBAAC\uC2A4\uD130\uAC00 \uBC29\uC5B4"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Divination = Array(
-  { id: "divination-scarab", name: "\uC810\uC220 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC810\uC220 \uCE74\uB4DC 150% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "divination-scarab-of-curation", name: "\uAD00\uB9AC\uC758 \uC810\uC220 \uAC11\uCDA9\uC11D", icon: "", description: ["\uB2E4\uB978 \uC885\uB958\uC758 \uC120\uD638 \uC9C0\uB3C4 \uD558\uB098\uB2F9 \uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC810\uC220 \uCE74\uB4DC 10% \uC99D\uD3ED", "\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uB5A8\uC5B4\uC9C0\uB294 \uC810\uC220 \uCE74\uB4DC\uAC00 \uC120\uD638 \uC9C0\uB3C4\uC758 \uC810\uC220 \uCE74\uB4DC\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "divination-scarab-of-completion", name: "\uC644\uB8CC\uC758 \uC810\uC220 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC810\uC220 \uCE74\uB4DC\uAC00 20%\uC758 \uD655\uB960\uB85C \uC644\uC131\uB41C \uC138\uD2B8\uB85C \uB5A8\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Torment = Array(
-  { id: "torment-scarab", name: "\uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31 5\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "torment-scarab-of-peculiarity", name: "\uAE30\uC774\uD568\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uB0B4 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 \uD2B9\uC774\uD55C \uBCC0\uD654\uD615\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "torment-scarab-of-release", name: "\uD574\uBC29\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC0AC\uB85C\uC7A1\uD78C \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC9C0\uC5ED \uB0B4 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 25%\uC758 \uD655\uB960\uB85C \uD574\uBC29"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Anarchy = Array(
-  { id: "anarchy-scarab", name: "\uD63C\uB780 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0C8\uC8FC \uC720\uBC30\uC790 4\uBA85 \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "anarchy-scarab-of-gigantification", name: "\uBE44\uB300\uD654\uC758 \uD63C\uB780 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0C8\uC8FC \uC720\uBC30\uC790\uAC00 30%\uC758 \uD655\uB960\uB85C \uD0C8\uC8FC \uAC70\uC778\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "anarchy-scarab-of-partnership", name: "\uD611\uB825\uC758 \uD63C\uB780 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0C8\uC8FC \uC720\uBC30\uC790\uAC00 50%\uC758 \uD655\uB960\uB85C \uC30D\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Ritual = Array(
-  { id: "ritual-scarab-of-selectiveness", name: "\uC120\uD0DD\uC758 \uC758\uC2DD \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC758\uC2DD \uC81C\uB2E8\uC5D0\uC11C \uD5CC\uC815\uD488\uC744 \uBB34\uC791\uC704 \uBCC0\uACBD\uD560 \uB54C \uCCAB 2\uD68C\uB294 \uBE44\uC6A9 \uC5C6\uC74C", "\uC9C0\uC5ED \uB0B4 \uC758\uC2DD \uC81C\uB2E8\uC5D0\uC11C \uD5CC\uC815\uD488\uC744 1\uD68C \uCD94\uAC00\uB85C \uBB34\uC791\uC704 \uBCC0\uACBD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ritual-scarab-of-recognition", name: "\uC778\uC815\uC758 \uC758\uC2DD \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC758\uC2DD \uC81C\uB2E8\uC5D0\uC11C \uCC98\uCE58\uD558\uB294 \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uC8FC\uB294 \uACF5\uBB3C \uC810\uC218 200% \uC99D\uD3ED"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ritual-scarab-of-abundance", name: "\uD48D\uBD80\uD568\uC758 \uC758\uC2DD \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC758\uC2DD\uC73C\uB85C \uC5BB\uB294 \uD5CC\uC815\uD488 100% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Harvest = Array(
-  { id: "harvest-scarab", name: "\uC218\uD655 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2E0\uC131\uD55C \uC232 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "harvest-scarab-of-doubling", name: "\uBCF5\uC81C\uC758 \uC218\uD655 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC218\uD655 \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC0DD\uAE30\uAC00 \uBCF5\uC81C\uB428", "\uC9C0\uC5ED \uB0B4 \uC218\uD655 \uBAAC\uC2A4\uD130\uC758 \uC0DD\uBA85\uB825 100% \uC99D\uD3ED"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "harvest-scarab-of-cornucopia", name: "\uD48D\uC694\uC758 \uBFD4\uC758 \uC218\uD655 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2E0\uC131\uD55C \uC232\uC774 \uB4F1\uC7A5\uD560 \uC2DC, \uAC00\uB2A5\uD560 \uACBD\uC6B0 \uC2E0\uC131\uD55C \uC232\uC5D0 \uAC01 \uC720\uD615\uC758 4\uB4F1\uAE09 \uC528\uC557 \uCD5C\uB300 1\uAC1C\uC529 \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Bestiary = Array(
-  { id: "bestiary-scarab", name: "\uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC544\uC778\uD558\uB974 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "bestiary-scarab-of-the-herd", name: "\uB5BC\uC758 \uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC544\uC778\uD558\uB974\uAC00 \uB4F1\uC7A5\uD558\uB294 \uC9C0\uC5ED\uC5D0 \uBD89\uC740 \uC57C\uC218 5\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "bestiary-scarab-of-duplicating", name: "\uBCF5\uC81C\uC758 \uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uD3EC\uD68D\uD558\uB294 \uC57C\uC218\uC758 \uBCF5\uC81C\uBCF8 \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "bestiary-scarab-of-the-shadowed-crow", name: "\uADF8\uB298\uC9C4 \uAE4C\uB9C8\uADC0\uC758 \uC57C\uC218 \uB3C4\uAC10 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC544\uC778\uD558\uB974\uAC00 \uB4F1\uC7A5\uD558\uB294 \uC9C0\uC5ED\uC5D0 \uAC80\uC740 \uBAA8\uB9AC\uAC74 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Influencing = Array(
-  { id: "influencing-scarab-of-the-shaper", name: "\uC250\uC774\uD37C\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC250\uC774\uD37C \uC601\uD5A5\uB825 \uACB0\uACFC\uBB3C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "influencing-scarab-of-the-elder", name: "\uC5D8\uB354\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC5D8\uB354 \uC601\uD5A5\uB825 \uACB0\uACFC\uBB3C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "influencing-scarab-of-hordes", name: "\uAD70\uB2E8\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC601\uD5A5\uC744 \uBC1B\uC740 \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uC758 \uBB34\uB9AC \uADDC\uBAA8 40% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "influencing-scarab-of-conversion", name: "\uC804\uD5A5\uC758 \uC601\uD5A5\uB825 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 14\uB4F1\uAE09 \uC774\uC0C1\uC758 \uC9C0\uB3C4\uAC00 \uC77C\uC815 \uD655\uB960\uB85C \uC250\uC774\uD37C \uC218\uD638\uC790, \uC5D8\uB354 \uC218\uD638\uC790, \uC815\uBCF5\uC790 \uB610\uB294 \uACE0\uC720 \uACB0\uD569 \uC9C0\uB3C4\uB85C \uB5A8\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Harbinger = Array(
-  { id: "harbinger-scarab", name: "\uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790 3\uBA85 \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "harbinger-scarab-of-discernment", name: "\uBD84\uBCC4\uC758 \uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 \uB354 \uD76C\uADC0\uD55C \uD654\uD3D0 \uD30C\uD3B8\uC744 \uB5A8\uC5B4\uB728\uB9BC", "\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 1\uAC00\uC9C0 \uC720\uD615\uC758 \uD654\uD3D0 \uD30C\uD3B8\uC744 \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "harbinger-scarab-of-regency", name: "\uC12D\uC815\uC758 \uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 50%\uC758 \uD655\uB960\uB85C \uAC15\uB825\uD55C \uC120\uAD6C\uC790 \uBCF4\uC2A4\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "harbinger-scarab-of-warhoards", name: "\uC804\uC7C1\uBE44\uCD95\uBB3C\uC758 \uC120\uAD6C\uC790 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC120\uAD6C\uC790\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uD654\uD3D0 \uD30C\uD3B8\uC774 \uBCF5\uC81C\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Abyss = Array(
-  { id: "abyss-scarab", name: "\uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2EC\uC5F0 1\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "abyss-scarab-of-multitudes", name: "\uAD70\uC911\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC5D0\uC11C \uC0DD\uC131\uB418\uB294 \uBAAC\uC2A4\uD130 75% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "abyss-scarab-of-emptiness", name: "\uD5C8\uBB34\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uC2EC\uC5F0 \uBAAC\uC2A4\uD130\uAC00 50%\uC758 \uD655\uB960\uB85C \uC2EC\uC5F0 \uD648\uC774 \uC788\uB294 \uD76C\uADC0 \uC544\uC774\uD15C 1\uAC1C\uB97C \uCD94\uAC00\uB85C \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "abyss-scarab-of-edifice", name: "\uAC74\uCD95\uBB3C\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0 \uC9C0\uD558\uB85C \uC5F0\uACB0\uB418\uC9C0 \uC54A\uB294 \uC2EC\uC5F0\uC774 \uBA85\uACC4\uC758 \uCCA8\uD0D1\uC73C\uB85C \uC774\uC5B4\uC9D0", "\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC774 \uC774\uB3D9\uD558\uBA70 \uBE44\uCD95\uBB3C \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Essence = Array(
-  { id: "essence-scarab", name: "\uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC5D0\uC13C\uC2A4 2\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "essence-scarab-of-ascent", name: "\uC0C1\uC2B9\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC5D0\uC13C\uC2A4\uAC00 1\uB4F1\uAE09 \uB192\uAC8C \uBC1C\uACAC\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "essence-scarab-of-stability", name: "\uC548\uC815\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uD0C0\uB77D\uC758 \uC720\uBB3C \uC0AC\uC6A9 \uC2DC \uC5D0\uC13C\uC2A4\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uB610\uB294 \uBCC0\uD654\uC2DC\uD0A4\uB294 \uACB0\uACFC\uB9CC \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "essence-scarab-of-calcification", name: "\uC11D\uD68C\uD654\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC790\uC5F0\uC801\uC73C\uB85C \uC11C\uC2DD\uD558\uB294 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC5D0\uC13C\uC2A4\uC5D0 \uAC07\uD798"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Domination = Array(
-  { id: "domination-scarab", name: "\uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC131\uC18C 2\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "domination-scarab-of-abnormality", name: "\uC774\uD615\uC758 \uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uD2B9\uC774\uD55C \uC131\uC18C 1\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "domination-scarab-of-teachings", name: "\uAC00\uB974\uCE68\uC758 \uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC131\uC18C \uBC84\uD504\uAC00 \uACBD\uD5D8\uCE58 \uD68D\uB4DD\uB7C9 30% \uC99D\uAC00\uB97C \uCD94\uAC00\uB85C \uBD80\uC5EC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "domination-scarab-of-terrors", name: "\uACF5\uD3EC\uC758 \uC9C0\uBC30 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC131\uC18C\uB97C 1\uB9C8\uB9AC\uC758 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uAC00 \uBC29\uC5B4", "\uC9C0\uB3C4\uC758 \uB9C8\uC9C0\uB9C9 \uBCF4\uC2A4\uC5D0 \uB300\uD55C \uC18D\uC131\uC774 \uC774 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uC5D0\uB3C4 \uC801\uC6A9"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Incursion = Array(
-  { id: "incursion-scarab", name: "\uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC54C\uBC14 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "incursion-scarab-of-invasion", name: "\uCE68\uB7B5\uC758 \uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uAE30\uC2B5 \uBAAC\uC2A4\uD130 \uBB34\uB9AC 12~16\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "incursion-scarab-of-champions", name: "\uC6A9\uC0AC\uC758 \uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["35%\uC758 \uD655\uB960\uB85C \uC9C0\uC5ED \uB0B4 \uAE30\uC2B5\uC758 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130\uAC00 \uB9C8\uBC95 \uC774\uC0C1\uC73C\uB85C \uB4F1\uC7A5", "\uC9C0\uC5ED \uB0B4 \uAE30\uC2B5\uC758 \uBB34\uB9AC \uADDC\uBAA8 15% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "incursion-scarab-of-timelines", name: "\uC2DC\uAC04\uC120\uC758 \uAE30\uC2B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uCC98\uCE58\uD558\uB294 \uCD5C\uC885 \uAC74\uCD95\uAC00\uAC00 \uC544\uC774\uD15C\uD654\uB41C \uC0AC\uC6D0\uC744 \uB5A8\uC5B4\uB728\uB9BC", "\uC9C0\uC5ED\uC5D0\uC11C \uB5A8\uC5B4\uC9C0\uB294 \uC544\uC774\uD15C\uD654\uB41C \uC0AC\uC6D0\uC774 \uD604\uC7AC \uC0AC\uC6D0 \uAD6C\uC870\uC5D0 \uAE30\uBC18\uD574 \uC0DD\uC131\uB418\uC9C0\uB9CC, \uBC29\uC758 \uB4F1\uAE09\uC740 \uBB34\uC791\uC704 \uBCC0\uACBD"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Betrayal = Array(
-  { id: "betrayal-scarab", name: "\uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC900 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "betrayal-scarab-of-intelligence", name: "\uC9C0\uB2A5\uC758 \uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uB4F1\uC7A5\uD558\uB294 \uBD88\uBA78\uC790 \uC5F0\uD569 \uB300\uC0C1\uC73C\uB85C\uBD80\uD130 \uC5BB\uB294 \uC815\uBCF4 150% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "betrayal-scarab-of-reinforcements", name: "\uBCF4\uAC15\uC758 \uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBD88\uBA78\uC790 \uC5F0\uD569 \uB2E8\uC6D0\uC774 \uC9C0\uC6D0\uAD70\uC744 \uB3D9\uBC18\uD560 \uD655\uB960 50% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "betrayal-scarab-of-perpetuation", name: "\uC601\uC18D\uD654\uC758 \uBC30\uC2E0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uCC98\uCE58\uD558\uB294 \uBD88\uBA78\uC790 \uC5F0\uD569 \uB300\uC0C1\uC774 50%\uC758 \uD655\uB960\uB85C \uAC11\uCDA9\uC11D 1\uAC1C\uB97C \uCD94\uAC00\uB85C \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Blight = Array(
-  { id: "blight-scarab", name: "\uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "blight-scarab-of-bounty", name: "\uD558\uC0AC\uD488\uC758 \uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC5ED\uBCD1 \uC0C1\uC790\uB97C 20%\uC758 \uD655\uB960\uB85C \uB2E4\uC2DC \uC5F4 \uC218 \uC788\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "blight-scarab-of-oils", name: "\uC131\uC720\uC758 \uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC5ED\uBCD1 \uC131\uC720\uAC00 1\uB4F1\uAE09 \uB192\uAC8C \uBC1C\uACAC\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "blight-scarab-of-blooming", name: "\uAC1C\uD654\uC758 \uC5ED\uBCD1 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uACE0\uC720 \uBCF4\uC2A4 \uCD5C\uB300 3\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5", "\uC5ED\uBCD1 \uC778\uCE74\uC6B4\uD130 \uB0B4 \uACE0\uC720 \uC801\uC758 \uC0DD\uBA85\uB825 100% \uC99D\uAC00", "\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 14\uB4F1\uAE09 \uC774\uC0C1\uC758 \uC5ED\uBCD1 \uAC78\uB9B0 \uC9C0\uB3C4\uAC00 \uC5ED\uBCD1\uC5D0 \uC720\uB9B0\uB2F9\uD55C \uC9C0\uB3C4\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Breach = Array(
-  { id: "breach-scarab", name: "\uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4 2\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "breach-scarab-of-the-dreamer", name: "\uBABD\uC0C1\uAC00\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4\uC774 \uD56D\uC0C1 \uCC28\uC728\uB77C\uC758 \uAC83\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "breach-scarab-of-lordship", name: "\uC9C0\uC704\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC758 \uAC01 \uADE0\uC5F4\uC5D0 \uADE0\uC5F4 \uAD70\uC8FC \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "breach-scarab-of-splintering", name: "\uD30C\uD3B8\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4 \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uADE0\uC5F4 \uD30C\uD3B8 50% \uC99D\uD3ED", "\uC9C0\uC5ED \uB0B4 \uC6C0\uCF1C\uC7A1\uB294 \uC190\uC774 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uADE0\uC5F4 \uD30C\uD3B8 50% \uC99D\uD3ED"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "breach-scarab-of-snares", name: "\uC62C\uAC00\uBBF8\uC758 \uADE0\uC5F4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uADE0\uC5F4\uC5D0 \uC6C0\uCF1C\uC7A1\uB294 \uC190 5~10\uAC1C \uCD94\uAC00 \uB4F1\uC7A5", "\uC9C0\uC5ED \uB0B4 \uC6C0\uCF1C\uC7A1\uB294 \uC190\uC744 \uD76C\uADC0 \uADE0\uC5F4 \uBAAC\uC2A4\uD130\uAC00 \uBC29\uC5B4"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Legion = Array(
-  { id: "legion-scarab", name: "\uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uCD94\uAC00 \uAD70\uB2E8 \uC778\uCE74\uC6B4\uD130 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "legion-scarab-of-officers", name: "\uC7A5\uAD50\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uC9C4\uC601\uC5D0 \uBCD1\uC7A5 5\uBA85 \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "legion-scarab-of-command", name: "\uC9C0\uD718\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uC9C4\uC601\uC774 \uC7A5\uAD70 \uB300\uB3D9"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "legion-scarab-of-the-sekhema", name: "\uC138\uCF00\uB9C8\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uC778\uCE74\uC6B4\uD130\uC5D0 \uB9C8\uB77C\uCF00\uC2A4 \uC9C4\uC601\uC774 \uD56D\uC0C1 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "legion-scarab-of-eternal-conflict", name: "\uC601\uC6D0\uD55C \uBD84\uC7C1\uC758 \uAD70\uB2E8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAD70\uB2E8 \uBAAC\uC2A4\uD130\uB97C \uC5EC\uB7EC \uBC88 \uAE68\uC6B8 \uC218 \uC788\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Cartography = Array(
-  { id: "cartography-scarab", name: "\uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC9C0\uB3C4 \uCD9C\uD604\uC728 50% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "cartography-scarab-of-ascension", name: "\uC2B9\uCC9C\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC9C0\uB3C4\uAC00 1\uB4F1\uAE09 \uB192\uAC8C, \uCD5C\uB300 16\uB4F1\uAE09\uC73C\uB85C \uBC1C\uACAC\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "cartography-scarab-of-singularity", name: "\uD2B9\uC774\uC810\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4\uC758 \uB9C8\uC9C0\uB9C9 \uBCF4\uC2A4\uAC00 \uACE0\uC720 \uC9C0\uB3C4\uB97C \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "cartography-scarab-of-corruption", name: "\uD0C0\uB77D\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uBE44-\uACE0\uC720 \uC9C0\uB3C4\uAC00 \uC18D\uC131 8\uAC1C\uAC00 \uBD80\uC5EC\uB41C \uD0C0\uB77D\uD55C \uC9C0\uB3C4\uB85C \uB5A8\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "cartography-scarab-of-duplication", name: "\uBCF5\uC81C\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC9C0\uB3C4\uAC00 30%\uC758 \uD655\uB960\uB85C \uBCF5\uC81C\uB428"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Beyond = Array(
-  { id: "beyond-scarab", name: "\uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uC11C\uB85C \uAC00\uAE4C\uC774 \uC788\uB294 \uC801\uC744 \uCC98\uCE58\uD558\uBA74 \uC774\uACC4 \uBAAC\uC2A4\uD130\uB97C \uBD88\uB7EC\uC634"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "beyond-scarab-of-haemophilia", name: "\uD608\uC6B0\uBCD1\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC758 \uBCD1\uD569 \uBC94\uC704 30% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "beyond-scarab-of-corruption", name: "\uD0C0\uB77D\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uC545\uB9C8\uAC00 \uD0C0\uB77D\uD55C \uC544\uC774\uD15C\uC744 \uB5A8\uC5B4\uB728\uB9BC"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "beyond-scarab-of-resurgence", name: "\uC7AC\uAE30\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uBCF4\uC2A4\uAC00 \uB0AE\uC740 \uC0DD\uBA85\uB825 \uC0C1\uD0DC\uC5D0\uC11C \uACA9\uC559\uD568", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uBCF4\uC2A4\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uB354\uB7FD\uD600\uC9C4 \uD654\uD3D0 100% \uC99D\uAC00", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC774 \uACE0\uC720 \uBCF4\uC2A4\uB97C \uC0DD\uC131\uD560 \uD655\uB960 30% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "beyond-scarab-of-the-invasion", name: "\uCE68\uB7B5\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC774\uACC4 \uD3EC\uD0C8 8~12\uAC1C \uCD94\uAC00 \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Ambush = Array(
-  { id: "ambush-scarab", name: "\uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0 5\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ambush-scarab-of-hidden-compartments", name: "\uBE44\uBC00 \uACF5\uAC04\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0\uB97C 15%\uC758 \uD655\uB960\uB85C \uB2E4\uC2DC \uC5F4 \uC218 \uC788\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ambush-scarab-of-potency", name: "\uC7A0\uC7AC\uB825\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0\uC758 \uBE44\uACE0\uC815 \uC18D\uC131 \uD6A8\uACFC 75% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ambush-scarab-of-containment", name: "\uBD09\uC1C4\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uB2E4\uC218\uC758 \uAE08\uACE0 \uCD94\uAC00 \uC9C0\uC5ED \uB0B4 \uBAAC\uC2A4\uD130\uAC00 \uB9E4\uBCF5 \uC911"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ambush-scarab-of-discernment", name: "\uBD84\uBCC4\uC758 \uB9E4\uBCF5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAE08\uACE0\uAC00 \uBCF4\uB2E4 \uD76C\uADC0\uD55C \uC885\uB958\uC77C \uD655\uB960\uC774 \uB192\uC544\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Ultimatum = Array(
-  { id: "ultimatum-scarab", name: "\uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ultimatum-scarab-of-bribing", name: "\uB9E4\uC218\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uACB0\uC804 \uBAAC\uC2A4\uD130\uAC00 \uC8FC\uB294 \uACBD\uD5D8\uCE58 150% \uC99D\uAC00", "\uACB0\uC804 \uC778\uCE74\uC6B4\uD130\uAC00 \uB77C\uC6B4\uB4DC 2\uAC1C\uB97C \uCD94\uAC00\uB85C \uC644\uB8CC\uD55C \uAC83\uCC98\uB7FC \uBCF4\uC0C1\uC744 \uC90C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ultimatum-scarab-of-dueling", name: "\uACB0\uD22C\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uAC00\uB2A5\uD560 \uACBD\uC6B0 \uC9C0\uC5ED \uB0B4 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130\uAC00 \uD56D\uC0C1 \uACE0\uC720 \uBCF4\uC2A4\uB85C \uC774\uC5B4\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ultimatum-scarab-of-catalysing", name: "\uAE30\uD3ED\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uBCF4\uC0C1\uC73C\uB85C \uAE30\uD3ED\uC81C\uB9CC \uD68D\uB4DD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "ultimatum-scarab-of-inscription", name: "\uC0C8\uAE40\uC758 \uACB0\uC804 \uAC11\uCDA9\uC11D", icon: "", description: ["\uAE30\uD3ED\uC81C\uB97C \uC8FC\uB294 \uC9C0\uC5ED \uB0B4 \uACB0\uC804 \uC778\uCE74\uC6B4\uD130 \uBCF4\uC0C1\uC774 \uAE30\uD3ED\uC81C\uAC00 \uC544\uB2CC \uC0C8\uACA8\uC9C4 \uACB0\uC804\uC744 \uC90C"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Expedition = Array(
-  { id: "expedition-scarab", name: "\uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "expedition-scarab-of-runefinding", name: "\uB8EC \uD0D0\uC0C9\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uC758 \uB8EC \uBAAC\uC2A4\uD130 \uD45C\uC2DC\uBB3C \uC218\uB7C9 100% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "expedition-scarab-of-verisium-powder", name: "\uBCA0\uB9AC\uC2DC\uC6C0 \uD654\uC57D\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uC758 \uD3ED\uBC1C\uBB3C \uC218\uB7C9 20% \uC99D\uAC00", "\uD3ED\uBC1C\uBB3C \uBC18\uACBD 80 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "expedition-scarab-of-the-skald", name: "\uC2DC\uC778\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uB97C \uB300\uB2C9\uC774 \uC774\uB04E"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "expedition-scarab-of-archaeology", name: "\uACE0\uACE0\uD559\uC758 \uD0D0\uD5D8 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD0D0\uD5D8 \uC778\uCE74\uC6B4\uD130\uC758 \uC720\uBB3C\uC5D0 \uC811\uBBF8\uC5B4 \uBC0F \uC811\uB450\uC5B4 2\uAC1C \uCD94\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const Delirium = Array(
-  { id: "delirium-scarab", name: "\uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uD658\uC601\uC758 \uAC70\uC6B8 1\uAC1C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "delirium-scarab-of-mania", name: "\uAD11\uC99D\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uD658\uC601 \uBCF4\uC0C1 \uB9C9\uB300\uAC00 100% \uBE68\uB9AC \uCC44\uC6CC\uC9D0"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "delirium-scarab-of-paranoia", name: "\uD3B8\uC9D1\uC99D\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD658\uC601 \uC778\uCE74\uC6B4\uD130\uAC00 \uBCF4\uC0C1 \uC720\uD615 2\uAC1C \uCD94\uAC00 \uC0DD\uC131"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "delirium-scarab-of-neuroses", name: "\uC2E0\uACBD\uC99D\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD658\uC601 \uC778\uCE74\uC6B4\uD130\uC5D0\uC11C \uBAA8\uB4E0 \uACE0\uC720 \uD658\uC601 \uBCF4\uC2A4 \uB4F1\uC7A5", "11\uB4F1\uAE09 \uC774\uC0C1\uC758 \uC9C0\uB3C4\uC5D0\uB9CC \uC0AC\uC6A9 \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "delirium-scarab-of-delusions", name: "\uB9DD\uC0C1\uC758 \uD658\uC601 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC9C0\uB3C4\uC5D0 \uD658\uC601 \uD604\uC0C1 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const NewScarab1 = Array(
-  { id: "scarab-of-monstrous-lineage", name: "\uAE30\uAD34\uD55C \uD608\uD1B5\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uB9C8\uBC95 \uBB34\uB9AC \uADDC\uBAA8 40% \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "scarab-of-adversaries", name: "\uC801\uC218\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uBCF5\uC81C\uB41C \uD76C\uADC0 \uBAAC\uC2A4\uD130\uB97C \uD3EC\uD568\uD55C \uBB34\uB9AC 4\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "mysterious-scarab", name: "\uC218\uC218\uAED8\uB07C\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC218\uC218\uAED8\uB07C\uC758 \uD1B5 \uBB34\uB354\uAE30 40~60\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "scarab-of-hunted-traitors", name: "\uCAD3\uAE30\uB294 \uBC30\uC2E0\uC790\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uCAD3\uAE30\uB294 \uBC30\uC2E0\uC790 \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "scarab-of-stability", name: "\uC548\uC815\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC73C\uB85C \uC774\uC5B4\uC9C0\uB294 \uD3EC\uD0C8\uC774 50%\uC758 \uD655\uB960\uB85C \uC0AC\uC6A9\uD574\uB3C4 \uC18C\uBAA8\uB418\uC9C0 \uC54A\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-const NewScarab2 = Array(
-  { id: "horned-scarab-of-bloodlines", name: "\uD608\uB9F9\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAA8\uB4E0 \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uAC00 \uB9C8\uBC95 \uC774\uC0C1\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "horned-scarab-of-nemeses", name: "\uCC9C\uBC8C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC18D\uC131 2\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "horned-scarab-of-preservation", name: "\uBCF4\uC804\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uB2E4\uB978 \uAC11\uCDA9\uC11D\uB4E4\uC774 \uC0AC\uC6A9\uD574\uB3C4 \uC18C\uBAA8\uB418\uC9C0 \uC54A\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "horned-scarab-of-awakening", name: "\uAC01\uC131\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC7A5\uCE58\uC5D0\uC11C \uBD80\uC5EC\uB41C \uC81C\uC791 \uC635\uC158 1\uAC1C \uC120\uD0DD \uAC00\uB2A5"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "horned-scarab-of-tradition", name: "\uC804\uD1B5\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAA8\uB4E0 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uBCF4\uC0C1 \uC18D\uC131 1\uAC1C \uC774\uC0C1 \uBCF4\uC720", "\uC9C0\uC5ED\uC5D0\uC11C \uC544\uC774\uD15C \uD76C\uADC0\uB3C4 \uBC0F \uC544\uC774\uD15C \uC218\uB7C9\uC5D0 \uB300\uD55C \uD50C\uB808\uC774\uC5B4 \uC18D\uC131\uC774 \uC801\uC6A9\uB418\uC9C0 \uC54A\uC74C"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "horned-scarab-of-glittering", name: "\uBC88\uCA4D\uC784\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD50C\uB808\uC774\uC5B4\uAC00 \uCD5C\uADFC 4\uCD08 \uC774\uB0B4 \uCC98\uCE58\uD55C \uBAAC\uC2A4\uD130 \uC218\uC5D0 \uB530\uB77C \uC544\uC774\uD15C \uD76C\uADC0\uB3C4\uAC00 \uCD5C\uB300 200%\uAE4C\uC9C0, \uC544\uC774\uD15C \uC218\uB7C9\uC774 \uCD5C\uB300 100%\uAE4C\uC9C0 \uC99D\uAC00"], chaos: 0, exalted: 0, divine: 0, level: 0 },
-  { id: "horned-scarab-of-pandemonium", name: "\uD63C\uB780 \uC720\uBC1C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uAC00 15% \uD655\uB960\uB85C \uBB34\uC791\uC704 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4 1\uB9C8\uB9AC\uB85C \uB4F1\uC7A5", "\uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uBCF4\uC2A4\uC5D0 \uB300\uD55C \uC18D\uC131\uC774 \uD574\uB2F9 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uC5D0\uB3C4 \uC801\uC6A9"], chaos: 0, exalted: 0, divine: 0, level: 0 }
-);
-var ScarabsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
+var ScarabItem_vue_vue_type_style_index_0_scoped_true_lang = "";
 var _export_sfc = (sfc, props) => {
   const target2 = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -1715,7 +1812,117 @@ var _export_sfc = (sfc, props) => {
   }
   return target2;
 };
-const _withScopeId = (n) => (pushScopeId("data-v-cb05b0b4"), n = n(), popScopeId(), n);
+const _hoisted_1$1 = {
+  key: 0,
+  class: "scarab-box empty"
+};
+const _hoisted_2$1 = { class: "row justify-center q-mb-lg" };
+const _hoisted_3$1 = {
+  class: "flex flex-center",
+  style: { "width": "100px" }
+};
+const _hoisted_4$1 = {
+  class: "bg-blue-grey-5",
+  style: { "font-size": "13px", "padding": "7px 12px", "border-radius": "6px" }
+};
+const _hoisted_5$1 = { class: "row items-center" };
+const _hoisted_6 = { class: "q-ml-xs q-px-xs" };
+const _hoisted_7 = { class: "row items-center q-mt-xs" };
+const _hoisted_8 = { class: "q-ml-xs q-px-xs" };
+const _hoisted_9 = { class: "row items-center q-mt-xs" };
+const _hoisted_10 = { class: "q-ml-xs q-px-xs" };
+const _hoisted_11 = { class: "text-center scarab-name" };
+const _hoisted_12 = { class: "text-center scarab-description" };
+const _sfc_main$1 = defineComponent({
+  ...{
+    name: "ScarabItem"
+  },
+  __name: "ScarabItem",
+  props: {
+    scarab: {},
+    chaosType: { type: Boolean },
+    exaltedType: { type: Boolean },
+    divineType: { type: Boolean },
+    highlight: { type: Boolean }
+  },
+  setup(__props) {
+    const props = __props;
+    const emptyScarabItem = computed(() => props.scarab.id === "empty");
+    return (_ctx, _cache) => {
+      return emptyScarabItem.value ? (openBlock(), createElementBlock("div", _hoisted_1$1)) : (openBlock(), createElementBlock("div", {
+        key: 1,
+        class: normalizeClass(["scarab-box row flex-center", _ctx.highlight ? `highlight${props.scarab.level}` : ""])
+      }, [
+        createVNode(QImg, {
+          src: props.scarab.icon,
+          width: "42px",
+          height: "42px",
+          style: { "z-index": "2", "opacity": "0.75" }
+        }, null, 8, ["src"]),
+        createBaseVNode("div", {
+          class: normalizeClass(["absolute-bottom-right", _ctx.highlight ? `highlight${props.scarab.level}-text` : ""]),
+          style: { "font-size": "11px", "line-height": "1", "bottom": "1px", "right": "2px", "z-index": "2" }
+        }, [
+          _ctx.chaosType ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+            createTextVNode(toDisplayString(props.scarab.chaos), 1)
+          ], 64)) : createCommentVNode("", true),
+          _ctx.exaltedType ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
+            createTextVNode(toDisplayString(props.scarab.exalted), 1)
+          ], 64)) : createCommentVNode("", true),
+          _ctx.divineType ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+            createTextVNode(toDisplayString(props.scarab.divine), 1)
+          ], 64)) : createCommentVNode("", true)
+        ], 2),
+        createVNode(QTooltip, { class: "q-pa-md" }, {
+          default: withCtx(() => [
+            createBaseVNode("div", _hoisted_2$1, [
+              createBaseVNode("div", _hoisted_3$1, [
+                createVNode(QImg, {
+                  src: props.scarab.icon,
+                  width: "46px",
+                  height: "46px"
+                }, null, 8, ["src"])
+              ]),
+              createBaseVNode("div", _hoisted_4$1, [
+                createBaseVNode("div", _hoisted_5$1, [
+                  createVNode(QImg, {
+                    src: "icons/chaos.png",
+                    width: "20px"
+                  }),
+                  createBaseVNode("div", _hoisted_6, toDisplayString(props.scarab.chaos), 1)
+                ]),
+                createBaseVNode("div", _hoisted_7, [
+                  createVNode(QImg, {
+                    src: "icons/exalted.png",
+                    width: "20px"
+                  }),
+                  createBaseVNode("div", _hoisted_8, toDisplayString(props.scarab.exalted), 1)
+                ]),
+                createBaseVNode("div", _hoisted_9, [
+                  createVNode(QImg, {
+                    src: "icons/divine.png",
+                    width: "20px"
+                  }),
+                  createBaseVNode("div", _hoisted_10, toDisplayString(props.scarab.divine), 1)
+                ])
+              ])
+            ]),
+            createBaseVNode("div", _hoisted_11, toDisplayString(_ctx.scarab.name), 1),
+            createBaseVNode("div", _hoisted_12, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.scarab.description, (desc) => {
+                return openBlock(), createElementBlock("div", { key: desc }, toDisplayString(desc), 1);
+              }), 128))
+            ])
+          ]),
+          _: 1
+        })
+      ], 2));
+    };
+  }
+});
+var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-10f936d8"]]);
+var ScarabsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
+const _withScopeId = (n) => (pushScopeId("data-v-43c1840e"), n = n(), popScopeId(), n);
 const _hoisted_1 = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
@@ -1723,27 +1930,7 @@ const _hoisted_1 = {
 const _hoisted_2 = { class: "loading-chaos" };
 const _hoisted_3 = { class: "row justify-center items-center q-mb-md q-gutter-x-md relative-position" };
 const _hoisted_4 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", null, "\uD654\uD3D0\uB2E8\uC704", -1));
-const _hoisted_5 = {
-  class: "absolute-bottom-right",
-  style: { "font-size": "12px", "line-height": "1", "bottom": "1px", "right": "2px", "z-index": "2" }
-};
-const _hoisted_6 = { class: "row justify-center q-mb-lg" };
-const _hoisted_7 = {
-  class: "flex flex-center",
-  style: { "width": "100px" }
-};
-const _hoisted_8 = {
-  class: "bg-blue-grey-5",
-  style: { "font-size": "13px", "padding": "7px 12px", "border-radius": "6px" }
-};
-const _hoisted_9 = { class: "row items-center" };
-const _hoisted_10 = { class: "q-ml-xs q-px-xs" };
-const _hoisted_11 = { class: "row items-center q-mt-xs" };
-const _hoisted_12 = { class: "q-ml-xs q-px-xs" };
-const _hoisted_13 = { class: "row items-center q-mt-xs" };
-const _hoisted_14 = { class: "q-ml-xs q-px-xs" };
-const _hoisted_15 = { class: "text-center scarab-name" };
-const _hoisted_16 = { class: "text-center scarab-description" };
+const _hoisted_5 = { class: "scarab-stash q-mx-auto" };
 const _sfc_main = defineComponent({
   ...{
     name: "ScarabsPage"
@@ -1766,18 +1953,23 @@ const _sfc_main = defineComponent({
     const exaltedType = computed(() => currencyType.value === "exalted");
     const divineType = computed(() => currencyType.value === "divine");
     const fetchLoading = ref(false);
-    const hightlight = ref(true);
-    const row1 = { list: [Reliquary, Sulphite, Divination, Torment], style: "" };
-    const row2 = { list: [Anarchy, Ritual, Harvest], style: "margin-top: 16px" };
-    const row3 = { list: [Bestiary, Influencing, Harbinger], style: "margin-top: 30px" };
-    const row4 = { list: [Abyss, Essence, Domination], style: "margin-top: 4px" };
-    const row5 = { list: [Incursion, Betrayal, Blight], style: "margin-top: 4px" };
-    const row6 = { list: [Breach, Legion], style: "margin-top: 30px" };
-    const row7 = { list: [Cartography, Beyond], style: "margin-top: 4px" };
-    const row8 = { list: [Ambush, Ultimatum], style: "margin-top: 4px" };
-    const row9 = { list: [Expedition, Delirium], style: "margin-top: 4px" };
-    const row10 = { list: [NewScarab1, NewScarab2], style: "margin-top: 30px" };
-    const scarabData = ref([row1, row2, row3, row4, row5, row6, row7, row8, row9, row10]);
+    const highlight = ref(true);
+    const row1Group1 = [Titanic, Anarchy];
+    const row1Group2 = [Sulphite, Ritual];
+    const row1Group3 = [Divination, Harvest];
+    const row2Group1 = [Bestiary, Incursion];
+    const row2Group2 = [Influencing, Betrayal, Torment];
+    const row2Group3 = [Harbinger, Domination];
+    const row3Group1 = [Cartography, Ambush, Expedition, Legion, Abyss];
+    const row3Group2 = [Beyond, Ultimatum, Delirium, Blight, Essence];
+    const row4Group1 = [Breach];
+    const row5Group1 = [NewScarabs1, NewScarabs3];
+    const row5Group2 = [NewScarabs2, NewScarabs4];
+    const row1Groups = ref({ data: [row1Group1, row1Group2, row1Group3], class: "gutter-30" });
+    const row2Groups = ref({ data: [row2Group1, row2Group2, row2Group3], class: "gutter-40" });
+    const row3Groups = ref({ data: [row3Group1, row3Group2], class: "gutter-50" });
+    const row4Groups = ref({ data: [row4Group1], class: "" });
+    const row5Groups = ref({ data: [row5Group1, row5Group2], class: "gutter-80" });
     function calcLevel(value) {
       if (0 <= value && value < 5)
         return 0;
@@ -1804,24 +1996,36 @@ const _sfc_main = defineComponent({
     }
     async function getMetaData() {
       fetchLoading.value = true;
-      const response = await api.get("https://www.logisnet.co.kr/dev-api/poe/scarabs/Necropolis");
+      const response = await api.get("https://www.logisnet.co.kr/dev-api/poe/scarabs/Settlers");
       const res = response.data.lines;
-      res.forEach((r) => {
-        scarabData.value.forEach((data) => {
-          data.list.forEach((scarabs) => scarabs.forEach((scarab) => {
-            if (scarab.id === r.detailsId) {
-              scarab.icon = r.icon;
-              scarab.chaos = r.chaosValue;
-              scarab.exalted = r.exaltedValue;
-              scarab.divine = r.divineValue;
-              scarab.level = calcLevel(r.chaosValue);
-            }
-          }));
-        });
+      res.forEach((data) => {
+        setMetaData(row1Groups.value, data);
+        setMetaData(row2Groups.value, data);
+        setMetaData(row3Groups.value, data);
+        setMetaData(row4Groups.value, data);
+        setMetaData(row5Groups.value, data);
       });
       setTimeout(() => {
         fetchLoading.value = false;
       }, 3e3);
+    }
+    function setMetaData(rowGroups, data) {
+      rowGroups.data.forEach((groups) => {
+        groups.forEach((group) => {
+          group.list.forEach((scarab) => {
+            if (scarab.id === "empty") {
+              return;
+            }
+            if (scarab.id === data.detailsId) {
+              scarab.icon = data.icon;
+              scarab.chaos = Number(Number(data.chaosValue || 0).toFixed(2));
+              scarab.exalted = Number(Number(data.exaltedValue || 0).toFixed(2));
+              scarab.divine = Number(Number(data.divineValue || 0).toFixed(2));
+              scarab.level = calcLevel(data.chaosValue);
+            }
+          });
+        });
+      });
     }
     return (_ctx, _cache) => {
       return openBlock(), createBlock(QPage, { class: "t-page" }, {
@@ -1875,95 +2079,147 @@ const _sfc_main = defineComponent({
             ], 2),
             createVNode(QCheckbox, {
               label: "\uAC00\uACA9 \uD558\uC774\uB77C\uC774\uD2B8",
-              modelValue: hightlight.value,
-              "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => hightlight.value = $event),
+              modelValue: highlight.value,
+              "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => highlight.value = $event),
               dense: "",
               style: { "margin-left": "32px" }
             }, null, 8, ["modelValue"])
           ]),
-          createBaseVNode("div", null, [
-            (openBlock(true), createElementBlock(Fragment, null, renderList(scarabData.value, (data, index) => {
-              return openBlock(), createElementBlock("div", {
-                key: index,
-                class: "row justify-center",
-                style: normalizeStyle(data.style)
-              }, [
-                (openBlock(true), createElementBlock(Fragment, null, renderList(data.list, (scarabs, dIndex) => {
-                  return openBlock(), createElementBlock("div", {
-                    key: `${index}-${dIndex}`,
-                    class: "row scarab-group"
-                  }, [
-                    (openBlock(true), createElementBlock(Fragment, null, renderList(scarabs, (scarab, subIndex) => {
-                      return openBlock(), createElementBlock("div", {
-                        key: `${index}-${dIndex}-${subIndex}`,
-                        class: normalizeClass(["scarab-box row flex-center", hightlight.value ? `highlight${scarab.level}` : ""])
-                      }, [
-                        createVNode(QImg, {
-                          src: scarab.icon,
-                          width: "46px",
-                          height: "46px",
-                          style: { "z-index": "2" }
-                        }, null, 8, ["src"]),
-                        createBaseVNode("div", _hoisted_5, [
-                          chaosType.value ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                            createTextVNode(toDisplayString(scarab.chaos), 1)
-                          ], 64)) : createCommentVNode("", true),
-                          exaltedType.value ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                            createTextVNode(toDisplayString(scarab.exalted), 1)
-                          ], 64)) : createCommentVNode("", true),
-                          divineType.value ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
-                            createTextVNode(toDisplayString(scarab.divine), 1)
-                          ], 64)) : createCommentVNode("", true)
-                        ]),
-                        createVNode(QTooltip, { class: "q-pa-md" }, {
-                          default: withCtx(() => [
-                            createBaseVNode("div", _hoisted_6, [
-                              createBaseVNode("div", _hoisted_7, [
-                                createVNode(QImg, {
-                                  src: scarab.icon,
-                                  width: "46px",
-                                  height: "46px"
-                                }, null, 8, ["src"])
-                              ]),
-                              createBaseVNode("div", _hoisted_8, [
-                                createBaseVNode("div", _hoisted_9, [
-                                  createVNode(QImg, {
-                                    src: "icons/chaos.png",
-                                    width: "20px"
-                                  }),
-                                  createBaseVNode("div", _hoisted_10, toDisplayString(scarab.chaos), 1)
-                                ]),
-                                createBaseVNode("div", _hoisted_11, [
-                                  createVNode(QImg, {
-                                    src: "icons/exalted.png",
-                                    width: "20px"
-                                  }),
-                                  createBaseVNode("div", _hoisted_12, toDisplayString(scarab.exalted), 1)
-                                ]),
-                                createBaseVNode("div", _hoisted_13, [
-                                  createVNode(QImg, {
-                                    src: "icons/divine.png",
-                                    width: "20px"
-                                  }),
-                                  createBaseVNode("div", _hoisted_14, toDisplayString(scarab.divine), 1)
-                                ])
-                              ])
-                            ]),
-                            createBaseVNode("div", _hoisted_15, toDisplayString(scarab.name), 1),
-                            createBaseVNode("div", _hoisted_16, [
-                              (openBlock(true), createElementBlock(Fragment, null, renderList(scarab.description, (desc) => {
-                                return openBlock(), createElementBlock("div", { key: desc }, toDisplayString(desc), 1);
-                              }), 128))
-                            ])
-                          ]),
-                          _: 2
-                        }, 1024)
-                      ], 2);
-                    }), 128))
-                  ]);
-                }), 128))
-              ], 4);
-            }), 128))
+          createBaseVNode("div", _hoisted_5, [
+            createBaseVNode("div", {
+              class: normalizeClass(["row justify-center scarab-groups", row1Groups.value.class]),
+              style: { "padding-top": "64px" }
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(row1Groups.value.data, (groups, index) => {
+                return openBlock(), createElementBlock("div", { key: index }, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(groups, (group, gIndex) => {
+                    return openBlock(), createElementBlock("div", {
+                      key: `${index}-${gIndex}`,
+                      class: "row scarab-group",
+                      style: normalizeStyle(gIndex > 0 ? "margin-top: 7px" : "")
+                    }, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(group.list, (scarab, sIndex) => {
+                        return openBlock(), createBlock(ScarabItem, {
+                          key: `${index}-${gIndex}-${sIndex}`,
+                          scarab,
+                          "chaos-type": chaosType.value,
+                          "exalted-type": exaltedType.value,
+                          "divine-type": divineType.value,
+                          highlight: highlight.value
+                        }, null, 8, ["scarab", "chaos-type", "exalted-type", "divine-type", "highlight"]);
+                      }), 128))
+                    ], 4);
+                  }), 128))
+                ]);
+              }), 128))
+            ], 2),
+            createBaseVNode("div", {
+              class: normalizeClass(["row flex-center scarab-groups", row2Groups.value.class]),
+              style: { "padding-top": "12px" }
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(row2Groups.value.data, (groups, index) => {
+                return openBlock(), createElementBlock("div", { key: index }, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(groups, (group, gIndex) => {
+                    return openBlock(), createElementBlock("div", {
+                      key: `${index}-${gIndex}`,
+                      class: "row scarab-group",
+                      style: normalizeStyle(gIndex > 0 ? "margin-top: 8px" : "")
+                    }, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(group.list, (scarab, sIndex) => {
+                        return openBlock(), createBlock(ScarabItem, {
+                          key: `${index}-${gIndex}-${sIndex}`,
+                          scarab,
+                          "chaos-type": chaosType.value,
+                          "exalted-type": exaltedType.value,
+                          "divine-type": divineType.value,
+                          highlight: highlight.value
+                        }, null, 8, ["scarab", "chaos-type", "exalted-type", "divine-type", "highlight"]);
+                      }), 128))
+                    ], 4);
+                  }), 128))
+                ]);
+              }), 128))
+            ], 2),
+            createBaseVNode("div", {
+              class: normalizeClass(["row justify-center scarab-groups", row3Groups.value.class]),
+              style: { "padding-top": "10px" }
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(row3Groups.value.data, (groups, index) => {
+                return openBlock(), createElementBlock("div", { key: index }, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(groups, (group, gIndex) => {
+                    return openBlock(), createElementBlock("div", {
+                      key: `${index}-${gIndex}`,
+                      class: "row scarab-group",
+                      style: normalizeStyle(gIndex > 0 ? "margin-top: 9px" : "")
+                    }, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(group.list, (scarab, sIndex) => {
+                        return openBlock(), createBlock(ScarabItem, {
+                          key: `${index}-${gIndex}-${sIndex}`,
+                          scarab,
+                          "chaos-type": chaosType.value,
+                          "exalted-type": exaltedType.value,
+                          "divine-type": divineType.value,
+                          highlight: highlight.value
+                        }, null, 8, ["scarab", "chaos-type", "exalted-type", "divine-type", "highlight"]);
+                      }), 128))
+                    ], 4);
+                  }), 128))
+                ]);
+              }), 128))
+            ], 2),
+            createBaseVNode("div", {
+              class: normalizeClass(["row justify-center scarab-groups", row4Groups.value.class]),
+              style: { "padding-top": "10px", "margin-left": "-50px" }
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(row4Groups.value.data, (groups, index) => {
+                return openBlock(), createElementBlock("div", { key: index }, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(groups, (group, gIndex) => {
+                    return openBlock(), createElementBlock("div", {
+                      key: `${index}-${gIndex}`,
+                      class: "row scarab-group"
+                    }, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(group.list, (scarab, sIndex) => {
+                        return openBlock(), createBlock(ScarabItem, {
+                          key: `${index}-${gIndex}-${sIndex}`,
+                          scarab,
+                          "chaos-type": chaosType.value,
+                          "exalted-type": exaltedType.value,
+                          "divine-type": divineType.value,
+                          highlight: highlight.value
+                        }, null, 8, ["scarab", "chaos-type", "exalted-type", "divine-type", "highlight"]);
+                      }), 128))
+                    ]);
+                  }), 128))
+                ]);
+              }), 128))
+            ], 2),
+            createBaseVNode("div", {
+              class: normalizeClass(["row justify-center scarab-groups", row5Groups.value.class]),
+              style: { "padding-top": "10px", "margin-left": "28px" }
+            }, [
+              (openBlock(true), createElementBlock(Fragment, null, renderList(row5Groups.value.data, (groups, index) => {
+                return openBlock(), createElementBlock("div", { key: index }, [
+                  (openBlock(true), createElementBlock(Fragment, null, renderList(groups, (group, gIndex) => {
+                    return openBlock(), createElementBlock("div", {
+                      key: `${index}-${gIndex}`,
+                      class: "row justify-center scarab-group",
+                      style: normalizeStyle(gIndex > 0 ? "margin-top: 10px" : "")
+                    }, [
+                      (openBlock(true), createElementBlock(Fragment, null, renderList(group.list, (scarab, sIndex) => {
+                        return openBlock(), createBlock(ScarabItem, {
+                          key: `${index}-${gIndex}-${sIndex}`,
+                          scarab,
+                          "chaos-type": chaosType.value,
+                          "exalted-type": exaltedType.value,
+                          "divine-type": divineType.value,
+                          highlight: highlight.value
+                        }, null, 8, ["scarab", "chaos-type", "exalted-type", "divine-type", "highlight"]);
+                      }), 128))
+                    ], 4);
+                  }), 128))
+                ]);
+              }), 128))
+            ], 2)
           ])
         ]),
         _: 1
@@ -1971,5 +2227,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-cb05b0b4"]]);
+var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-43c1840e"]]);
 export { ScarabsPage as default };

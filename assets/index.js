@@ -8991,7 +8991,7 @@ const routes = [
       {
         path: "scarabs",
         name: "scarabs",
-        component: () => __vitePreload(() => import("./ScarabsPage.js"), true ? ["assets/ScarabsPage.js","assets/ScarabsPage.css","assets/vm.js","assets/render.js","assets/scroll.js","assets/QPage.js","assets/axios2.js"] : void 0)
+        component: () => __vitePreload(() => import("./ScarabsPage.js"), true ? ["assets/ScarabsPage.js","assets/ScarabsPage.css","assets/vm.js","assets/render.js","assets/QPage.js","assets/axios2.js","assets/scroll.js"] : void 0)
       }
     ]
   },
@@ -9181,4 +9181,4 @@ createQuasarApp(createApp, quasarUserOptions).then((app2) => {
     start(app2, boot2);
   });
 });
-export { createCommentVNode as $, createBaseVNode as A, createTextVNode as B, normalizeStyle as C, isKeyCode as D, addEvt as E, cleanEvt as F, stop as G, position as H, withDirectives as I, stopAndPrevent as J, prevent as K, markRaw as L, unref as M, onDeactivated as N, toRaw as O, Platform as P, globalConfig as Q, injectProp as R, Teleport as S, Transition as T, client as U, vShow as V, normalizeClass as W, createElementBlock as X, renderList as Y, Fragment as Z, toDisplayString as _, onBeforeUnmount as a, pushScopeId as a0, popScopeId as a1, boot as b, computed as c, nextTick as d, inject as e, emptyRenderFn as f, getCurrentInstance as g, h, isRuntimeSsrPreHydration as i, layoutKey as j, pageContainerKey as k, listenOpts as l, reactive as m, noop$1 as n, onMounted as o, provide as p, onUnmounted as q, ref as r, defineComponent as s, resolveComponent as t, useRouter as u, openBlock as v, watch as w, createBlock as x, withCtx as y, createVNode as z };
+export { vShow as $, createBaseVNode as A, createTextVNode as B, normalizeStyle as C, isKeyCode as D, addEvt as E, cleanEvt as F, stop as G, position as H, withDirectives as I, stopAndPrevent as J, prevent as K, markRaw as L, unref as M, onDeactivated as N, toRaw as O, Platform as P, globalConfig as Q, injectProp as R, Teleport as S, Transition as T, client as U, createElementBlock as V, Fragment as W, toDisplayString as X, createCommentVNode as Y, normalizeClass as Z, renderList as _, onBeforeUnmount as a, pushScopeId as a0, popScopeId as a1, boot as b, computed as c, nextTick as d, inject as e, emptyRenderFn as f, getCurrentInstance as g, h, isRuntimeSsrPreHydration as i, layoutKey as j, pageContainerKey as k, listenOpts as l, reactive as m, noop$1 as n, onMounted as o, provide as p, onUnmounted as q, ref as r, defineComponent as s, resolveComponent as t, useRouter as u, openBlock as v, watch as w, createBlock as x, withCtx as y, createVNode as z };

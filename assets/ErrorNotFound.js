@@ -1,5 +1,5 @@
 import { Q as QBtn } from "./QBtn.js";
-import { s as defineComponent, v as openBlock, X as createElementBlock, A as createBaseVNode, z as createVNode } from "./index.js";
+import { s as defineComponent, v as openBlock, V as createElementBlock, A as createBaseVNode, z as createVNode } from "./index.js";
 import "./vm.js";
 import "./render.js";
 const _hoisted_1 = { class: "fullscreen bg-blue text-white text-center q-pa-md flex flex-center" };

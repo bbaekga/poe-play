@@ -1,18 +1,17 @@
-.scarab-group[data-v-cb05b0b4] {
-  overflow: hidden;
+.gutter-80 .scarab-box[data-v-10f936d8] {
+  margin-right: 6px;
 }
-.scarab-group[data-v-cb05b0b4]:nth-child(n+2) {
-  margin-left: 24px;
-}
-.scarab-group .scarab-box[data-v-cb05b0b4] {
+.scarab-box[data-v-10f936d8] {
   position: relative;
-  width: 50px;
-  height: 50px;
-  border: 1px solid #757575;
-  background-color: #212121;
-  margin-right: 4px;
+  width: 46px;
+  height: 46px;
+  margin-right: 3px;
 }
-.scarab-group .scarab-box[data-v-cb05b0b4]:after {
+.scarab-box.empty[data-v-10f936d8] {
+  border-color: transparent;
+  background-color: transparent;
+}
+.scarab-box[data-v-10f936d8]:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -20,59 +19,97 @@
   filter: opacity(0.7);
   z-index: 1;
 }
-.scarab-group .scarab-box[data-v-cb05b0b4]:last-child {
+.scarab-box[data-v-10f936d8]:last-child {
   margin-right: 0;
 }
-.scarab-group .scarab-box.highlight0[data-v-cb05b0b4]:after {
-  background-color: transparent;
+.scarab-box .highlight0-text[data-v-10f936d8] {
+  color: white;
 }
-.scarab-group .scarab-box.highlight1[data-v-cb05b0b4]:after {
-  background-color: #fff176;
+.scarab-box .highlight1-text[data-v-10f936d8] {
+  color: #fff176;
 }
-.scarab-group .scarab-box.highlight2[data-v-cb05b0b4]:after {
-  background-color: #ffca28;
+.scarab-box .highlight2-text[data-v-10f936d8] {
+  color: #ffca28;
 }
-.scarab-group .scarab-box.highlight3[data-v-cb05b0b4]:after {
-  background-color: #ffb300;
+.scarab-box .highlight3-text[data-v-10f936d8] {
+  color: #ffb300;
 }
-.scarab-group .scarab-box.highlight4[data-v-cb05b0b4]:after {
-  background-color: #ffa726;
+.scarab-box .highlight4-text[data-v-10f936d8] {
+  color: #ffa726;
 }
-.scarab-group .scarab-box.highlight5[data-v-cb05b0b4]:after {
-  background-color: #ff9800;
+.scarab-box .highlight5-text[data-v-10f936d8] {
+  color: #ff9800;
 }
-.scarab-group .scarab-box.highlight6[data-v-cb05b0b4]:after {
-  background-color: #fb8c00;
+.scarab-box .highlight6-text[data-v-10f936d8] {
+  color: #fb8c00;
 }
-.scarab-group .scarab-box.highlight7[data-v-cb05b0b4]:after {
-  background-color: #ff7043;
+.scarab-box .highlight7-text[data-v-10f936d8] {
+  color: #ff7043;
 }
-.scarab-group .scarab-box.highlight8[data-v-cb05b0b4]:after {
-  background-color: #ff5722;
+.scarab-box .highlight8-text[data-v-10f936d8] {
+  color: #ff5722;
 }
-.scarab-group .scarab-box.highlight9[data-v-cb05b0b4]:after {
-  background-color: red;
+.scarab-box .highlight9-text[data-v-10f936d8] {
+  color: red;
 }
-.scarab-name[data-v-cb05b0b4] {
+.scarab-name[data-v-10f936d8] {
   color: #b2ebf2;
   font-size: 16px;
 }
-.scarab-description[data-v-cb05b0b4] {
+.scarab-description[data-v-10f936d8] {
   font-size: 14px;
   margin-top: 12px;
+}.scarab-stash[data-v-43c1840e] {
+  width: 800px;
+  height: 800px;
+  background-image: url("/poe-play/assets/background-scarab.png");
+  background-size: 800px 800px;
+  background-repeat: no-repeat;
 }
-.currency-type[data-v-cb05b0b4] {
+.scarab-groups.gutter-30 > div[data-v-43c1840e] {
+  margin-left: 30px;
+}
+.scarab-groups.gutter-30 > div[data-v-43c1840e]:first-child {
+  margin-left: 0;
+}
+.scarab-groups.gutter-40 > div[data-v-43c1840e] {
+  margin-left: 40px;
+}
+.scarab-groups.gutter-40 > div[data-v-43c1840e]:first-child {
+  margin-left: 0;
+}
+.scarab-groups.gutter-50 > div[data-v-43c1840e] {
+  margin-left: 50px;
+}
+.scarab-groups.gutter-50 > div[data-v-43c1840e]:first-child {
+  margin-left: 0;
+}
+.scarab-groups.gutter-80 > div[data-v-43c1840e] {
+  margin-left: 76px;
+}
+.scarab-groups.gutter-80 > div[data-v-43c1840e]:first-child {
+  margin-left: 0;
+}
+.scarab-group[data-v-43c1840e] {
+  position: relative;
+}
+.scarab-type-icon[data-v-43c1840e] {
+  z-index: 4;
+  top: -12px;
+  left: -16px;
+}
+.currency-type[data-v-43c1840e] {
   opacity: 0.4;
   filter: grayscale(1);
 }
-.currency-type.active-currency[data-v-cb05b0b4] {
+.currency-type.active-currency[data-v-43c1840e] {
   opacity: 1;
   filter: grayscale(0);
 }
-.loading-chaos[data-v-cb05b0b4] {
-  animation: loading-cb05b0b4 3s linear infinite;
+.loading-chaos[data-v-43c1840e] {
+  animation: loading-43c1840e 3s linear infinite;
 }
-@keyframes loading-cb05b0b4 {
+@keyframes loading-43c1840e {
 0% {
     transform: translate(-150px, -40px) rotate(0deg);
 }
