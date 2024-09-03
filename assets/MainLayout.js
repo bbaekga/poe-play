@@ -402,7 +402,7 @@ const _sfc_main = defineComponent({
       const _component_router_view = resolveComponent("router-view");
       return openBlock(), createBlock(QLayout, { view: "lHh Lpr lFf" }, {
         default: withCtx(() => [
-          createVNode(QHeader, { elevated: "" }, {
+          createVNode(QHeader, null, {
             default: withCtx(() => [
               createVNode(QToolbar, { class: "bg-blue-grey-8 row flex-center" }, {
                 default: withCtx(() => [
