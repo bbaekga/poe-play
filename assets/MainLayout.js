@@ -1,8 +1,6 @@
-import { c as createComponent, h as hSlot, a as hUniqueSlot, b as hMergeSlot } from "./render.js";
-import { c as computed, h, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, a as onBeforeUnmount, n as noop, d as nextTick, g as getCurrentInstance, l as listenOpts, e as inject, f as emptyRenderFn, w as watch, j as layoutKey, p as provide, k as pageContainerKey, m as reactive, q as onUnmounted, s as defineComponent, u as useRouter, t as resolveComponent, v as openBlock, x as createBlock, y as withCtx, z as createVNode, A as createBaseVNode, B as createTextVNode, C as normalizeStyle } from "./index.js";
-import { Q as QBtn } from "./QBtn.js";
-import { g as getScrollTarget, a as getVerticalScrollPosition, b as getHorizontalScrollPosition, c as getScrollbarWidth } from "./scroll.js";
-import "./vm.js";
+import { c as createComponent, a as computed, h, d as hSlot, i as inject, e as emptyRenderFn, r as ref, w as watch, o as onBeforeUnmount, f as hUniqueSlot, l as layoutKey, g as getCurrentInstance, p as provide, j as pageContainerKey, k as isRuntimeSsrPreHydration, m as reactive, n as onUnmounted, q as hMergeSlot, s as defineComponent, u as useRouter, t as onBeforeMount, v as onMounted, x as resolveComponent, y as openBlock, z as createBlock, A as withCtx, B as createVNode, C as createBaseVNode, D as createTextVNode, Q as QBtn, E as normalizeStyle } from "./index.js";
+import { Q as QResizeObserver, a as QScrollObserver, u as useQuasar } from "./use-quasar.js";
+import { g as getScrollbarWidth } from "./scroll.js";
 var QToolbarTitle = createComponent({
   name: "QToolbarTitle",
   props: {
@@ -25,126 +23,6 @@ var QToolbar = createComponent({
       () => "q-toolbar row no-wrap items-center" + (props.inset === true ? " q-toolbar--inset" : "")
     );
     return () => h("div", { class: classes.value, role: "toolbar" }, hSlot(slots.default));
-  }
-});
-function useHydration() {
-  const isHydrated = ref(!isRuntimeSsrPreHydration.value);
-  if (isHydrated.value === false) {
-    onMounted(() => {
-      isHydrated.value = true;
-    });
-  }
-  return { isHydrated };
-}
-const hasObserver = typeof ResizeObserver !== "undefined";
-const resizeProps = hasObserver === true ? {} : {
-  style: "display:block;position:absolute;top:0;left:0;right:0;bottom:0;height:100%;width:100%;overflow:hidden;pointer-events:none;z-index:-1;",
-  url: "about:blank"
-};
-var QResizeObserver = createComponent({
-  name: "QResizeObserver",
-  props: {
-    debounce: {
-      type: [String, Number],
-      default: 100
-    }
-  },
-  emits: ["resize"],
-  setup(props, { emit }) {
-    let timer = null, targetEl, size = { width: -1, height: -1 };
-    function trigger(immediately) {
-      if (immediately === true || props.debounce === 0 || props.debounce === "0") {
-        emitEvent();
-      } else if (timer === null) {
-        timer = setTimeout(emitEvent, props.debounce);
-      }
-    }
-    function emitEvent() {
-      if (timer !== null) {
-        clearTimeout(timer);
-        timer = null;
-      }
-      if (targetEl) {
-        const { offsetWidth: width, offsetHeight: height } = targetEl;
-        if (width !== size.width || height !== size.height) {
-          size = { width, height };
-          emit("resize", size);
-        }
-      }
-    }
-    const { proxy } = getCurrentInstance();
-    proxy.trigger = trigger;
-    if (hasObserver === true) {
-      let observer;
-      const init = (stop) => {
-        targetEl = proxy.$el.parentNode;
-        if (targetEl) {
-          observer = new ResizeObserver(trigger);
-          observer.observe(targetEl);
-          emitEvent();
-        } else if (stop !== true) {
-          nextTick(() => {
-            init(true);
-          });
-        }
-      };
-      onMounted(() => {
-        init();
-      });
-      onBeforeUnmount(() => {
-        timer !== null && clearTimeout(timer);
-        if (observer !== void 0) {
-          if (observer.disconnect !== void 0) {
-            observer.disconnect();
-          } else if (targetEl) {
-            observer.unobserve(targetEl);
-          }
-        }
-      });
-      return noop;
-    } else {
-      let cleanup = function() {
-        if (timer !== null) {
-          clearTimeout(timer);
-          timer = null;
-        }
-        if (curDocView !== void 0) {
-          if (curDocView.removeEventListener !== void 0) {
-            curDocView.removeEventListener("resize", trigger, listenOpts.passive);
-          }
-          curDocView = void 0;
-        }
-      }, onObjLoad = function() {
-        cleanup();
-        if (targetEl && targetEl.contentDocument) {
-          curDocView = targetEl.contentDocument.defaultView;
-          curDocView.addEventListener("resize", trigger, listenOpts.passive);
-          emitEvent();
-        }
-      };
-      const { isHydrated } = useHydration();
-      let curDocView;
-      onMounted(() => {
-        nextTick(() => {
-          targetEl = proxy.$el;
-          targetEl && onObjLoad();
-        });
-      });
-      onBeforeUnmount(cleanup);
-      return () => {
-        if (isHydrated.value === true) {
-          return h("object", {
-            class: "q--avoid-card-border",
-            style: resizeProps.style,
-            tabindex: -1,
-            type: "text/html",
-            data: resizeProps.url,
-            "aria-hidden": "true",
-            onLoad: onObjLoad
-          });
-        }
-      };
-    }
   }
 });
 var QHeader = createComponent({
@@ -311,104 +189,6 @@ var QPageContainer = createComponent({
       class: "q-page-container",
       style: style.value
     }, hSlot(slots.default));
-  }
-});
-const { passive } = listenOpts;
-const axisValues = ["both", "horizontal", "vertical"];
-var QScrollObserver = createComponent({
-  name: "QScrollObserver",
-  props: {
-    axis: {
-      type: String,
-      validator: (v) => axisValues.includes(v),
-      default: "vertical"
-    },
-    debounce: [String, Number],
-    scrollTarget: {
-      default: void 0
-    }
-  },
-  emits: ["scroll"],
-  setup(props, { emit }) {
-    const scroll = {
-      position: {
-        top: 0,
-        left: 0
-      },
-      direction: "down",
-      directionChanged: false,
-      delta: {
-        top: 0,
-        left: 0
-      },
-      inflectionPoint: {
-        top: 0,
-        left: 0
-      }
-    };
-    let clearTimer = null, localScrollTarget, parentEl;
-    watch(() => props.scrollTarget, () => {
-      unconfigureScrollTarget();
-      configureScrollTarget();
-    });
-    function emitEvent() {
-      clearTimer !== null && clearTimer();
-      const top = Math.max(0, getVerticalScrollPosition(localScrollTarget));
-      const left = getHorizontalScrollPosition(localScrollTarget);
-      const delta = {
-        top: top - scroll.position.top,
-        left: left - scroll.position.left
-      };
-      if (props.axis === "vertical" && delta.top === 0 || props.axis === "horizontal" && delta.left === 0) {
-        return;
-      }
-      const curDir = Math.abs(delta.top) >= Math.abs(delta.left) ? delta.top < 0 ? "up" : "down" : delta.left < 0 ? "left" : "right";
-      scroll.position = { top, left };
-      scroll.directionChanged = scroll.direction !== curDir;
-      scroll.delta = delta;
-      if (scroll.directionChanged === true) {
-        scroll.direction = curDir;
-        scroll.inflectionPoint = scroll.position;
-      }
-      emit("scroll", { ...scroll });
-    }
-    function configureScrollTarget() {
-      localScrollTarget = getScrollTarget(parentEl, props.scrollTarget);
-      localScrollTarget.addEventListener("scroll", trigger, passive);
-      trigger(true);
-    }
-    function unconfigureScrollTarget() {
-      if (localScrollTarget !== void 0) {
-        localScrollTarget.removeEventListener("scroll", trigger, passive);
-        localScrollTarget = void 0;
-      }
-    }
-    function trigger(immediately) {
-      if (immediately === true || props.debounce === 0 || props.debounce === "0") {
-        emitEvent();
-      } else if (clearTimer === null) {
-        const [timer, fn] = props.debounce ? [setTimeout(emitEvent, props.debounce), clearTimeout] : [requestAnimationFrame(emitEvent), cancelAnimationFrame];
-        clearTimer = () => {
-          fn(timer);
-          clearTimer = null;
-        };
-      }
-    }
-    const { proxy } = getCurrentInstance();
-    watch(() => proxy.$q.lang.rtl, emitEvent);
-    onMounted(() => {
-      parentEl = proxy.$el.parentNode;
-      configureScrollTarget();
-    });
-    onBeforeUnmount(() => {
-      clearTimer !== null && clearTimer();
-      unconfigureScrollTarget();
-    });
-    Object.assign(proxy, {
-      trigger,
-      getPosition: () => scroll
-    });
-    return noop;
   }
 });
 var QLayout = createComponent({
@@ -591,10 +371,12 @@ var QLayout = createComponent({
 });
 var MainLayout_vue_vue_type_style_index_0_lang = "";
 const _hoisted_1 = /* @__PURE__ */ createBaseVNode("span", { class: "t-text-10" }, "by bbaekga", -1);
-const _hoisted_2 = { class: "page-container" };
+const _hoisted_2 = /* @__PURE__ */ createBaseVNode("div", { class: "wallpaper" }, null, -1);
+const _hoisted_3 = { class: "page-container" };
 const _sfc_main = defineComponent({
   __name: "MainLayout",
   setup(__props) {
+    const $q = useQuasar();
     const router = useRouter();
     const toolbarStyle = computed(() => {
       return {
@@ -602,8 +384,19 @@ const _sfc_main = defineComponent({
         maxWidth: "1400px"
       };
     });
+    const currentPage = computed(() => {
+      return router.currentRoute.value.name;
+    });
+    const scarabsPage = computed(() => {
+      return currentPage.value === "scarabs";
+    });
+    const reCombinationPage = computed(() => {
+      return currentPage.value === "reCombination";
+    });
+    onBeforeMount(() => {
+      $q.dark.set(true);
+    });
     onMounted(async () => {
-      await router.push({ name: "scarabs" });
     });
     return (_ctx, _cache) => {
       const _component_router_view = resolveComponent("router-view");
@@ -611,7 +404,7 @@ const _sfc_main = defineComponent({
         default: withCtx(() => [
           createVNode(QHeader, { elevated: "" }, {
             default: withCtx(() => [
-              createVNode(QToolbar, { class: "bg-grey-7 row flex-center" }, {
+              createVNode(QToolbar, { class: "bg-blue-grey-8 row flex-center" }, {
                 default: withCtx(() => [
                   createBaseVNode("div", {
                     class: "row items-center",
@@ -630,9 +423,16 @@ const _sfc_main = defineComponent({
                     }),
                     createVNode(QBtn, {
                       label: "\uAC11\uCDA9\uC11D",
+                      color: scarabsPage.value ? "blue-5" : "",
                       flat: "",
                       to: { name: "scarabs" }
-                    })
+                    }, null, 8, ["color"]),
+                    createVNode(QBtn, {
+                      label: "\uC7AC\uC870\uD569 \uACC4\uC0B0\uAE30",
+                      color: reCombinationPage.value ? "blue-5" : "",
+                      flat: "",
+                      to: { name: "reCombination" }
+                    }, null, 8, ["color"])
                   ], 4)
                 ]),
                 _: 1
@@ -640,9 +440,10 @@ const _sfc_main = defineComponent({
             ]),
             _: 1
           }),
-          createVNode(QPageContainer, { class: "column flex-center bg-grey-9" }, {
+          createVNode(QPageContainer, { class: "column flex-center bg-grey-10" }, {
             default: withCtx(() => [
-              createBaseVNode("div", _hoisted_2, [
+              _hoisted_2,
+              createBaseVNode("div", _hoisted_3, [
                 createVNode(_component_router_view)
               ])
             ]),

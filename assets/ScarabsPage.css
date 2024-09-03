@@ -59,57 +59,57 @@
 .scarab-description[data-v-10f936d8] {
   font-size: 14px;
   margin-top: 12px;
-}.scarab-stash[data-v-43c1840e] {
+}.scarab-stash[data-v-5aca90ac] {
   width: 800px;
   height: 800px;
-  background-image: url("/poe-play/assets/background-scarab.png");
+  background-image: url("/poe-play/icons/background-scarab.png");
   background-size: 800px 800px;
   background-repeat: no-repeat;
 }
-.scarab-groups.gutter-30 > div[data-v-43c1840e] {
+.scarab-groups.gutter-30 > div[data-v-5aca90ac] {
   margin-left: 30px;
 }
-.scarab-groups.gutter-30 > div[data-v-43c1840e]:first-child {
+.scarab-groups.gutter-30 > div[data-v-5aca90ac]:first-child {
   margin-left: 0;
 }
-.scarab-groups.gutter-40 > div[data-v-43c1840e] {
+.scarab-groups.gutter-40 > div[data-v-5aca90ac] {
   margin-left: 40px;
 }
-.scarab-groups.gutter-40 > div[data-v-43c1840e]:first-child {
+.scarab-groups.gutter-40 > div[data-v-5aca90ac]:first-child {
   margin-left: 0;
 }
-.scarab-groups.gutter-50 > div[data-v-43c1840e] {
+.scarab-groups.gutter-50 > div[data-v-5aca90ac] {
   margin-left: 50px;
 }
-.scarab-groups.gutter-50 > div[data-v-43c1840e]:first-child {
+.scarab-groups.gutter-50 > div[data-v-5aca90ac]:first-child {
   margin-left: 0;
 }
-.scarab-groups.gutter-80 > div[data-v-43c1840e] {
+.scarab-groups.gutter-80 > div[data-v-5aca90ac] {
   margin-left: 76px;
 }
-.scarab-groups.gutter-80 > div[data-v-43c1840e]:first-child {
+.scarab-groups.gutter-80 > div[data-v-5aca90ac]:first-child {
   margin-left: 0;
 }
-.scarab-group[data-v-43c1840e] {
+.scarab-group[data-v-5aca90ac] {
   position: relative;
 }
-.scarab-type-icon[data-v-43c1840e] {
+.scarab-type-icon[data-v-5aca90ac] {
   z-index: 4;
   top: -12px;
   left: -16px;
 }
-.currency-type[data-v-43c1840e] {
+.currency-type[data-v-5aca90ac] {
   opacity: 0.4;
   filter: grayscale(1);
 }
-.currency-type.active-currency[data-v-43c1840e] {
+.currency-type.active-currency[data-v-5aca90ac] {
   opacity: 1;
   filter: grayscale(0);
 }
-.loading-chaos[data-v-43c1840e] {
-  animation: loading-43c1840e 3s linear infinite;
+.loading-chaos[data-v-5aca90ac] {
+  animation: loading-5aca90ac 3s linear infinite;
 }
-@keyframes loading-43c1840e {
+@keyframes loading-5aca90ac {
 0% {
     transform: translate(-150px, -40px) rotate(0deg);
 }

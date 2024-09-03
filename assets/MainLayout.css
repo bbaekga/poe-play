@@ -1,3 +1,15 @@
+.wallpaper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("/poe-play/image/wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+  background-position-y: 50px;
+  opacity: 0.3;
+}
 .page-container {
   width: 100vw;
   max-width: 1400px;

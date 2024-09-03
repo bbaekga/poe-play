@@ -441,11 +441,11 @@ const createDep = (cleanup, computed2) => {
 const targetMap = /* @__PURE__ */ new WeakMap();
 const ITERATE_KEY = Symbol("");
 const MAP_KEY_ITERATE_KEY = Symbol("");
-function track(target, type, key) {
+function track(target2, type, key) {
   if (shouldTrack && activeEffect) {
-    let depsMap = targetMap.get(target);
+    let depsMap = targetMap.get(target2);
     if (!depsMap) {
-      targetMap.set(target, depsMap = /* @__PURE__ */ new Map());
+      targetMap.set(target2, depsMap = /* @__PURE__ */ new Map());
     }
     let dep = depsMap.get(key);
     if (!dep) {
@@ -457,15 +457,15 @@ function track(target, type, key) {
     );
   }
 }
-function trigger(target, type, key, newValue, oldValue, oldTarget) {
-  const depsMap = targetMap.get(target);
+function trigger(target2, type, key, newValue, oldValue, oldTarget) {
+  const depsMap = targetMap.get(target2);
   if (!depsMap) {
     return;
   }
   let deps = [];
   if (type === "clear") {
     deps = [...depsMap.values()];
-  } else if (key === "length" && isArray$1(target)) {
+  } else if (key === "length" && isArray$1(target2)) {
     const newLength = Number(newValue);
     depsMap.forEach((dep, key2) => {
       if (key2 === "length" || !isSymbol(key2) && key2 >= newLength) {
@@ -478,9 +478,9 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
     }
     switch (type) {
       case "add":
-        if (!isArray$1(target)) {
+        if (!isArray$1(target2)) {
           deps.push(depsMap.get(ITERATE_KEY));
-          if (isMap(target)) {
+          if (isMap(target2)) {
             deps.push(depsMap.get(MAP_KEY_ITERATE_KEY));
           }
         } else if (isIntegerKey(key)) {
@@ -488,15 +488,15 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
         }
         break;
       case "delete":
-        if (!isArray$1(target)) {
+        if (!isArray$1(target2)) {
           deps.push(depsMap.get(ITERATE_KEY));
-          if (isMap(target)) {
+          if (isMap(target2)) {
             deps.push(depsMap.get(MAP_KEY_ITERATE_KEY));
           }
         }
         break;
       case "set":
-        if (isMap(target)) {
+        if (isMap(target2)) {
           deps.push(depsMap.get(ITERATE_KEY));
         }
         break;
@@ -556,7 +556,7 @@ class BaseReactiveHandler {
     this._isReadonly = _isReadonly;
     this._isShallow = _isShallow;
   }
-  get(target, key, receiver) {
+  get(target2, key, receiver) {
     const isReadonly2 = this._isReadonly, isShallow2 = this._isShallow;
     if (key === "__v_isReactive") {
       return !isReadonly2;
@@ -565,12 +565,12 @@ class BaseReactiveHandler {
     } else if (key === "__v_isShallow") {
       return isShallow2;
     } else if (key === "__v_raw") {
-      if (receiver === (isReadonly2 ? isShallow2 ? shallowReadonlyMap : readonlyMap : isShallow2 ? shallowReactiveMap : reactiveMap).get(target) || Object.getPrototypeOf(target) === Object.getPrototypeOf(receiver)) {
-        return target;
+      if (receiver === (isReadonly2 ? isShallow2 ? shallowReadonlyMap : readonlyMap : isShallow2 ? shallowReactiveMap : reactiveMap).get(target2) || Object.getPrototypeOf(target2) === Object.getPrototypeOf(receiver)) {
+        return target2;
       }
       return;
     }
-    const targetIsArray = isArray$1(target);
+    const targetIsArray = isArray$1(target2);
     if (!isReadonly2) {
       if (targetIsArray && hasOwn(arrayInstrumentations, key)) {
         return Reflect.get(arrayInstrumentations, key, receiver);
@@ -579,12 +579,12 @@ class BaseReactiveHandler {
         return hasOwnProperty;
       }
     }
-    const res = Reflect.get(target, key, receiver);
+    const res = Reflect.get(target2, key, receiver);
     if (isSymbol(key) ? builtInSymbols.has(key) : isNonTrackableKeys(key)) {
       return res;
     }
     if (!isReadonly2) {
-      track(target, "get", key);
+      track(target2, "get", key);
     }
     if (isShallow2) {
       return res;
@@ -602,15 +602,15 @@ class MutableReactiveHandler extends BaseReactiveHandler {
   constructor(isShallow2 = false) {
     super(false, isShallow2);
   }
-  set(target, key, value, receiver) {
-    let oldValue = target[key];
+  set(target2, key, value, receiver) {
+    let oldValue = target2[key];
     if (!this._isShallow) {
       const isOldValueReadonly = isReadonly(oldValue);
       if (!isShallow(value) && !isReadonly(value)) {
         oldValue = toRaw(oldValue);
         value = toRaw(value);
       }
-      if (!isArray$1(target) && isRef(oldValue) && !isRef(value)) {
+      if (!isArray$1(target2) && isRef(oldValue) && !isRef(value)) {
         if (isOldValueReadonly) {
           return false;
         } else {
@@ -619,50 +619,50 @@ class MutableReactiveHandler extends BaseReactiveHandler {
         }
       }
     }
-    const hadKey = isArray$1(target) && isIntegerKey(key) ? Number(key) < target.length : hasOwn(target, key);
-    const result = Reflect.set(target, key, value, receiver);
-    if (target === toRaw(receiver)) {
+    const hadKey = isArray$1(target2) && isIntegerKey(key) ? Number(key) < target2.length : hasOwn(target2, key);
+    const result = Reflect.set(target2, key, value, receiver);
+    if (target2 === toRaw(receiver)) {
       if (!hadKey) {
-        trigger(target, "add", key, value);
+        trigger(target2, "add", key, value);
       } else if (hasChanged(value, oldValue)) {
-        trigger(target, "set", key, value);
+        trigger(target2, "set", key, value);
       }
     }
     return result;
   }
-  deleteProperty(target, key) {
-    const hadKey = hasOwn(target, key);
-    target[key];
-    const result = Reflect.deleteProperty(target, key);
+  deleteProperty(target2, key) {
+    const hadKey = hasOwn(target2, key);
+    target2[key];
+    const result = Reflect.deleteProperty(target2, key);
     if (result && hadKey) {
-      trigger(target, "delete", key, void 0);
+      trigger(target2, "delete", key, void 0);
     }
     return result;
   }
-  has(target, key) {
-    const result = Reflect.has(target, key);
+  has(target2, key) {
+    const result = Reflect.has(target2, key);
     if (!isSymbol(key) || !builtInSymbols.has(key)) {
-      track(target, "has", key);
+      track(target2, "has", key);
     }
     return result;
   }
-  ownKeys(target) {
+  ownKeys(target2) {
     track(
-      target,
+      target2,
       "iterate",
-      isArray$1(target) ? "length" : ITERATE_KEY
+      isArray$1(target2) ? "length" : ITERATE_KEY
     );
-    return Reflect.ownKeys(target);
+    return Reflect.ownKeys(target2);
   }
 }
 class ReadonlyReactiveHandler extends BaseReactiveHandler {
   constructor(isShallow2 = false) {
     super(true, isShallow2);
   }
-  set(target, key) {
+  set(target2, key) {
     return true;
   }
-  deleteProperty(target, key) {
+  deleteProperty(target2, key) {
     return true;
   }
 }
@@ -673,9 +673,9 @@ const shallowReactiveHandlers = /* @__PURE__ */ new MutableReactiveHandler(
 );
 const toShallow = (value) => value;
 const getProto = (v) => Reflect.getPrototypeOf(v);
-function get(target, key, isReadonly2 = false, isShallow2 = false) {
-  target = target["__v_raw"];
-  const rawTarget = toRaw(target);
+function get(target2, key, isReadonly2 = false, isShallow2 = false) {
+  target2 = target2["__v_raw"];
+  const rawTarget = toRaw(target2);
   const rawKey = toRaw(key);
   if (!isReadonly2) {
     if (hasChanged(key, rawKey)) {
@@ -686,16 +686,16 @@ function get(target, key, isReadonly2 = false, isShallow2 = false) {
   const { has: has2 } = getProto(rawTarget);
   const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
   if (has2.call(rawTarget, key)) {
-    return wrap(target.get(key));
+    return wrap(target2.get(key));
   } else if (has2.call(rawTarget, rawKey)) {
-    return wrap(target.get(rawKey));
-  } else if (target !== rawTarget) {
-    target.get(key);
+    return wrap(target2.get(rawKey));
+  } else if (target2 !== rawTarget) {
+    target2.get(key);
   }
 }
 function has(key, isReadonly2 = false) {
-  const target = this["__v_raw"];
-  const rawTarget = toRaw(target);
+  const target2 = this["__v_raw"];
+  const rawTarget = toRaw(target2);
   const rawKey = toRaw(key);
   if (!isReadonly2) {
     if (hasChanged(key, rawKey)) {
@@ -703,86 +703,86 @@ function has(key, isReadonly2 = false) {
     }
     track(rawTarget, "has", rawKey);
   }
-  return key === rawKey ? target.has(key) : target.has(key) || target.has(rawKey);
+  return key === rawKey ? target2.has(key) : target2.has(key) || target2.has(rawKey);
 }
-function size(target, isReadonly2 = false) {
-  target = target["__v_raw"];
-  !isReadonly2 && track(toRaw(target), "iterate", ITERATE_KEY);
-  return Reflect.get(target, "size", target);
+function size(target2, isReadonly2 = false) {
+  target2 = target2["__v_raw"];
+  !isReadonly2 && track(toRaw(target2), "iterate", ITERATE_KEY);
+  return Reflect.get(target2, "size", target2);
 }
 function add(value) {
   value = toRaw(value);
-  const target = toRaw(this);
-  const proto = getProto(target);
-  const hadKey = proto.has.call(target, value);
+  const target2 = toRaw(this);
+  const proto = getProto(target2);
+  const hadKey = proto.has.call(target2, value);
   if (!hadKey) {
-    target.add(value);
-    trigger(target, "add", value, value);
+    target2.add(value);
+    trigger(target2, "add", value, value);
   }
   return this;
 }
 function set(key, value) {
   value = toRaw(value);
-  const target = toRaw(this);
-  const { has: has2, get: get2 } = getProto(target);
-  let hadKey = has2.call(target, key);
+  const target2 = toRaw(this);
+  const { has: has2, get: get2 } = getProto(target2);
+  let hadKey = has2.call(target2, key);
   if (!hadKey) {
     key = toRaw(key);
-    hadKey = has2.call(target, key);
+    hadKey = has2.call(target2, key);
   }
-  const oldValue = get2.call(target, key);
-  target.set(key, value);
+  const oldValue = get2.call(target2, key);
+  target2.set(key, value);
   if (!hadKey) {
-    trigger(target, "add", key, value);
+    trigger(target2, "add", key, value);
   } else if (hasChanged(value, oldValue)) {
-    trigger(target, "set", key, value);
+    trigger(target2, "set", key, value);
   }
   return this;
 }
 function deleteEntry(key) {
-  const target = toRaw(this);
-  const { has: has2, get: get2 } = getProto(target);
-  let hadKey = has2.call(target, key);
+  const target2 = toRaw(this);
+  const { has: has2, get: get2 } = getProto(target2);
+  let hadKey = has2.call(target2, key);
   if (!hadKey) {
     key = toRaw(key);
-    hadKey = has2.call(target, key);
+    hadKey = has2.call(target2, key);
   }
-  get2 ? get2.call(target, key) : void 0;
-  const result = target.delete(key);
+  get2 ? get2.call(target2, key) : void 0;
+  const result = target2.delete(key);
   if (hadKey) {
-    trigger(target, "delete", key, void 0);
+    trigger(target2, "delete", key, void 0);
   }
   return result;
 }
 function clear() {
-  const target = toRaw(this);
-  const hadItems = target.size !== 0;
-  const result = target.clear();
+  const target2 = toRaw(this);
+  const hadItems = target2.size !== 0;
+  const result = target2.clear();
   if (hadItems) {
-    trigger(target, "clear", void 0, void 0);
+    trigger(target2, "clear", void 0, void 0);
   }
   return result;
 }
 function createForEach(isReadonly2, isShallow2) {
   return function forEach(callback, thisArg) {
     const observed = this;
-    const target = observed["__v_raw"];
-    const rawTarget = toRaw(target);
+    const target2 = observed["__v_raw"];
+    const rawTarget = toRaw(target2);
     const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
     !isReadonly2 && track(rawTarget, "iterate", ITERATE_KEY);
-    return target.forEach((value, key) => {
+    return target2.forEach((value, key) => {
       return callback.call(thisArg, wrap(value), wrap(key), observed);
     });
   };
 }
 function createIterableMethod(method, isReadonly2, isShallow2) {
   return function(...args) {
-    const target = this["__v_raw"];
-    const rawTarget = toRaw(target);
+    const target2 = this["__v_raw"];
+    const rawTarget = toRaw(target2);
     const targetIsMap = isMap(rawTarget);
     const isPair = method === "entries" || method === Symbol.iterator && targetIsMap;
     const isKeyOnly = method === "keys" && targetIsMap;
-    const innerIterator = target[method](...args);
+    const innerIterator = target2[method](...args);
     const wrap = isShallow2 ? toShallow : isReadonly2 ? toReadonly : toReactive;
     !isReadonly2 && track(
       rawTarget,
@@ -907,16 +907,16 @@ const [
 ] = /* @__PURE__ */ createInstrumentations();
 function createInstrumentationGetter(isReadonly2, shallow) {
   const instrumentations = shallow ? isReadonly2 ? shallowReadonlyInstrumentations : shallowInstrumentations : isReadonly2 ? readonlyInstrumentations : mutableInstrumentations;
-  return (target, key, receiver) => {
+  return (target2, key, receiver) => {
     if (key === "__v_isReactive") {
       return !isReadonly2;
     } else if (key === "__v_isReadonly") {
       return isReadonly2;
     } else if (key === "__v_raw") {
-      return target;
+      return target2;
     }
     return Reflect.get(
-      hasOwn(instrumentations, key) && key in target ? instrumentations : target,
+      hasOwn(instrumentations, key) && key in target2 ? instrumentations : target2,
       key,
       receiver
     );
@@ -952,56 +952,56 @@ function targetTypeMap(rawType) {
 function getTargetType(value) {
   return value["__v_skip"] || !Object.isExtensible(value) ? 0 : targetTypeMap(toRawType(value));
 }
-function reactive(target) {
-  if (isReadonly(target)) {
-    return target;
+function reactive(target2) {
+  if (isReadonly(target2)) {
+    return target2;
   }
   return createReactiveObject(
-    target,
+    target2,
     false,
     mutableHandlers,
     mutableCollectionHandlers,
     reactiveMap
   );
 }
-function shallowReactive(target) {
+function shallowReactive(target2) {
   return createReactiveObject(
-    target,
+    target2,
     false,
     shallowReactiveHandlers,
     shallowCollectionHandlers,
     shallowReactiveMap
   );
 }
-function readonly(target) {
+function readonly(target2) {
   return createReactiveObject(
-    target,
+    target2,
     true,
     readonlyHandlers,
     readonlyCollectionHandlers,
     readonlyMap
   );
 }
-function createReactiveObject(target, isReadonly2, baseHandlers, collectionHandlers, proxyMap) {
-  if (!isObject$1(target)) {
-    return target;
+function createReactiveObject(target2, isReadonly2, baseHandlers, collectionHandlers, proxyMap) {
+  if (!isObject$1(target2)) {
+    return target2;
   }
-  if (target["__v_raw"] && !(isReadonly2 && target["__v_isReactive"])) {
-    return target;
+  if (target2["__v_raw"] && !(isReadonly2 && target2["__v_isReactive"])) {
+    return target2;
   }
-  const existingProxy = proxyMap.get(target);
+  const existingProxy = proxyMap.get(target2);
   if (existingProxy) {
     return existingProxy;
   }
-  const targetType = getTargetType(target);
+  const targetType = getTargetType(target2);
   if (targetType === 0) {
-    return target;
+    return target2;
   }
   const proxy = new Proxy(
-    target,
+    target2,
     targetType === 2 ? collectionHandlers : baseHandlers
   );
-  proxyMap.set(target, proxy);
+  proxyMap.set(target2, proxy);
   return proxy;
 }
 function isReactive(value) {
@@ -1148,14 +1148,14 @@ function unref(ref2) {
   return isRef(ref2) ? ref2.value : ref2;
 }
 const shallowUnwrapHandlers = {
-  get: (target, key, receiver) => unref(Reflect.get(target, key, receiver)),
-  set: (target, key, value, receiver) => {
-    const oldValue = target[key];
+  get: (target2, key, receiver) => unref(Reflect.get(target2, key, receiver)),
+  set: (target2, key, value, receiver) => {
+    const oldValue = target2[key];
     if (isRef(oldValue) && !isRef(value)) {
       oldValue.value = value;
       return true;
     } else {
-      return Reflect.set(target, key, value, receiver);
+      return Reflect.set(target2, key, value, receiver);
     }
   }
 };
@@ -1318,9 +1318,9 @@ function handleError(err, instance, type, throwInDev = true) {
       return;
     }
   }
-  logError(err, type, contextVNode, throwInDev);
+  logError$1(err, type, contextVNode, throwInDev);
 }
-function logError(err, type, contextVNode, throwInDev = true) {
+function logError$1(err, type, contextVNode, throwInDev = true) {
   {
     console.error(err);
   }
@@ -1604,13 +1604,13 @@ function renderComponentRoot(instance) {
     if (vnode.shapeFlag & 4) {
       const proxyToUse = withProxy || proxy;
       const thisProxy = false ? new Proxy(proxyToUse, {
-        get(target, key, receiver) {
+        get(target2, key, receiver) {
           warn$1(
             `Property '${String(
               key
             )}' was accessed via 'this'. Avoid using 'this' in templates.`
           );
-          return Reflect.get(target, key, receiver);
+          return Reflect.get(target2, key, receiver);
         }
       }) : proxyToUse;
       result = normalizeVNode(
@@ -2053,7 +2053,7 @@ function invokeDirectiveHook(vnode, prevVNode, instance, name) {
   }
 }
 const leaveCbKey = Symbol("_leaveCb");
-const enterCbKey = Symbol("_enterCb");
+const enterCbKey$1 = Symbol("_enterCb");
 function useTransitionState() {
   const state = {
     isMounted: false,
@@ -2248,7 +2248,7 @@ function resolveTransitionHooks(vnode, props, state, instance) {
         }
       }
       let called = false;
-      const done = el[enterCbKey] = (cancelled) => {
+      const done = el[enterCbKey$1] = (cancelled) => {
         if (called)
           return;
         called = true;
@@ -2260,7 +2260,7 @@ function resolveTransitionHooks(vnode, props, state, instance) {
         if (hooks.delayedLeave) {
           hooks.delayedLeave();
         }
-        el[enterCbKey] = void 0;
+        el[enterCbKey$1] = void 0;
       };
       if (hook) {
         callAsyncHook(hook, [el, done]);
@@ -2270,8 +2270,8 @@ function resolveTransitionHooks(vnode, props, state, instance) {
     },
     leave(el, remove2) {
       const key2 = String(vnode.key);
-      if (el[enterCbKey]) {
-        el[enterCbKey](
+      if (el[enterCbKey$1]) {
+        el[enterCbKey$1](
           true
         );
       }
@@ -2357,12 +2357,15 @@ function defineComponent(options, extraOptions) {
 }
 const isAsyncWrapper = (i) => !!i.type.__asyncLoader;
 const isKeepAlive = (vnode) => vnode.type.__isKeepAlive;
-function onDeactivated(hook, target) {
-  registerKeepAliveHook(hook, "da", target);
+function onActivated(hook, target2) {
+  registerKeepAliveHook(hook, "a", target2);
 }
-function registerKeepAliveHook(hook, type, target = currentInstance) {
+function onDeactivated(hook, target2) {
+  registerKeepAliveHook(hook, "da", target2);
+}
+function registerKeepAliveHook(hook, type, target2 = currentInstance) {
   const wrappedHook = hook.__wdc || (hook.__wdc = () => {
-    let current = target;
+    let current = target2;
     while (current) {
       if (current.isDeactivated) {
         return;
@@ -2371,18 +2374,18 @@ function registerKeepAliveHook(hook, type, target = currentInstance) {
     }
     return hook();
   });
-  injectHook(type, wrappedHook, target);
-  if (target) {
-    let current = target.parent;
+  injectHook(type, wrappedHook, target2);
+  if (target2) {
+    let current = target2.parent;
     while (current && current.parent) {
       if (isKeepAlive(current.parent.vnode)) {
-        injectToKeepAliveRoot(wrappedHook, type, target, current);
+        injectToKeepAliveRoot(wrappedHook, type, target2, current);
       }
       current = current.parent;
     }
   }
 }
-function injectToKeepAliveRoot(hook, type, target, keepAliveRoot) {
+function injectToKeepAliveRoot(hook, type, target2, keepAliveRoot) {
   const injected = injectHook(
     type,
     hook,
@@ -2391,18 +2394,18 @@ function injectToKeepAliveRoot(hook, type, target, keepAliveRoot) {
   );
   onUnmounted(() => {
     remove(keepAliveRoot[type], injected);
-  }, target);
+  }, target2);
 }
-function injectHook(type, hook, target = currentInstance, prepend = false) {
-  if (target) {
-    const hooks = target[type] || (target[type] = []);
+function injectHook(type, hook, target2 = currentInstance, prepend = false) {
+  if (target2) {
+    const hooks = target2[type] || (target2[type] = []);
     const wrappedHook = hook.__weh || (hook.__weh = (...args) => {
-      if (target.isUnmounted) {
+      if (target2.isUnmounted) {
         return;
       }
       pauseTracking();
-      const reset = setCurrentInstance(target);
-      const res = callWithAsyncErrorHandling(hook, target, type, args);
+      const reset = setCurrentInstance(target2);
+      const res = callWithAsyncErrorHandling(hook, target2, type, args);
       reset();
       resetTracking();
       return res;
@@ -2415,8 +2418,11 @@ function injectHook(type, hook, target = currentInstance, prepend = false) {
     return wrappedHook;
   }
 }
-const createHook = (lifecycle) => (hook, target = currentInstance) => (!isInSSRComponentSetup || lifecycle === "sp") && injectHook(lifecycle, (...args) => hook(...args), target);
+const createHook = (lifecycle) => (hook, target2 = currentInstance) => (!isInSSRComponentSetup || lifecycle === "sp") && injectHook(lifecycle, (...args) => hook(...args), target2);
+const onBeforeMount = createHook("bm");
 const onMounted = createHook("m");
+const onBeforeUpdate = createHook("bu");
+const onUpdated = createHook("u");
 const onBeforeUnmount = createHook("bum");
 const onUnmounted = createHook("um");
 function renderList(source, renderItem, cache, index) {
@@ -2559,13 +2565,13 @@ const PublicInstanceProxyHandlers = {
     let normalizedProps;
     return !!accessCache[key] || data !== EMPTY_OBJ && hasOwn(data, key) || hasSetupBinding(setupState, key) || (normalizedProps = propsOptions[0]) && hasOwn(normalizedProps, key) || hasOwn(ctx, key) || hasOwn(publicPropertiesMap, key) || hasOwn(appContext.config.globalProperties, key);
   },
-  defineProperty(target, key, descriptor) {
+  defineProperty(target2, key, descriptor) {
     if (descriptor.get != null) {
-      target._.accessCache[key] = 0;
+      target2._.accessCache[key] = 0;
     } else if (hasOwn(descriptor, "value")) {
-      this.set(target, key, descriptor.value, null);
+      this.set(target2, key, descriptor.value, null);
     }
-    return Reflect.defineProperty(target, key, descriptor);
+    return Reflect.defineProperty(target2, key, descriptor);
   }
 };
 function normalizePropsOrEmits(props) {
@@ -3272,8 +3278,8 @@ function createRenderer(options) {
   return baseCreateRenderer(options);
 }
 function baseCreateRenderer(options, createHydrationFns) {
-  const target = getGlobalThis();
-  target.__VUE__ = true;
+  const target2 = getGlobalThis();
+  target2.__VUE__ = true;
   const {
     insert: hostInsert,
     remove: hostRemove,
@@ -4611,16 +4617,16 @@ function locateNonHydratedAsyncRoot(instance) {
 }
 const isTeleport = (type) => type.__isTeleport;
 const isTeleportDisabled = (props) => props && (props.disabled || props.disabled === "");
-const isTargetSVG = (target) => typeof SVGElement !== "undefined" && target instanceof SVGElement;
-const isTargetMathML = (target) => typeof MathMLElement === "function" && target instanceof MathMLElement;
+const isTargetSVG = (target2) => typeof SVGElement !== "undefined" && target2 instanceof SVGElement;
+const isTargetMathML = (target2) => typeof MathMLElement === "function" && target2 instanceof MathMLElement;
 const resolveTarget = (props, select) => {
   const targetSelector = props && props.to;
   if (isString(targetSelector)) {
     if (!select) {
       return null;
     } else {
-      const target = select(targetSelector);
-      return target;
+      const target2 = select(targetSelector);
+      return target2;
     }
   } else {
     return targetSelector;
@@ -4643,13 +4649,13 @@ const TeleportImpl = {
       const mainAnchor = n2.anchor = createText("");
       insert(placeholder, container, anchor);
       insert(mainAnchor, container, anchor);
-      const target = n2.target = resolveTarget(n2.props, querySelector);
+      const target2 = n2.target = resolveTarget(n2.props, querySelector);
       const targetAnchor = n2.targetAnchor = createText("");
-      if (target) {
-        insert(targetAnchor, target);
-        if (namespace === "svg" || isTargetSVG(target)) {
+      if (target2) {
+        insert(targetAnchor, target2);
+        if (namespace === "svg" || isTargetSVG(target2)) {
           namespace = "svg";
-        } else if (namespace === "mathml" || isTargetMathML(target)) {
+        } else if (namespace === "mathml" || isTargetMathML(target2)) {
           namespace = "mathml";
         }
       }
@@ -4669,20 +4675,20 @@ const TeleportImpl = {
       };
       if (disabled) {
         mount(container, mainAnchor);
-      } else if (target) {
-        mount(target, targetAnchor);
+      } else if (target2) {
+        mount(target2, targetAnchor);
       }
     } else {
       n2.el = n1.el;
       const mainAnchor = n2.anchor = n1.anchor;
-      const target = n2.target = n1.target;
+      const target2 = n2.target = n1.target;
       const targetAnchor = n2.targetAnchor = n1.targetAnchor;
       const wasDisabled = isTeleportDisabled(n1.props);
-      const currentContainer = wasDisabled ? container : target;
+      const currentContainer = wasDisabled ? container : target2;
       const currentAnchor = wasDisabled ? mainAnchor : targetAnchor;
-      if (namespace === "svg" || isTargetSVG(target)) {
+      if (namespace === "svg" || isTargetSVG(target2)) {
         namespace = "svg";
-      } else if (namespace === "mathml" || isTargetMathML(target)) {
+      } else if (namespace === "mathml" || isTargetMathML(target2)) {
         namespace = "mathml";
       }
       if (dynamicChildren) {
@@ -4741,7 +4747,7 @@ const TeleportImpl = {
         } else if (wasDisabled) {
           moveTeleport(
             n2,
-            target,
+            target2,
             targetAnchor,
             internals,
             1
@@ -4752,8 +4758,8 @@ const TeleportImpl = {
     updateCssVars(n2);
   },
   remove(vnode, parentComponent, parentSuspense, optimized, { um: unmount, o: { remove: hostRemove } }, doRemove) {
-    const { shapeFlag, children, anchor, targetAnchor, target, props } = vnode;
-    if (target) {
+    const { shapeFlag, children, anchor, targetAnchor, target: target2, props } = vnode;
+    if (target2) {
       hostRemove(targetAnchor);
     }
     doRemove && hostRemove(anchor);
@@ -4802,12 +4808,12 @@ function moveTeleport(vnode, container, parentAnchor, { o: { insert }, m: move }
 function hydrateTeleport(node, vnode, parentComponent, parentSuspense, slotScopeIds, optimized, {
   o: { nextSibling, parentNode, querySelector }
 }, hydrateChildren) {
-  const target = vnode.target = resolveTarget(
+  const target2 = vnode.target = resolveTarget(
     vnode.props,
     querySelector
   );
-  if (target) {
-    const targetNode = target._lpa || target.firstChild;
+  if (target2) {
+    const targetNode = target2._lpa || target2.firstChild;
     if (vnode.shapeFlag & 16) {
       if (isTeleportDisabled(vnode.props)) {
         vnode.anchor = hydrateChildren(
@@ -4827,14 +4833,14 @@ function hydrateTeleport(node, vnode, parentComponent, parentSuspense, slotScope
           targetAnchor = nextSibling(targetAnchor);
           if (targetAnchor && targetAnchor.nodeType === 8 && targetAnchor.data === "teleport anchor") {
             vnode.targetAnchor = targetAnchor;
-            target._lpa = vnode.targetAnchor && nextSibling(vnode.targetAnchor);
+            target2._lpa = vnode.targetAnchor && nextSibling(vnode.targetAnchor);
             break;
           }
         }
         hydrateChildren(
           targetNode,
           vnode,
-          target,
+          target2,
           parentComponent,
           parentSuspense,
           slotScopeIds,
@@ -5160,12 +5166,12 @@ function invokeVNodeHook(hook, instance, vnode, prevVNode = null) {
   ]);
 }
 const emptyAppContext = createAppContext();
-let uid = 0;
+let uid$2 = 0;
 function createComponentInstance(vnode, parent, suspense) {
   const type = vnode.type;
   const appContext = (parent ? parent.appContext : vnode.appContext) || emptyAppContext;
   const instance = {
-    uid: uid++,
+    uid: uid$2++,
     vnode,
     type,
     parent,
@@ -5370,9 +5376,9 @@ function getAttrsProxy(instance) {
   return instance.attrsProxy || (instance.attrsProxy = new Proxy(
     instance.attrs,
     {
-      get(target, key) {
+      get(target2, key) {
         track(instance, "get", "$attrs");
-        return target[key];
+        return target2[key];
       }
     }
   ));
@@ -5395,15 +5401,15 @@ function createSetupContext(instance) {
 function getExposeProxy(instance) {
   if (instance.exposed) {
     return instance.exposeProxy || (instance.exposeProxy = new Proxy(proxyRefs(markRaw(instance.exposed)), {
-      get(target, key) {
-        if (key in target) {
-          return target[key];
+      get(target2, key) {
+        if (key in target2) {
+          return target2[key];
         } else if (key in publicPropertiesMap) {
           return publicPropertiesMap[key](instance);
         }
       },
-      has(target, key) {
-        return key in target || key in publicPropertiesMap;
+      has(target2, key) {
+        return key in target2 || key in publicPropertiesMap;
       }
     }));
   }
@@ -5553,7 +5559,7 @@ const DOMTransitionPropsValidators = {
   leaveActiveClass: String,
   leaveToClass: String
 };
-Transition.props = /* @__PURE__ */ extend(
+const TransitionPropsValidators = Transition.props = /* @__PURE__ */ extend(
   {},
   BaseTransitionPropsValidators,
   DOMTransitionPropsValidators
@@ -6132,6 +6138,127 @@ function shouldSetAsProp(el, key, value, isSVG) {
   }
   return key in el;
 }
+const positionMap = /* @__PURE__ */ new WeakMap();
+const newPositionMap = /* @__PURE__ */ new WeakMap();
+const moveCbKey = Symbol("_moveCb");
+const enterCbKey = Symbol("_enterCb");
+const TransitionGroupImpl = {
+  name: "TransitionGroup",
+  props: /* @__PURE__ */ extend({}, TransitionPropsValidators, {
+    tag: String,
+    moveClass: String
+  }),
+  setup(props, { slots }) {
+    const instance = getCurrentInstance();
+    const state = useTransitionState();
+    let prevChildren;
+    let children;
+    onUpdated(() => {
+      if (!prevChildren.length) {
+        return;
+      }
+      const moveClass = props.moveClass || `${props.name || "v"}-move`;
+      if (!hasCSSTransform(
+        prevChildren[0].el,
+        instance.vnode.el,
+        moveClass
+      )) {
+        return;
+      }
+      prevChildren.forEach(callPendingCbs);
+      prevChildren.forEach(recordPosition);
+      const movedChildren = prevChildren.filter(applyTranslation);
+      forceReflow();
+      movedChildren.forEach((c) => {
+        const el = c.el;
+        const style = el.style;
+        addTransitionClass(el, moveClass);
+        style.transform = style.webkitTransform = style.transitionDuration = "";
+        const cb = el[moveCbKey] = (e) => {
+          if (e && e.target !== el) {
+            return;
+          }
+          if (!e || /transform$/.test(e.propertyName)) {
+            el.removeEventListener("transitionend", cb);
+            el[moveCbKey] = null;
+            removeTransitionClass(el, moveClass);
+          }
+        };
+        el.addEventListener("transitionend", cb);
+      });
+    });
+    return () => {
+      const rawProps = toRaw(props);
+      const cssTransitionProps = resolveTransitionProps(rawProps);
+      let tag = rawProps.tag || Fragment;
+      prevChildren = children;
+      children = slots.default ? getTransitionRawChildren(slots.default()) : [];
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        if (child.key != null) {
+          setTransitionHooks(
+            child,
+            resolveTransitionHooks(child, cssTransitionProps, state, instance)
+          );
+        }
+      }
+      if (prevChildren) {
+        for (let i = 0; i < prevChildren.length; i++) {
+          const child = prevChildren[i];
+          setTransitionHooks(
+            child,
+            resolveTransitionHooks(child, cssTransitionProps, state, instance)
+          );
+          positionMap.set(child, child.el.getBoundingClientRect());
+        }
+      }
+      return createVNode(tag, null, children);
+    };
+  }
+};
+const removeMode = (props) => delete props.mode;
+/* @__PURE__ */ removeMode(TransitionGroupImpl.props);
+const TransitionGroup = TransitionGroupImpl;
+function callPendingCbs(c) {
+  const el = c.el;
+  if (el[moveCbKey]) {
+    el[moveCbKey]();
+  }
+  if (el[enterCbKey]) {
+    el[enterCbKey]();
+  }
+}
+function recordPosition(c) {
+  newPositionMap.set(c, c.el.getBoundingClientRect());
+}
+function applyTranslation(c) {
+  const oldPos = positionMap.get(c);
+  const newPos = newPositionMap.get(c);
+  const dx = oldPos.left - newPos.left;
+  const dy = oldPos.top - newPos.top;
+  if (dx || dy) {
+    const s = c.el.style;
+    s.transform = s.webkitTransform = `translate(${dx}px,${dy}px)`;
+    s.transitionDuration = "0s";
+    return c;
+  }
+}
+function hasCSSTransform(el, root, moveClass) {
+  const clone = el.cloneNode();
+  const _vtc = el[vtcKey];
+  if (_vtc) {
+    _vtc.forEach((cls) => {
+      cls.split(/\s+/).forEach((c) => c && clone.classList.remove(c));
+    });
+  }
+  moveClass.split(/\s+/).forEach((c) => c && clone.classList.add(c));
+  clone.style.display = "none";
+  const container = root.nodeType === 1 ? root : root.parentNode;
+  container.appendChild(clone);
+  const { hasTransform } = getTransitionInfo(clone);
+  container.removeChild(clone);
+  return hasTransform;
+}
 const rendererOptions = /* @__PURE__ */ extend({ patchProp }, nodeOps);
 let renderer;
 function ensureRenderer() {
@@ -6276,13 +6403,13 @@ var zoomOutRight = "";
 var zoomOutUp = "";
 var quasar = "";
 var app = "";
-function injectProp(target, propName, get2, set2) {
-  Object.defineProperty(target, propName, {
+function injectProp(target2, propName, get2, set2) {
+  Object.defineProperty(target2, propName, {
     get: get2,
     set: set2,
     enumerable: true
   });
-  return target;
+  return target2;
 }
 const isRuntimeSsrPreHydration = ref(
   false
@@ -6492,6 +6619,9 @@ try {
 }
 function noop$1() {
 }
+function leftClick(e) {
+  return e.button === 0;
+}
 function position(e) {
   if (e.touches && e.touches[0]) {
     e = e.touches[0];
@@ -6514,6 +6644,19 @@ function prevent(e) {
 function stopAndPrevent(e) {
   e.cancelable !== false && e.preventDefault();
   e.stopPropagation();
+}
+function preventDraggable(el, status) {
+  if (el === void 0 || status === true && el.__dragPrevented === true) {
+    return;
+  }
+  const fn = status === true ? (el2) => {
+    el2.__dragPrevented = true;
+    el2.addEventListener("dragstart", prevent, listenOpts.notPassiveCapture);
+  } : (el2) => {
+    delete el2.__dragPrevented;
+    el2.removeEventListener("dragstart", prevent, listenOpts.notPassiveCapture);
+  };
+  el.querySelectorAll("a, img").forEach(fn);
 }
 function addEvt(ctx, targetName, events) {
   const name = `__q_${targetName}_evt`;
@@ -6598,7 +6741,7 @@ var Screen = defineReactivePlugin({
       return;
     }
     const { visualViewport } = window;
-    const target = visualViewport || window;
+    const target2 = visualViewport || window;
     const scrollingElement = document.scrollingElement || document.documentElement;
     const getSize = visualViewport === void 0 || client.is.mobile === true ? () => [
       Math.max(window.innerWidth, scrollingElement.clientWidth),
@@ -6668,9 +6811,9 @@ var Screen = defineReactivePlugin({
         this.__update(true);
       };
       this.setDebounce = (delay) => {
-        updateEvt !== void 0 && target.removeEventListener("resize", updateEvt, passive);
+        updateEvt !== void 0 && target2.removeEventListener("resize", updateEvt, passive);
         updateEvt = delay > 0 ? debounce(this.__update, delay) : this.__update;
-        target.addEventListener("resize", updateEvt, passive);
+        target2.addEventListener("resize", updateEvt, passive);
       };
       this.setDebounce(updateDebounce);
       if (Object.keys(updateSizes).length !== 0) {
@@ -7203,6 +7346,7 @@ const Plugin = defineReactivePlugin({
 const quasarKey = "_q_";
 const layoutKey = "_q_l_";
 const pageContainerKey = "_q_pc_";
+const formKey = "_q_fo_";
 const emptyRenderFn = () => {
 };
 const globalConfig = {};
@@ -7222,6 +7366,13 @@ const autoInstalledPlugins = [
   Plugin$1,
   Plugin
 ];
+function createChildApp(appCfg, parentApp) {
+  const app2 = createApp(appCfg);
+  app2.config.globalProperties = parentApp.config.globalProperties;
+  const { reload, ...appContext } = parentApp._context;
+  Object.assign(app2._context, appContext);
+  return app2;
+}
 function installPlugins(pluginOpts, pluginList) {
   pluginList.forEach((Plugin2) => {
     Plugin2.install(pluginOpts);
@@ -7399,24 +7550,24 @@ function stripBase(pathname, base2) {
 function isSameRouteLocation(stringifyQuery2, a, b) {
   const aLastIndex = a.matched.length - 1;
   const bLastIndex = b.matched.length - 1;
-  return aLastIndex > -1 && aLastIndex === bLastIndex && isSameRouteRecord(a.matched[aLastIndex], b.matched[bLastIndex]) && isSameRouteLocationParams(a.params, b.params) && stringifyQuery2(a.query) === stringifyQuery2(b.query) && a.hash === b.hash;
+  return aLastIndex > -1 && aLastIndex === bLastIndex && isSameRouteRecord$1(a.matched[aLastIndex], b.matched[bLastIndex]) && isSameRouteLocationParams$1(a.params, b.params) && stringifyQuery2(a.query) === stringifyQuery2(b.query) && a.hash === b.hash;
 }
-function isSameRouteRecord(a, b) {
+function isSameRouteRecord$1(a, b) {
   return (a.aliasOf || a) === (b.aliasOf || b);
 }
-function isSameRouteLocationParams(a, b) {
+function isSameRouteLocationParams$1(a, b) {
   if (Object.keys(a).length !== Object.keys(b).length)
     return false;
   for (const key in a) {
-    if (!isSameRouteLocationParamsValue(a[key], b[key]))
+    if (!isSameRouteLocationParamsValue$1(a[key], b[key]))
       return false;
   }
   return true;
 }
-function isSameRouteLocationParamsValue(a, b) {
-  return isArray(a) ? isEquivalentArray(a, b) : isArray(b) ? isEquivalentArray(b, a) : a === b;
+function isSameRouteLocationParamsValue$1(a, b) {
+  return isArray(a) ? isEquivalentArray$1(a, b) : isArray(b) ? isEquivalentArray$1(b, a) : a === b;
 }
-function isEquivalentArray(a, b) {
+function isEquivalentArray$1(a, b) {
   return isArray(b) ? a.length === b.length && a.every((value, i) => value === b[i]) : a.length === 1 && a[0] === b;
 }
 function resolveRelativePath(to, from) {
@@ -8215,10 +8366,10 @@ function isAliasRecord(record) {
 function mergeMetaFields(matched) {
   return matched.reduce((meta, record) => assign(meta, record.meta), {});
 }
-function mergeOptions(defaults, partialOptions) {
+function mergeOptions(defaults2, partialOptions) {
   const options = {};
-  for (const key in defaults) {
-    options[key] = key in partialOptions ? partialOptions[key] : defaults[key];
+  for (const key in defaults2) {
+    options[key] = key in partialOptions ? partialOptions[key] : defaults2[key];
   }
   return options;
 }
@@ -8375,14 +8526,14 @@ function useLink(props) {
     const currentMatched = currentRoute.matched;
     if (!routeMatched || !currentMatched.length)
       return -1;
-    const index = currentMatched.findIndex(isSameRouteRecord.bind(null, routeMatched));
+    const index = currentMatched.findIndex(isSameRouteRecord$1.bind(null, routeMatched));
     if (index > -1)
       return index;
-    const parentRecordPath = getOriginalPath(matched[length - 2]);
-    return length > 1 && getOriginalPath(routeMatched) === parentRecordPath && currentMatched[currentMatched.length - 1].path !== parentRecordPath ? currentMatched.findIndex(isSameRouteRecord.bind(null, matched[length - 2])) : index;
+    const parentRecordPath = getOriginalPath$1(matched[length - 2]);
+    return length > 1 && getOriginalPath$1(routeMatched) === parentRecordPath && currentMatched[currentMatched.length - 1].path !== parentRecordPath ? currentMatched.findIndex(isSameRouteRecord$1.bind(null, matched[length - 2])) : index;
   });
-  const isActive = computed(() => activeRecordIndex.value > -1 && includesParams(currentRoute.params, route2.value.params));
-  const isExactActive = computed(() => activeRecordIndex.value > -1 && activeRecordIndex.value === currentRoute.matched.length - 1 && isSameRouteLocationParams(currentRoute.params, route2.value.params));
+  const isActive = computed(() => activeRecordIndex.value > -1 && includesParams$1(currentRoute.params, route2.value.params));
+  const isExactActive = computed(() => activeRecordIndex.value > -1 && activeRecordIndex.value === currentRoute.matched.length - 1 && isSameRouteLocationParams$1(currentRoute.params, route2.value.params));
   function navigate(e = {}) {
     if (guardEvent(e)) {
       return router[unref(props.replace) ? "replace" : "push"](
@@ -8444,15 +8595,15 @@ function guardEvent(e) {
   if (e.button !== void 0 && e.button !== 0)
     return;
   if (e.currentTarget && e.currentTarget.getAttribute) {
-    const target = e.currentTarget.getAttribute("target");
-    if (/\b_blank\b/i.test(target))
+    const target2 = e.currentTarget.getAttribute("target");
+    if (/\b_blank\b/i.test(target2))
       return;
   }
   if (e.preventDefault)
     e.preventDefault();
   return true;
 }
-function includesParams(outer, inner) {
+function includesParams$1(outer, inner) {
   for (const key in inner) {
     const innerValue = inner[key];
     const outerValue = outer[key];
@@ -8466,7 +8617,7 @@ function includesParams(outer, inner) {
   }
   return true;
 }
-function getOriginalPath(record) {
+function getOriginalPath$1(record) {
   return record ? record.aliasOf ? record.aliasOf.path : record.path : "";
 }
 const getLinkClass = (propClass, globalClass, defaultClass) => propClass != null ? propClass : globalClass != null ? globalClass : defaultClass;
@@ -8511,7 +8662,7 @@ const RouterViewImpl = /* @__PURE__ */ defineComponent({
           }
         }
       }
-      if (instance && to && (!from || !isSameRouteRecord(to, from) || !oldInstance)) {
+      if (instance && to && (!from || !isSameRouteRecord$1(to, from) || !oldInstance)) {
         (to.enterCallbacks[name] || []).forEach((callback) => callback(instance));
       }
     }, { flush: "post" });
@@ -8961,14 +9112,14 @@ function extractChangingRecords(to, from) {
   for (let i = 0; i < len; i++) {
     const recordFrom = from.matched[i];
     if (recordFrom) {
-      if (to.matched.find((record) => isSameRouteRecord(record, recordFrom)))
+      if (to.matched.find((record) => isSameRouteRecord$1(record, recordFrom)))
         updatingRecords.push(recordFrom);
       else
         leavingRecords.push(recordFrom);
     }
     const recordTo = to.matched[i];
     if (recordTo) {
-      if (!from.matched.find((record) => isSameRouteRecord(record, recordTo))) {
+      if (!from.matched.find((record) => isSameRouteRecord$1(record, recordTo))) {
         enteringRecords.push(recordTo);
       }
     }
@@ -8981,23 +9132,28 @@ function useRouter() {
 const routes = [
   {
     path: "/",
-    name: "main",
-    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/render.js","assets/QBtn.js","assets/vm.js","assets/scroll.js"] : void 0),
+    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/use-quasar.js","assets/scroll.js"] : void 0),
     children: [
       {
         path: "",
-        component: () => __vitePreload(() => import("./IndexPage.js"), true ? ["assets/IndexPage.js","assets/QPage.js","assets/render.js"] : void 0)
+        name: "main",
+        component: () => __vitePreload(() => import("./IndexPage.js"), true ? ["assets/IndexPage.js","assets/QPage.js"] : void 0)
       },
       {
         path: "scarabs",
         name: "scarabs",
-        component: () => __vitePreload(() => import("./ScarabsPage.js"), true ? ["assets/ScarabsPage.js","assets/ScarabsPage.css","assets/vm.js","assets/render.js","assets/QPage.js","assets/axios2.js","assets/scroll.js"] : void 0)
+        component: () => __vitePreload(() => import("./ScarabsPage.js"), true ? ["assets/ScarabsPage.js","assets/ScarabsPage.css","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios2.js","assets/scroll.js"] : void 0)
+      },
+      {
+        path: "reCombination",
+        name: "reCombination",
+        component: () => __vitePreload(() => import("./ReCombinationPage.js"), true ? ["assets/ReCombinationPage.js","assets/ReCombinationPage.css","assets/plugin-vue_export-helper.js","assets/use-quasar.js","assets/scroll.js","assets/QPage.js"] : void 0)
       }
     ]
   },
   {
     path: "/:catchAll(.*)*",
-    component: () => __vitePreload(() => import("./ErrorNotFound.js"), true ? ["assets/ErrorNotFound.js","assets/QBtn.js","assets/vm.js","assets/render.js"] : void 0)
+    component: () => __vitePreload(() => import("./ErrorNotFound.js"), true ? [] : void 0)
   }
 ];
 var createRouter = route(function() {
@@ -9109,7 +9265,1435 @@ var lang = {
     noResults: "\uD56D\uBAA9\uC744 \uCC3E\uC744 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4"
   }
 };
-var quasarUserOptions = { config: {}, lang };
+const useSizeDefaults = {
+  xs: 18,
+  sm: 24,
+  md: 32,
+  lg: 38,
+  xl: 46
+};
+const useSizeProps = {
+  size: String
+};
+function useSize(props, sizes = useSizeDefaults) {
+  return computed(() => props.size !== void 0 ? { fontSize: props.size in sizes ? `${sizes[props.size]}px` : props.size } : null);
+}
+const createComponent = (raw) => markRaw(defineComponent(raw));
+const createDirective = (raw) => markRaw(raw);
+function hSlot(slot, otherwise) {
+  return slot !== void 0 ? slot() || otherwise : otherwise;
+}
+function hUniqueSlot(slot, otherwise) {
+  if (slot !== void 0) {
+    const vnode = slot();
+    if (vnode !== void 0 && vnode !== null) {
+      return vnode.slice();
+    }
+  }
+  return otherwise;
+}
+function hMergeSlot(slot, source) {
+  return slot !== void 0 ? source.concat(slot()) : source;
+}
+function hMergeSlotSafely(slot, source) {
+  if (slot === void 0) {
+    return source;
+  }
+  return source !== void 0 ? source.concat(slot()) : slot();
+}
+const defaultViewBox = "0 0 24 24";
+const sameFn = (i) => i;
+const ionFn = (i) => `ionicons ${i}`;
+const libMap = {
+  "mdi-": (i) => `mdi ${i}`,
+  "icon-": sameFn,
+  "bt-": (i) => `bt ${i}`,
+  "eva-": (i) => `eva ${i}`,
+  "ion-md": ionFn,
+  "ion-ios": ionFn,
+  "ion-logo": ionFn,
+  "iconfont ": sameFn,
+  "ti-": (i) => `themify-icon ${i}`,
+  "bi-": (i) => `bootstrap-icons ${i}`
+};
+const matMap = {
+  o_: "-outlined",
+  r_: "-round",
+  s_: "-sharp"
+};
+const symMap = {
+  sym_o_: "-outlined",
+  sym_r_: "-rounded",
+  sym_s_: "-sharp"
+};
+const libRE = new RegExp("^(" + Object.keys(libMap).join("|") + ")");
+const matRE = new RegExp("^(" + Object.keys(matMap).join("|") + ")");
+const symRE = new RegExp("^(" + Object.keys(symMap).join("|") + ")");
+const mRE = /^[Mm]\s?[-+]?\.?\d/;
+const imgRE = /^img:/;
+const svgUseRE = /^svguse:/;
+const ionRE = /^ion-/;
+const faRE = /^(fa-(sharp|solid|regular|light|brands|duotone|thin)|[lf]a[srlbdk]?) /;
+var QIcon = createComponent({
+  name: "QIcon",
+  props: {
+    ...useSizeProps,
+    tag: {
+      type: String,
+      default: "i"
+    },
+    name: String,
+    color: String,
+    left: Boolean,
+    right: Boolean
+  },
+  setup(props, { slots }) {
+    const { proxy: { $q } } = getCurrentInstance();
+    const sizeStyle = useSize(props);
+    const classes = computed(
+      () => "q-icon" + (props.left === true ? " on-left" : "") + (props.right === true ? " on-right" : "") + (props.color !== void 0 ? ` text-${props.color}` : "")
+    );
+    const type = computed(() => {
+      let cls;
+      let icon = props.name;
+      if (icon === "none" || !icon) {
+        return { none: true };
+      }
+      if ($q.iconMapFn !== null) {
+        const res = $q.iconMapFn(icon);
+        if (res !== void 0) {
+          if (res.icon !== void 0) {
+            icon = res.icon;
+            if (icon === "none" || !icon) {
+              return { none: true };
+            }
+          } else {
+            return {
+              cls: res.cls,
+              content: res.content !== void 0 ? res.content : " "
+            };
+          }
+        }
+      }
+      if (mRE.test(icon) === true) {
+        const [def2, viewBox = defaultViewBox] = icon.split("|");
+        return {
+          svg: true,
+          viewBox,
+          nodes: def2.split("&&").map((path) => {
+            const [d, style, transform] = path.split("@@");
+            return h("path", { style, d, transform });
+          })
+        };
+      }
+      if (imgRE.test(icon) === true) {
+        return {
+          img: true,
+          src: icon.substring(4)
+        };
+      }
+      if (svgUseRE.test(icon) === true) {
+        const [def2, viewBox = defaultViewBox] = icon.split("|");
+        return {
+          svguse: true,
+          src: def2.substring(7),
+          viewBox
+        };
+      }
+      let content = " ";
+      const matches = icon.match(libRE);
+      if (matches !== null) {
+        cls = libMap[matches[1]](icon);
+      } else if (faRE.test(icon) === true) {
+        cls = icon;
+      } else if (ionRE.test(icon) === true) {
+        cls = `ionicons ion-${$q.platform.is.ios === true ? "ios" : "md"}${icon.substring(3)}`;
+      } else if (symRE.test(icon) === true) {
+        cls = "notranslate material-symbols";
+        const matches2 = icon.match(symRE);
+        if (matches2 !== null) {
+          icon = icon.substring(6);
+          cls += symMap[matches2[1]];
+        }
+        content = icon;
+      } else {
+        cls = "notranslate material-icons";
+        const matches2 = icon.match(matRE);
+        if (matches2 !== null) {
+          icon = icon.substring(2);
+          cls += matMap[matches2[1]];
+        }
+        content = icon;
+      }
+      return {
+        cls,
+        content
+      };
+    });
+    return () => {
+      const data = {
+        class: classes.value,
+        style: sizeStyle.value,
+        "aria-hidden": "true",
+        role: "presentation"
+      };
+      if (type.value.none === true) {
+        return h(props.tag, data, hSlot(slots.default));
+      }
+      if (type.value.img === true) {
+        return h(props.tag, data, hMergeSlot(slots.default, [
+          h("img", { src: type.value.src })
+        ]));
+      }
+      if (type.value.svg === true) {
+        return h(props.tag, data, hMergeSlot(slots.default, [
+          h("svg", {
+            viewBox: type.value.viewBox || "0 0 24 24"
+          }, type.value.nodes)
+        ]));
+      }
+      if (type.value.svguse === true) {
+        return h(props.tag, data, hMergeSlot(slots.default, [
+          h("svg", {
+            viewBox: type.value.viewBox
+          }, [
+            h("use", { "xlink:href": type.value.src })
+          ])
+        ]));
+      }
+      if (type.value.cls !== void 0) {
+        data.class += " " + type.value.cls;
+      }
+      return h(props.tag, data, hMergeSlot(slots.default, [
+        type.value.content
+      ]));
+    };
+  }
+});
+var QAvatar = createComponent({
+  name: "QAvatar",
+  props: {
+    ...useSizeProps,
+    fontSize: String,
+    color: String,
+    textColor: String,
+    icon: String,
+    square: Boolean,
+    rounded: Boolean
+  },
+  setup(props, { slots }) {
+    const sizeStyle = useSize(props);
+    const classes = computed(
+      () => "q-avatar" + (props.color ? ` bg-${props.color}` : "") + (props.textColor ? ` text-${props.textColor} q-chip--colored` : "") + (props.square === true ? " q-avatar--square" : props.rounded === true ? " rounded-borders" : "")
+    );
+    const contentStyle = computed(() => props.fontSize ? { fontSize: props.fontSize } : null);
+    return () => {
+      const icon = props.icon !== void 0 ? [h(QIcon, { name: props.icon })] : void 0;
+      return h("div", {
+        class: classes.value,
+        style: sizeStyle.value
+      }, [
+        h("div", {
+          class: "q-avatar__content row flex-center overflow-hidden",
+          style: contentStyle.value
+        }, hMergeSlotSafely(slots.default, icon))
+      ]);
+    };
+  }
+});
+const useSpinnerProps = {
+  size: {
+    type: [Number, String],
+    default: "1em"
+  },
+  color: String
+};
+function useSpinner(props) {
+  return {
+    cSize: computed(() => props.size in useSizeDefaults ? `${useSizeDefaults[props.size]}px` : props.size),
+    classes: computed(
+      () => "q-spinner" + (props.color ? ` text-${props.color}` : "")
+    )
+  };
+}
+var QSpinner = createComponent({
+  name: "QSpinner",
+  props: {
+    ...useSpinnerProps,
+    thickness: {
+      type: Number,
+      default: 5
+    }
+  },
+  setup(props) {
+    const { cSize, classes } = useSpinner(props);
+    return () => h("svg", {
+      class: classes.value + " q-spinner-mat",
+      width: cSize.value,
+      height: cSize.value,
+      viewBox: "25 25 50 50"
+    }, [
+      h("circle", {
+        class: "path",
+        cx: "50",
+        cy: "50",
+        r: "20",
+        fill: "none",
+        stroke: "currentColor",
+        "stroke-width": props.thickness,
+        "stroke-miterlimit": "10"
+      })
+    ]);
+  }
+});
+function css(element, css2) {
+  const style = element.style;
+  for (const prop in css2) {
+    style[prop] = css2[prop];
+  }
+}
+function getElement(el) {
+  if (el === void 0 || el === null) {
+    return void 0;
+  }
+  if (typeof el === "string") {
+    try {
+      return document.querySelector(el) || void 0;
+    } catch (err) {
+      return void 0;
+    }
+  }
+  const target2 = unref(el);
+  if (target2) {
+    return target2.$el || target2;
+  }
+}
+function throttle(fn, limit = 250) {
+  let wait = false, result;
+  return function() {
+    if (wait === false) {
+      wait = true;
+      setTimeout(() => {
+        wait = false;
+      }, limit);
+      result = fn.apply(this, arguments);
+    }
+    return result;
+  };
+}
+function showRipple(evt, el, ctx, forceCenter) {
+  ctx.modifiers.stop === true && stop(evt);
+  const color = ctx.modifiers.color;
+  let center = ctx.modifiers.center;
+  center = center === true || forceCenter === true;
+  const node = document.createElement("span"), innerNode = document.createElement("span"), pos = position(evt), { left, top, width, height } = el.getBoundingClientRect(), diameter = Math.sqrt(width * width + height * height), radius = diameter / 2, centerX = `${(width - diameter) / 2}px`, x = center ? centerX : `${pos.left - left - radius}px`, centerY = `${(height - diameter) / 2}px`, y = center ? centerY : `${pos.top - top - radius}px`;
+  innerNode.className = "q-ripple__inner";
+  css(innerNode, {
+    height: `${diameter}px`,
+    width: `${diameter}px`,
+    transform: `translate3d(${x},${y},0) scale3d(.2,.2,1)`,
+    opacity: 0
+  });
+  node.className = `q-ripple${color ? " text-" + color : ""}`;
+  node.setAttribute("dir", "ltr");
+  node.appendChild(innerNode);
+  el.appendChild(node);
+  const abort = () => {
+    node.remove();
+    clearTimeout(timer);
+  };
+  ctx.abort.push(abort);
+  let timer = setTimeout(() => {
+    innerNode.classList.add("q-ripple__inner--enter");
+    innerNode.style.transform = `translate3d(${centerX},${centerY},0) scale3d(1,1,1)`;
+    innerNode.style.opacity = 0.2;
+    timer = setTimeout(() => {
+      innerNode.classList.remove("q-ripple__inner--enter");
+      innerNode.classList.add("q-ripple__inner--leave");
+      innerNode.style.opacity = 0;
+      timer = setTimeout(() => {
+        node.remove();
+        ctx.abort.splice(ctx.abort.indexOf(abort), 1);
+      }, 275);
+    }, 250);
+  }, 50);
+}
+function updateModifiers(ctx, { modifiers, value, arg }) {
+  const cfg = Object.assign({}, ctx.cfg.ripple, modifiers, value);
+  ctx.modifiers = {
+    early: cfg.early === true,
+    stop: cfg.stop === true,
+    center: cfg.center === true,
+    color: cfg.color || arg,
+    keyCodes: [].concat(cfg.keyCodes || 13)
+  };
+}
+var Ripple = createDirective(
+  {
+    name: "ripple",
+    beforeMount(el, binding) {
+      const cfg = binding.instance.$.appContext.config.globalProperties.$q.config || {};
+      if (cfg.ripple === false) {
+        return;
+      }
+      const ctx = {
+        cfg,
+        enabled: binding.value !== false,
+        modifiers: {},
+        abort: [],
+        start(evt) {
+          if (ctx.enabled === true && evt.qSkipRipple !== true && evt.type === (ctx.modifiers.early === true ? "pointerdown" : "click")) {
+            showRipple(evt, el, ctx, evt.qKeyEvent === true);
+          }
+        },
+        keystart: throttle((evt) => {
+          if (ctx.enabled === true && evt.qSkipRipple !== true && isKeyCode(evt, ctx.modifiers.keyCodes) === true && evt.type === `key${ctx.modifiers.early === true ? "down" : "up"}`) {
+            showRipple(evt, el, ctx, true);
+          }
+        }, 300)
+      };
+      updateModifiers(ctx, binding);
+      el.__qripple = ctx;
+      addEvt(ctx, "main", [
+        [el, "pointerdown", "start", "passive"],
+        [el, "click", "start", "passive"],
+        [el, "keydown", "keystart", "passive"],
+        [el, "keyup", "keystart", "passive"]
+      ]);
+    },
+    updated(el, binding) {
+      if (binding.oldValue !== binding.value) {
+        const ctx = el.__qripple;
+        if (ctx !== void 0) {
+          ctx.enabled = binding.value !== false;
+          if (ctx.enabled === true && Object(binding.value) === binding.value) {
+            updateModifiers(ctx, binding);
+          }
+        }
+      }
+    },
+    beforeUnmount(el) {
+      const ctx = el.__qripple;
+      if (ctx !== void 0) {
+        ctx.abort.forEach((fn) => {
+          fn();
+        });
+        cleanEvt(ctx, "main");
+        delete el._qripple;
+      }
+    }
+  }
+);
+const alignMap = {
+  left: "start",
+  center: "center",
+  right: "end",
+  between: "between",
+  around: "around",
+  evenly: "evenly",
+  stretch: "stretch"
+};
+const alignValues = Object.keys(alignMap);
+const useAlignProps = {
+  align: {
+    type: String,
+    validator: (v) => alignValues.includes(v)
+  }
+};
+function useAlign(props) {
+  return computed(() => {
+    const align = props.align === void 0 ? props.vertical === true ? "stretch" : "left" : props.align;
+    return `${props.vertical === true ? "items" : "justify"}-${alignMap[align]}`;
+  });
+}
+function vmHasRouter(vm) {
+  return vm.appContext.config.globalProperties.$router !== void 0;
+}
+function vmIsDestroyed(vm) {
+  return vm.isUnmounted === true || vm.isDeactivated === true;
+}
+function getOriginalPath(record) {
+  return record ? record.aliasOf ? record.aliasOf.path : record.path : "";
+}
+function isSameRouteRecord(a, b) {
+  return (a.aliasOf || a) === (b.aliasOf || b);
+}
+function includesParams(outer, inner) {
+  for (const key in inner) {
+    const innerValue = inner[key], outerValue = outer[key];
+    if (typeof innerValue === "string") {
+      if (innerValue !== outerValue) {
+        return false;
+      }
+    } else if (Array.isArray(outerValue) === false || outerValue.length !== innerValue.length || innerValue.some((value, i) => value !== outerValue[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+function isEquivalentArray(a, b) {
+  return Array.isArray(b) === true ? a.length === b.length && a.every((value, i) => value === b[i]) : a.length === 1 && a[0] === b;
+}
+function isSameRouteLocationParamsValue(a, b) {
+  return Array.isArray(a) === true ? isEquivalentArray(a, b) : Array.isArray(b) === true ? isEquivalentArray(b, a) : a === b;
+}
+function isSameRouteLocationParams(a, b) {
+  if (Object.keys(a).length !== Object.keys(b).length) {
+    return false;
+  }
+  for (const key in a) {
+    if (isSameRouteLocationParamsValue(a[key], b[key]) === false) {
+      return false;
+    }
+  }
+  return true;
+}
+const useRouterLinkProps = {
+  to: [String, Object],
+  replace: Boolean,
+  exact: Boolean,
+  activeClass: {
+    type: String,
+    default: "q-router-link--active"
+  },
+  exactActiveClass: {
+    type: String,
+    default: "q-router-link--exact-active"
+  },
+  href: String,
+  target: String,
+  disable: Boolean
+};
+function useRouterLink({ fallbackTag, useDisableForRouterLinkProps = true } = {}) {
+  const vm = getCurrentInstance();
+  const { props, proxy, emit: emit2 } = vm;
+  const hasRouter = vmHasRouter(vm);
+  const hasHrefLink = computed(() => props.disable !== true && props.href !== void 0);
+  const hasRouterLinkProps = useDisableForRouterLinkProps === true ? computed(
+    () => hasRouter === true && props.disable !== true && hasHrefLink.value !== true && props.to !== void 0 && props.to !== null && props.to !== ""
+  ) : computed(
+    () => hasRouter === true && hasHrefLink.value !== true && props.to !== void 0 && props.to !== null && props.to !== ""
+  );
+  const resolvedLink = computed(() => hasRouterLinkProps.value === true ? getLink(props.to) : null);
+  const hasRouterLink = computed(() => resolvedLink.value !== null);
+  const hasLink = computed(() => hasHrefLink.value === true || hasRouterLink.value === true);
+  const linkTag = computed(() => props.type === "a" || hasLink.value === true ? "a" : props.tag || fallbackTag || "div");
+  const linkAttrs = computed(() => hasHrefLink.value === true ? {
+    href: props.href,
+    target: props.target
+  } : hasRouterLink.value === true ? {
+    href: resolvedLink.value.href,
+    target: props.target
+  } : {});
+  const linkActiveIndex = computed(() => {
+    if (hasRouterLink.value === false) {
+      return -1;
+    }
+    const { matched } = resolvedLink.value, { length } = matched, routeMatched = matched[length - 1];
+    if (routeMatched === void 0) {
+      return -1;
+    }
+    const currentMatched = proxy.$route.matched;
+    if (currentMatched.length === 0) {
+      return -1;
+    }
+    const index = currentMatched.findIndex(
+      isSameRouteRecord.bind(null, routeMatched)
+    );
+    if (index !== -1) {
+      return index;
+    }
+    const parentRecordPath = getOriginalPath(matched[length - 2]);
+    return length > 1 && getOriginalPath(routeMatched) === parentRecordPath && currentMatched[currentMatched.length - 1].path !== parentRecordPath ? currentMatched.findIndex(
+      isSameRouteRecord.bind(null, matched[length - 2])
+    ) : index;
+  });
+  const linkIsActive = computed(
+    () => hasRouterLink.value === true && linkActiveIndex.value !== -1 && includesParams(proxy.$route.params, resolvedLink.value.params)
+  );
+  const linkIsExactActive = computed(
+    () => linkIsActive.value === true && linkActiveIndex.value === proxy.$route.matched.length - 1 && isSameRouteLocationParams(proxy.$route.params, resolvedLink.value.params)
+  );
+  const linkClass = computed(() => hasRouterLink.value === true ? linkIsExactActive.value === true ? ` ${props.exactActiveClass} ${props.activeClass}` : props.exact === true ? "" : linkIsActive.value === true ? ` ${props.activeClass}` : "" : "");
+  function getLink(to) {
+    try {
+      return proxy.$router.resolve(to);
+    } catch (_) {
+    }
+    return null;
+  }
+  function navigateToRouterLink(e, { returnRouterError, to = props.to, replace = props.replace } = {}) {
+    if (props.disable === true) {
+      e.preventDefault();
+      return Promise.resolve(false);
+    }
+    if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey || e.button !== void 0 && e.button !== 0 || props.target === "_blank") {
+      return Promise.resolve(false);
+    }
+    e.preventDefault();
+    const promise = proxy.$router[replace === true ? "replace" : "push"](to);
+    return returnRouterError === true ? promise : promise.then(() => {
+    }).catch(() => {
+    });
+  }
+  function navigateOnClick(e) {
+    if (hasRouterLink.value === true) {
+      const go = (opts) => navigateToRouterLink(e, opts);
+      emit2("click", e, go);
+      e.defaultPrevented !== true && go();
+    } else {
+      emit2("click", e);
+    }
+  }
+  return {
+    hasRouterLink,
+    hasHrefLink,
+    hasLink,
+    linkTag,
+    resolvedLink,
+    linkIsActive,
+    linkIsExactActive,
+    linkClass,
+    linkAttrs,
+    getLink,
+    navigateToRouterLink,
+    navigateOnClick
+  };
+}
+const btnPadding = {
+  none: 0,
+  xs: 4,
+  sm: 8,
+  md: 16,
+  lg: 24,
+  xl: 32
+};
+const defaultSizes = {
+  xs: 8,
+  sm: 10,
+  md: 14,
+  lg: 20,
+  xl: 24
+};
+const formTypes = ["button", "submit", "reset"];
+const mediaTypeRE = /[^\s]\/[^\s]/;
+const btnDesignOptions = ["flat", "outline", "push", "unelevated"];
+const getBtnDesign = (props, defaultValue) => {
+  if (props.flat === true)
+    return "flat";
+  if (props.outline === true)
+    return "outline";
+  if (props.push === true)
+    return "push";
+  if (props.unelevated === true)
+    return "unelevated";
+  return defaultValue;
+};
+const useBtnProps = {
+  ...useSizeProps,
+  ...useRouterLinkProps,
+  type: {
+    type: String,
+    default: "button"
+  },
+  label: [Number, String],
+  icon: String,
+  iconRight: String,
+  ...btnDesignOptions.reduce(
+    (acc, val) => (acc[val] = Boolean) && acc,
+    {}
+  ),
+  square: Boolean,
+  round: Boolean,
+  rounded: Boolean,
+  glossy: Boolean,
+  size: String,
+  fab: Boolean,
+  fabMini: Boolean,
+  padding: String,
+  color: String,
+  textColor: String,
+  noCaps: Boolean,
+  noWrap: Boolean,
+  dense: Boolean,
+  tabindex: [Number, String],
+  ripple: {
+    type: [Boolean, Object],
+    default: true
+  },
+  align: {
+    ...useAlignProps.align,
+    default: "center"
+  },
+  stack: Boolean,
+  stretch: Boolean,
+  loading: {
+    type: Boolean,
+    default: null
+  },
+  disable: Boolean
+};
+function useBtn(props) {
+  const sizeStyle = useSize(props, defaultSizes);
+  const alignClass = useAlign(props);
+  const { hasRouterLink, hasLink, linkTag, linkAttrs, navigateOnClick } = useRouterLink({
+    fallbackTag: "button"
+  });
+  const style = computed(() => {
+    const obj = props.fab === false && props.fabMini === false ? sizeStyle.value : {};
+    return props.padding !== void 0 ? Object.assign({}, obj, {
+      padding: props.padding.split(/\s+/).map((v) => v in btnPadding ? btnPadding[v] + "px" : v).join(" "),
+      minWidth: "0",
+      minHeight: "0"
+    }) : obj;
+  });
+  const isRounded = computed(
+    () => props.rounded === true || props.fab === true || props.fabMini === true
+  );
+  const isActionable = computed(
+    () => props.disable !== true && props.loading !== true
+  );
+  const tabIndex = computed(() => isActionable.value === true ? props.tabindex || 0 : -1);
+  const design = computed(() => getBtnDesign(props, "standard"));
+  const attributes = computed(() => {
+    const acc = { tabindex: tabIndex.value };
+    if (hasLink.value === true) {
+      Object.assign(acc, linkAttrs.value);
+    } else if (formTypes.includes(props.type) === true) {
+      acc.type = props.type;
+    }
+    if (linkTag.value === "a") {
+      if (props.disable === true) {
+        acc["aria-disabled"] = "true";
+      } else if (acc.href === void 0) {
+        acc.role = "button";
+      }
+      if (hasRouterLink.value !== true && mediaTypeRE.test(props.type) === true) {
+        acc.type = props.type;
+      }
+    } else if (props.disable === true) {
+      acc.disabled = "";
+      acc["aria-disabled"] = "true";
+    }
+    if (props.loading === true && props.percentage !== void 0) {
+      Object.assign(acc, {
+        role: "progressbar",
+        "aria-valuemin": 0,
+        "aria-valuemax": 100,
+        "aria-valuenow": props.percentage
+      });
+    }
+    return acc;
+  });
+  const classes = computed(() => {
+    let colors;
+    if (props.color !== void 0) {
+      if (props.flat === true || props.outline === true) {
+        colors = `text-${props.textColor || props.color}`;
+      } else {
+        colors = `bg-${props.color} text-${props.textColor || "white"}`;
+      }
+    } else if (props.textColor) {
+      colors = `text-${props.textColor}`;
+    }
+    const shape = props.round === true ? "round" : `rectangle${isRounded.value === true ? " q-btn--rounded" : props.square === true ? " q-btn--square" : ""}`;
+    return `q-btn--${design.value} q-btn--${shape}` + (colors !== void 0 ? " " + colors : "") + (isActionable.value === true ? " q-btn--actionable q-focusable q-hoverable" : props.disable === true ? " disabled" : "") + (props.fab === true ? " q-btn--fab" : props.fabMini === true ? " q-btn--fab-mini" : "") + (props.noCaps === true ? " q-btn--no-uppercase" : "") + (props.dense === true ? " q-btn--dense" : "") + (props.stretch === true ? " no-border-radius self-stretch" : "") + (props.glossy === true ? " glossy" : "") + (props.square ? " q-btn--square" : "");
+  });
+  const innerClasses = computed(
+    () => alignClass.value + (props.stack === true ? " column" : " row") + (props.noWrap === true ? " no-wrap text-no-wrap" : "") + (props.loading === true ? " q-btn__content--hidden" : "")
+  );
+  return {
+    classes,
+    style,
+    innerClasses,
+    attributes,
+    hasLink,
+    linkTag,
+    navigateOnClick,
+    isActionable
+  };
+}
+const { passiveCapture } = listenOpts;
+let touchTarget = null, keyboardTarget = null, mouseTarget = null;
+var QBtn = createComponent({
+  name: "QBtn",
+  props: {
+    ...useBtnProps,
+    percentage: Number,
+    darkPercentage: Boolean,
+    onTouchstart: [Function, Array]
+  },
+  emits: ["click", "keydown", "mousedown", "keyup"],
+  setup(props, { slots, emit: emit2 }) {
+    const { proxy } = getCurrentInstance();
+    const {
+      classes,
+      style,
+      innerClasses,
+      attributes,
+      hasLink,
+      linkTag,
+      navigateOnClick,
+      isActionable
+    } = useBtn(props);
+    const rootRef = ref(null);
+    const blurTargetRef = ref(null);
+    let localTouchTargetEl = null, avoidMouseRipple, mouseTimer = null;
+    const hasLabel = computed(
+      () => props.label !== void 0 && props.label !== null && props.label !== ""
+    );
+    const ripple = computed(() => props.disable === true || props.ripple === false ? false : {
+      keyCodes: hasLink.value === true ? [13, 32] : [13],
+      ...props.ripple === true ? {} : props.ripple
+    });
+    const rippleProps = computed(() => ({ center: props.round }));
+    const percentageStyle = computed(() => {
+      const val = Math.max(0, Math.min(100, props.percentage));
+      return val > 0 ? { transition: "transform 0.6s", transform: `translateX(${val - 100}%)` } : {};
+    });
+    const onEvents = computed(() => {
+      if (props.loading === true) {
+        return {
+          onMousedown: onLoadingEvt,
+          onTouchstart: onLoadingEvt,
+          onClick: onLoadingEvt,
+          onKeydown: onLoadingEvt,
+          onKeyup: onLoadingEvt
+        };
+      }
+      if (isActionable.value === true) {
+        const acc = {
+          onClick,
+          onKeydown,
+          onMousedown
+        };
+        if (proxy.$q.platform.has.touch === true) {
+          const suffix = props.onTouchstart !== void 0 ? "" : "Passive";
+          acc[`onTouchstart${suffix}`] = onTouchstart;
+        }
+        return acc;
+      }
+      return {
+        onClick: stopAndPrevent
+      };
+    });
+    const nodeProps = computed(() => ({
+      ref: rootRef,
+      class: "q-btn q-btn-item non-selectable no-outline " + classes.value,
+      style: style.value,
+      ...attributes.value,
+      ...onEvents.value
+    }));
+    function onClick(e) {
+      if (rootRef.value === null)
+        return;
+      if (e !== void 0) {
+        if (e.defaultPrevented === true) {
+          return;
+        }
+        const el = document.activeElement;
+        if (props.type === "submit" && el !== document.body && rootRef.value.contains(el) === false && el.contains(rootRef.value) === false) {
+          rootRef.value.focus();
+          const onClickCleanup = () => {
+            document.removeEventListener("keydown", stopAndPrevent, true);
+            document.removeEventListener("keyup", onClickCleanup, passiveCapture);
+            rootRef.value !== null && rootRef.value.removeEventListener("blur", onClickCleanup, passiveCapture);
+          };
+          document.addEventListener("keydown", stopAndPrevent, true);
+          document.addEventListener("keyup", onClickCleanup, passiveCapture);
+          rootRef.value.addEventListener("blur", onClickCleanup, passiveCapture);
+        }
+      }
+      navigateOnClick(e);
+    }
+    function onKeydown(e) {
+      if (rootRef.value === null)
+        return;
+      emit2("keydown", e);
+      if (isKeyCode(e, [13, 32]) === true && keyboardTarget !== rootRef.value) {
+        keyboardTarget !== null && cleanup();
+        if (e.defaultPrevented !== true) {
+          rootRef.value.focus();
+          keyboardTarget = rootRef.value;
+          rootRef.value.classList.add("q-btn--active");
+          document.addEventListener("keyup", onPressEnd, true);
+          rootRef.value.addEventListener("blur", onPressEnd, passiveCapture);
+        }
+        stopAndPrevent(e);
+      }
+    }
+    function onTouchstart(e) {
+      if (rootRef.value === null)
+        return;
+      emit2("touchstart", e);
+      if (e.defaultPrevented === true)
+        return;
+      if (touchTarget !== rootRef.value) {
+        touchTarget !== null && cleanup();
+        touchTarget = rootRef.value;
+        localTouchTargetEl = e.target;
+        localTouchTargetEl.addEventListener("touchcancel", onPressEnd, passiveCapture);
+        localTouchTargetEl.addEventListener("touchend", onPressEnd, passiveCapture);
+      }
+      avoidMouseRipple = true;
+      mouseTimer !== null && clearTimeout(mouseTimer);
+      mouseTimer = setTimeout(() => {
+        mouseTimer = null;
+        avoidMouseRipple = false;
+      }, 200);
+    }
+    function onMousedown(e) {
+      if (rootRef.value === null)
+        return;
+      e.qSkipRipple = avoidMouseRipple === true;
+      emit2("mousedown", e);
+      if (e.defaultPrevented !== true && mouseTarget !== rootRef.value) {
+        mouseTarget !== null && cleanup();
+        mouseTarget = rootRef.value;
+        rootRef.value.classList.add("q-btn--active");
+        document.addEventListener("mouseup", onPressEnd, passiveCapture);
+      }
+    }
+    function onPressEnd(e) {
+      if (rootRef.value === null)
+        return;
+      if (e !== void 0 && e.type === "blur" && document.activeElement === rootRef.value) {
+        return;
+      }
+      if (e !== void 0 && e.type === "keyup") {
+        if (keyboardTarget === rootRef.value && isKeyCode(e, [13, 32]) === true) {
+          const evt = new MouseEvent("click", e);
+          evt.qKeyEvent = true;
+          e.defaultPrevented === true && prevent(evt);
+          e.cancelBubble === true && stop(evt);
+          rootRef.value.dispatchEvent(evt);
+          stopAndPrevent(e);
+          e.qKeyEvent = true;
+        }
+        emit2("keyup", e);
+      }
+      cleanup();
+    }
+    function cleanup(destroying) {
+      const blurTarget = blurTargetRef.value;
+      if (destroying !== true && (touchTarget === rootRef.value || mouseTarget === rootRef.value) && blurTarget !== null && blurTarget !== document.activeElement) {
+        blurTarget.setAttribute("tabindex", -1);
+        blurTarget.focus();
+      }
+      if (touchTarget === rootRef.value) {
+        if (localTouchTargetEl !== null) {
+          localTouchTargetEl.removeEventListener("touchcancel", onPressEnd, passiveCapture);
+          localTouchTargetEl.removeEventListener("touchend", onPressEnd, passiveCapture);
+        }
+        touchTarget = localTouchTargetEl = null;
+      }
+      if (mouseTarget === rootRef.value) {
+        document.removeEventListener("mouseup", onPressEnd, passiveCapture);
+        mouseTarget = null;
+      }
+      if (keyboardTarget === rootRef.value) {
+        document.removeEventListener("keyup", onPressEnd, true);
+        rootRef.value !== null && rootRef.value.removeEventListener("blur", onPressEnd, passiveCapture);
+        keyboardTarget = null;
+      }
+      rootRef.value !== null && rootRef.value.classList.remove("q-btn--active");
+    }
+    function onLoadingEvt(evt) {
+      stopAndPrevent(evt);
+      evt.qSkipRipple = true;
+    }
+    onBeforeUnmount(() => {
+      cleanup(true);
+    });
+    Object.assign(proxy, { click: onClick });
+    return () => {
+      let inner = [];
+      props.icon !== void 0 && inner.push(
+        h(QIcon, {
+          name: props.icon,
+          left: props.stack !== true && hasLabel.value === true,
+          role: "img",
+          "aria-hidden": "true"
+        })
+      );
+      hasLabel.value === true && inner.push(
+        h("span", { class: "block" }, [props.label])
+      );
+      inner = hMergeSlot(slots.default, inner);
+      if (props.iconRight !== void 0 && props.round === false) {
+        inner.push(
+          h(QIcon, {
+            name: props.iconRight,
+            right: props.stack !== true && hasLabel.value === true,
+            role: "img",
+            "aria-hidden": "true"
+          })
+        );
+      }
+      const child = [
+        h("span", {
+          class: "q-focus-helper",
+          ref: blurTargetRef
+        })
+      ];
+      if (props.loading === true && props.percentage !== void 0) {
+        child.push(
+          h("span", {
+            class: "q-btn__progress absolute-full overflow-hidden" + (props.darkPercentage === true ? " q-btn__progress--dark" : "")
+          }, [
+            h("span", {
+              class: "q-btn__progress-indicator fit block",
+              style: percentageStyle.value
+            })
+          ])
+        );
+      }
+      child.push(
+        h("span", {
+          class: "q-btn__content text-center col items-center q-anchor--skip " + innerClasses.value
+        }, inner)
+      );
+      props.loading !== null && child.push(
+        h(Transition, {
+          name: "q-transition--fade"
+        }, () => props.loading === true ? [
+          h("span", {
+            key: "loading",
+            class: "absolute-full flex flex-center"
+          }, slots.loading !== void 0 ? slots.loading() : [h(QSpinner)])
+        ] : null)
+      );
+      return withDirectives(
+        h(
+          linkTag.value,
+          nodeProps.value,
+          child
+        ),
+        [[
+          Ripple,
+          ripple.value,
+          void 0,
+          rippleProps.value
+        ]]
+      );
+    };
+  }
+});
+let portalIndex = 1;
+let target = document.body;
+function createGlobalNode(id, portalType) {
+  const el = document.createElement("div");
+  el.id = portalType !== void 0 ? `q-portal--${portalType}--${portalIndex++}` : id;
+  if (globalConfig.globalNodes !== void 0) {
+    const cls = globalConfig.globalNodes.class;
+    if (cls !== void 0) {
+      el.className = cls;
+    }
+  }
+  target.appendChild(el);
+  return el;
+}
+function removeGlobalNode(el) {
+  el.remove();
+}
+let uid = 0;
+const defaults = {};
+const groups = {};
+const notificationsList = {};
+const positionClass = {};
+const emptyRE = /^\s*$/;
+const notifRefs = [];
+const invalidTimeoutValues = [void 0, null, true, false, ""];
+const positionList = [
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right",
+  "top",
+  "bottom",
+  "left",
+  "right",
+  "center"
+];
+const badgePositions = [
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right"
+];
+const notifTypes = {
+  positive: {
+    icon: ($q) => $q.iconSet.type.positive,
+    color: "positive"
+  },
+  negative: {
+    icon: ($q) => $q.iconSet.type.negative,
+    color: "negative"
+  },
+  warning: {
+    icon: ($q) => $q.iconSet.type.warning,
+    color: "warning",
+    textColor: "dark"
+  },
+  info: {
+    icon: ($q) => $q.iconSet.type.info,
+    color: "info"
+  },
+  ongoing: {
+    group: false,
+    timeout: 0,
+    spinner: true,
+    color: "grey-8"
+  }
+};
+function addNotification(config, $q, originalApi) {
+  if (!config) {
+    return logError("parameter required");
+  }
+  let Api;
+  const notif = { textColor: "white" };
+  if (config.ignoreDefaults !== true) {
+    Object.assign(notif, defaults);
+  }
+  if (isObject(config) === false) {
+    if (notif.type) {
+      Object.assign(notif, notifTypes[notif.type]);
+    }
+    config = { message: config };
+  }
+  Object.assign(notif, notifTypes[config.type || notif.type], config);
+  if (typeof notif.icon === "function") {
+    notif.icon = notif.icon($q);
+  }
+  if (!notif.spinner) {
+    notif.spinner = false;
+  } else {
+    if (notif.spinner === true) {
+      notif.spinner = QSpinner;
+    }
+    notif.spinner = markRaw(notif.spinner);
+  }
+  notif.meta = {
+    hasMedia: Boolean(notif.spinner !== false || notif.icon || notif.avatar),
+    hasText: hasContent(notif.message) || hasContent(notif.caption)
+  };
+  if (notif.position) {
+    if (positionList.includes(notif.position) === false) {
+      return logError("wrong position", config);
+    }
+  } else {
+    notif.position = "bottom";
+  }
+  if (invalidTimeoutValues.includes(notif.timeout) === true) {
+    notif.timeout = 5e3;
+  } else {
+    const t = Number(notif.timeout);
+    if (isNaN(t) || t < 0) {
+      return logError("wrong timeout", config);
+    }
+    notif.timeout = Number.isFinite(t) ? t : 0;
+  }
+  if (notif.timeout === 0) {
+    notif.progress = false;
+  } else if (notif.progress === true) {
+    notif.meta.progressClass = "q-notification__progress" + (notif.progressClass ? ` ${notif.progressClass}` : "");
+    notif.meta.progressStyle = {
+      animationDuration: `${notif.timeout + 1e3}ms`
+    };
+  }
+  const actions = (Array.isArray(config.actions) === true ? config.actions : []).concat(
+    config.ignoreDefaults !== true && Array.isArray(defaults.actions) === true ? defaults.actions : []
+  ).concat(
+    notifTypes[config.type] !== void 0 && Array.isArray(notifTypes[config.type].actions) === true ? notifTypes[config.type].actions : []
+  );
+  const { closeBtn } = notif;
+  closeBtn && actions.push({
+    label: typeof closeBtn === "string" ? closeBtn : $q.lang.label.close
+  });
+  notif.actions = actions.map(({ handler, noDismiss, ...item }) => ({
+    flat: true,
+    ...item,
+    onClick: typeof handler === "function" ? () => {
+      handler();
+      noDismiss !== true && dismiss();
+    } : () => {
+      dismiss();
+    }
+  }));
+  if (notif.multiLine === void 0) {
+    notif.multiLine = notif.actions.length > 1;
+  }
+  Object.assign(notif.meta, {
+    class: `q-notification row items-stretch q-notification--${notif.multiLine === true ? "multi-line" : "standard"}` + (notif.color !== void 0 ? ` bg-${notif.color}` : "") + (notif.textColor !== void 0 ? ` text-${notif.textColor}` : "") + (notif.classes !== void 0 ? ` ${notif.classes}` : ""),
+    wrapperClass: "q-notification__wrapper col relative-position border-radius-inherit " + (notif.multiLine === true ? "column no-wrap justify-center" : "row items-center"),
+    contentClass: "q-notification__content row items-center" + (notif.multiLine === true ? "" : " col"),
+    leftClass: notif.meta.hasText === true ? "additional" : "single",
+    attrs: {
+      role: "alert",
+      ...notif.attrs
+    }
+  });
+  if (notif.group === false) {
+    notif.group = void 0;
+    notif.meta.group = void 0;
+  } else {
+    if (notif.group === void 0 || notif.group === true) {
+      notif.group = [
+        notif.message,
+        notif.caption,
+        notif.multiline
+      ].concat(
+        notif.actions.map((props) => `${props.label}*${props.icon}`)
+      ).join("|");
+    }
+    notif.meta.group = notif.group + "|" + notif.position;
+  }
+  if (notif.actions.length === 0) {
+    notif.actions = void 0;
+  } else {
+    notif.meta.actionsClass = "q-notification__actions row items-center " + (notif.multiLine === true ? "justify-end" : "col-auto") + (notif.meta.hasMedia === true ? " q-notification__actions--with-media" : "");
+  }
+  if (originalApi !== void 0) {
+    if (originalApi.notif.meta.timer) {
+      clearTimeout(originalApi.notif.meta.timer);
+      originalApi.notif.meta.timer = void 0;
+    }
+    notif.meta.uid = originalApi.notif.meta.uid;
+    const index = notificationsList[notif.position].value.indexOf(originalApi.notif);
+    notificationsList[notif.position].value[index] = notif;
+  } else {
+    const original = groups[notif.meta.group];
+    if (original === void 0) {
+      notif.meta.uid = uid++;
+      notif.meta.badge = 1;
+      if (["left", "right", "center"].indexOf(notif.position) !== -1) {
+        notificationsList[notif.position].value.splice(
+          Math.floor(notificationsList[notif.position].value.length / 2),
+          0,
+          notif
+        );
+      } else {
+        const action = notif.position.indexOf("top") !== -1 ? "unshift" : "push";
+        notificationsList[notif.position].value[action](notif);
+      }
+      if (notif.group !== void 0) {
+        groups[notif.meta.group] = notif;
+      }
+    } else {
+      if (original.meta.timer) {
+        clearTimeout(original.meta.timer);
+        original.meta.timer = void 0;
+      }
+      if (notif.badgePosition !== void 0) {
+        if (badgePositions.includes(notif.badgePosition) === false) {
+          return logError("wrong badgePosition", config);
+        }
+      } else {
+        notif.badgePosition = `top-${notif.position.indexOf("left") !== -1 ? "right" : "left"}`;
+      }
+      notif.meta.uid = original.meta.uid;
+      notif.meta.badge = original.meta.badge + 1;
+      notif.meta.badgeClass = `q-notification__badge q-notification__badge--${notif.badgePosition}` + (notif.badgeColor !== void 0 ? ` bg-${notif.badgeColor}` : "") + (notif.badgeTextColor !== void 0 ? ` text-${notif.badgeTextColor}` : "") + (notif.badgeClass ? ` ${notif.badgeClass}` : "");
+      const index = notificationsList[notif.position].value.indexOf(original);
+      notificationsList[notif.position].value[index] = groups[notif.meta.group] = notif;
+    }
+  }
+  const dismiss = () => {
+    removeNotification(notif);
+    Api = void 0;
+  };
+  if (notif.timeout > 0) {
+    notif.meta.timer = setTimeout(() => {
+      notif.meta.timer = void 0;
+      dismiss();
+    }, notif.timeout + 1e3);
+  }
+  if (notif.group !== void 0) {
+    return (props) => {
+      if (props !== void 0) {
+        logError("trying to update a grouped one which is forbidden", config);
+      } else {
+        dismiss();
+      }
+    };
+  }
+  Api = {
+    dismiss,
+    config,
+    notif
+  };
+  if (originalApi !== void 0) {
+    Object.assign(originalApi, Api);
+    return;
+  }
+  return (props) => {
+    if (Api !== void 0) {
+      if (props === void 0) {
+        Api.dismiss();
+      } else {
+        const newNotif = Object.assign({}, Api.config, props, {
+          group: false,
+          position: notif.position
+        });
+        addNotification(newNotif, $q, Api);
+      }
+    }
+  };
+}
+function removeNotification(notif) {
+  if (notif.meta.timer) {
+    clearTimeout(notif.meta.timer);
+    notif.meta.timer = void 0;
+  }
+  const index = notificationsList[notif.position].value.indexOf(notif);
+  if (index !== -1) {
+    if (notif.group !== void 0) {
+      delete groups[notif.meta.group];
+    }
+    const el = notifRefs["" + notif.meta.uid];
+    if (el) {
+      const { width, height } = getComputedStyle(el);
+      el.style.left = `${el.offsetLeft}px`;
+      el.style.width = width;
+      el.style.height = height;
+    }
+    notificationsList[notif.position].value.splice(index, 1);
+    if (typeof notif.onDismiss === "function") {
+      notif.onDismiss();
+    }
+  }
+}
+function hasContent(str) {
+  return str !== void 0 && str !== null && emptyRE.test(str) !== true;
+}
+function logError(error, config) {
+  console.error(`Notify: ${error}`, config);
+  return false;
+}
+function getComponent() {
+  return createComponent({
+    name: "QNotifications",
+    devtools: { hide: true },
+    setup() {
+      return () => h("div", { class: "q-notifications" }, positionList.map((pos) => {
+        return h(TransitionGroup, {
+          key: pos,
+          class: positionClass[pos],
+          tag: "div",
+          name: `q-notification--${pos}`
+        }, () => notificationsList[pos].value.map((notif) => {
+          const meta = notif.meta;
+          const mainChild = [];
+          if (meta.hasMedia === true) {
+            if (notif.spinner !== false) {
+              mainChild.push(
+                h(notif.spinner, {
+                  class: "q-notification__spinner q-notification__spinner--" + meta.leftClass,
+                  color: notif.spinnerColor,
+                  size: notif.spinnerSize
+                })
+              );
+            } else if (notif.icon) {
+              mainChild.push(
+                h(QIcon, {
+                  class: "q-notification__icon q-notification__icon--" + meta.leftClass,
+                  name: notif.icon,
+                  color: notif.iconColor,
+                  size: notif.iconSize,
+                  role: "img"
+                })
+              );
+            } else if (notif.avatar) {
+              mainChild.push(
+                h(QAvatar, {
+                  class: "q-notification__avatar q-notification__avatar--" + meta.leftClass
+                }, () => h("img", { src: notif.avatar, "aria-hidden": "true" }))
+              );
+            }
+          }
+          if (meta.hasText === true) {
+            let msgChild;
+            const msgData = { class: "q-notification__message col" };
+            if (notif.html === true) {
+              msgData.innerHTML = notif.caption ? `<div>${notif.message}</div><div class="q-notification__caption">${notif.caption}</div>` : notif.message;
+            } else {
+              const msgNode = [notif.message];
+              msgChild = notif.caption ? [
+                h("div", msgNode),
+                h("div", { class: "q-notification__caption" }, [notif.caption])
+              ] : msgNode;
+            }
+            mainChild.push(
+              h("div", msgData, msgChild)
+            );
+          }
+          const child = [
+            h("div", { class: meta.contentClass }, mainChild)
+          ];
+          notif.progress === true && child.push(
+            h("div", {
+              key: `${meta.uid}|p|${meta.badge}`,
+              class: meta.progressClass,
+              style: meta.progressStyle
+            })
+          );
+          notif.actions !== void 0 && child.push(
+            h("div", {
+              class: meta.actionsClass
+            }, notif.actions.map((props) => h(QBtn, props)))
+          );
+          meta.badge > 1 && child.push(
+            h("div", {
+              key: `${meta.uid}|${meta.badge}`,
+              class: notif.meta.badgeClass,
+              style: notif.badgeStyle
+            }, [meta.badge])
+          );
+          return h("div", {
+            ref: (el) => {
+              notifRefs["" + meta.uid] = el;
+            },
+            key: meta.uid,
+            class: meta.class,
+            ...meta.attrs
+          }, [
+            h("div", { class: meta.wrapperClass }, child)
+          ]);
+        }));
+      }));
+    }
+  });
+}
+var Notify = {
+  setDefaults(opts) {
+    {
+      isObject(opts) === true && Object.assign(defaults, opts);
+    }
+  },
+  registerType(typeName, typeOpts) {
+    if (isObject(typeOpts) === true) {
+      notifTypes[typeName] = typeOpts;
+    }
+  },
+  install({ $q, parentApp }) {
+    $q.notify = this.create = (opts) => addNotification(opts, $q);
+    $q.notify.setDefaults = this.setDefaults;
+    $q.notify.registerType = this.registerType;
+    if ($q.config.notify !== void 0) {
+      this.setDefaults($q.config.notify);
+    }
+    if (this.__installed !== true) {
+      positionList.forEach((pos) => {
+        notificationsList[pos] = ref([]);
+        const vert = ["left", "center", "right"].includes(pos) === true ? "center" : pos.indexOf("top") !== -1 ? "top" : "bottom", align = pos.indexOf("left") !== -1 ? "start" : pos.indexOf("right") !== -1 ? "end" : "center", classes = ["left", "right"].includes(pos) ? `items-${pos === "left" ? "start" : "end"} justify-center` : pos === "center" ? "flex-center" : `items-${align}`;
+        positionClass[pos] = `q-notifications__list q-notifications__list--${vert} fixed column no-wrap ${classes}`;
+      });
+      const el = createGlobalNode("q-notify");
+      createChildApp(getComponent(), parentApp).mount(el);
+    }
+  }
+};
+var quasarUserOptions = { config: {}, lang, plugins: { Notify } };
 const publicPath = `/poe-play/`;
 async function start({
   app: app2,
@@ -9181,4 +10765,4 @@ createQuasarApp(createApp, quasarUserOptions).then((app2) => {
     start(app2, boot2);
   });
 });
-export { vShow as $, createBaseVNode as A, createTextVNode as B, normalizeStyle as C, isKeyCode as D, addEvt as E, cleanEvt as F, stop as G, position as H, withDirectives as I, stopAndPrevent as J, prevent as K, markRaw as L, unref as M, onDeactivated as N, toRaw as O, Platform as P, globalConfig as Q, injectProp as R, Teleport as S, Transition as T, client as U, createElementBlock as V, Fragment as W, toDisplayString as X, createCommentVNode as Y, normalizeClass as Z, renderList as _, onBeforeUnmount as a, pushScopeId as a0, popScopeId as a1, boot as b, computed as c, nextTick as d, inject as e, emptyRenderFn as f, getCurrentInstance as g, h, isRuntimeSsrPreHydration as i, layoutKey as j, pageContainerKey as k, listenOpts as l, reactive as m, noop$1 as n, onMounted as o, provide as p, onUnmounted as q, ref as r, defineComponent as s, resolveComponent as t, useRouter as u, openBlock as v, watch as w, createBlock as x, withCtx as y, createVNode as z };
+export { createElementBlock as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, noop$1 as F, nextTick as G, listenOpts as H, quasarKey as I, getElement as J, css as K, onDeactivated as L, vmIsDestroyed as M, QSpinner as N, isKeyCode as O, prevent as P, QBtn as Q, addEvt as R, cleanEvt as S, Transition as T, vmHasRouter as U, injectProp as V, Teleport as W, createGlobalNode as X, removeGlobalNode as Y, client as Z, stopAndPrevent as _, computed as a, Fragment as a0, toDisplayString as a1, createCommentVNode as a2, normalizeClass as a3, renderList as a4, withDirectives as a5, vShow as a6, pushScopeId as a7, popScopeId as a8, useSize as a9, useSizeProps as aa, toRaw as ab, QIcon as ac, Platform as ad, formKey as ae, debounce as af, onBeforeUpdate as ag, onActivated as ah, shouldIgnoreKey as ai, stop as aj, createDirective as ak, leftClick as al, preventDraggable as am, position as an, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };

@@ -1,9 +1,8 @@
-import { c as computed, N as onDeactivated, a as onBeforeUnmount, g as getCurrentInstance, r as ref, i as isRuntimeSsrPreHydration, o as onMounted, h, T as Transition, w as watch, O as toRaw, J as stopAndPrevent, P as Platform, D as isKeyCode, K as prevent, d as nextTick, E as addEvt, F as cleanEvt, l as listenOpts, Q as globalConfig, q as onUnmounted, R as injectProp, S as Teleport, U as client, s as defineComponent, v as openBlock, V as createElementBlock, z as createVNode, A as createBaseVNode, W as Fragment, B as createTextVNode, X as toDisplayString, Y as createCommentVNode, Z as normalizeClass, y as withCtx, _ as renderList, x as createBlock, I as withDirectives, $ as vShow, C as normalizeStyle, a0 as pushScopeId, a1 as popScopeId } from "./index.js";
-import { d as vmIsDestroyed, b as QSpinner, a as useSize, u as useSizeProps, Q as QIcon, v as vmHasRouter } from "./vm.js";
-import { c as createComponent, h as hSlot, b as hMergeSlot } from "./render.js";
+import { a as computed, L as onDeactivated, o as onBeforeUnmount, M as vmIsDestroyed, g as getCurrentInstance, c as createComponent, r as ref, k as isRuntimeSsrPreHydration, v as onMounted, h, T as Transition, d as hSlot, N as QSpinner, w as watch, O as isKeyCode, P as prevent, G as nextTick, R as addEvt, S as cleanEvt, H as listenOpts, U as vmHasRouter, n as onUnmounted, V as injectProp, W as Teleport, X as createGlobalNode, Y as removeGlobalNode, Z as client, _ as stopAndPrevent, s as defineComponent, y as openBlock, $ as createElementBlock, B as createVNode, C as createBaseVNode, a0 as Fragment, D as createTextVNode, a1 as toDisplayString, a2 as createCommentVNode, a3 as normalizeClass, A as withCtx, a4 as renderList, z as createBlock, a5 as withDirectives, a6 as vShow, E as normalizeStyle, a7 as pushScopeId, a8 as popScopeId } from "./index.js";
+import { c as clearSelection, r as removeFocusWaitFlag, a as addFocusWaitFlag, _ as _export_sfc, Q as QCheckbox } from "./plugin-vue_export-helper.js";
 import { Q as QPage } from "./QPage.js";
 import { a as axios } from "./axios2.js";
-import { c as getScrollbarWidth, g as getScrollTarget } from "./scroll.js";
+import { g as getScrollbarWidth, a as getScrollTarget } from "./scroll.js";
 const useRatioProps = {
   ratio: [String, Number]
 };
@@ -133,34 +132,34 @@ var QImg = createComponent({
       removeLoadShowTimeout();
       isLoading.value = false;
     }
-    function onLoad({ target: target2 }) {
+    function onLoad({ target }) {
       if (vmIsDestroyed(vm) === false) {
         removeLoadTimeout();
-        naturalRatio.value = target2.naturalHeight === 0 ? 0.5 : target2.naturalWidth / target2.naturalHeight;
-        waitForCompleteness(target2, 1);
+        naturalRatio.value = target.naturalHeight === 0 ? 0.5 : target.naturalWidth / target.naturalHeight;
+        waitForCompleteness(target, 1);
       }
     }
-    function waitForCompleteness(target2, count) {
+    function waitForCompleteness(target, count) {
       if (count === 1e3 || vmIsDestroyed(vm) === true)
         return;
-      if (target2.complete === true) {
-        onReady(target2);
+      if (target.complete === true) {
+        onReady(target);
       } else {
         registerLoadTimeout(() => {
-          waitForCompleteness(target2, count + 1);
+          waitForCompleteness(target, count + 1);
         }, 50);
       }
     }
-    function onReady(target2) {
+    function onReady(target) {
       if (vmIsDestroyed(vm) === true)
         return;
       position.value = position.value ^ 1;
       images[position.value].value = null;
       clearLoading();
-      if (target2.getAttribute("__qerror") !== "true") {
+      if (target.getAttribute("__qerror") !== "true") {
         hasError.value = false;
       }
-      emit("load", target2.currentSrc || target2.src);
+      emit("load", target.currentSrc || target.src);
     }
     function onError(err) {
       removeLoadTimeout();
@@ -276,261 +275,6 @@ var QImg = createComponent({
         "aria-label": props.alt
       }, content);
     };
-  }
-});
-const useDarkProps = {
-  dark: {
-    type: Boolean,
-    default: null
-  }
-};
-function useDark(props, $q) {
-  return computed(() => props.dark === null ? $q.dark.isActive : props.dark);
-}
-function useRefocusTarget(props, rootRef) {
-  const refocusRef = ref(null);
-  const refocusTargetEl = computed(() => {
-    if (props.disable === true) {
-      return null;
-    }
-    return h("span", {
-      ref: refocusRef,
-      class: "no-outline",
-      tabindex: -1
-    });
-  });
-  function refocusTarget(e) {
-    const root = rootRef.value;
-    if (e !== void 0 && e.type.indexOf("key") === 0) {
-      if (root !== null && document.activeElement !== root && root.contains(document.activeElement) === true) {
-        root.focus();
-      }
-    } else if (refocusRef.value !== null && (e === void 0 || root !== null && root.contains(e.target) === true)) {
-      refocusRef.value.focus();
-    }
-  }
-  return {
-    refocusTargetEl,
-    refocusTarget
-  };
-}
-const useFormProps = {
-  name: String
-};
-function useFormInject(formAttrs = {}) {
-  return (child, action, className) => {
-    child[action](
-      h("input", {
-        class: "hidden" + (className || ""),
-        ...formAttrs.value
-      })
-    );
-  };
-}
-var optionSizes = {
-  xs: 30,
-  sm: 35,
-  md: 40,
-  lg: 50,
-  xl: 60
-};
-const useCheckboxProps = {
-  ...useDarkProps,
-  ...useSizeProps,
-  ...useFormProps,
-  modelValue: {
-    required: true,
-    default: null
-  },
-  val: {},
-  trueValue: { default: true },
-  falseValue: { default: false },
-  indeterminateValue: { default: null },
-  checkedIcon: String,
-  uncheckedIcon: String,
-  indeterminateIcon: String,
-  toggleOrder: {
-    type: String,
-    validator: (v) => v === "tf" || v === "ft"
-  },
-  toggleIndeterminate: Boolean,
-  label: String,
-  leftLabel: Boolean,
-  color: String,
-  keepColor: Boolean,
-  dense: Boolean,
-  disable: Boolean,
-  tabindex: [String, Number]
-};
-const useCheckboxEmits = ["update:modelValue"];
-function useCheckbox(type, getInner) {
-  const { props, slots, emit, proxy } = getCurrentInstance();
-  const { $q } = proxy;
-  const isDark = useDark(props, $q);
-  const rootRef = ref(null);
-  const { refocusTargetEl, refocusTarget } = useRefocusTarget(props, rootRef);
-  const sizeStyle = useSize(props, optionSizes);
-  const modelIsArray = computed(
-    () => props.val !== void 0 && Array.isArray(props.modelValue)
-  );
-  const index = computed(() => {
-    const val = toRaw(props.val);
-    return modelIsArray.value === true ? props.modelValue.findIndex((opt) => toRaw(opt) === val) : -1;
-  });
-  const isTrue = computed(() => modelIsArray.value === true ? index.value !== -1 : toRaw(props.modelValue) === toRaw(props.trueValue));
-  const isFalse = computed(() => modelIsArray.value === true ? index.value === -1 : toRaw(props.modelValue) === toRaw(props.falseValue));
-  const isIndeterminate = computed(
-    () => isTrue.value === false && isFalse.value === false
-  );
-  const tabindex = computed(() => props.disable === true ? -1 : props.tabindex || 0);
-  const classes = computed(
-    () => `q-${type} cursor-pointer no-outline row inline no-wrap items-center` + (props.disable === true ? " disabled" : "") + (isDark.value === true ? ` q-${type}--dark` : "") + (props.dense === true ? ` q-${type}--dense` : "") + (props.leftLabel === true ? " reverse" : "")
-  );
-  const innerClass = computed(() => {
-    const state = isTrue.value === true ? "truthy" : isFalse.value === true ? "falsy" : "indet";
-    const color = props.color !== void 0 && (props.keepColor === true || (type === "toggle" ? isTrue.value === true : isFalse.value !== true)) ? ` text-${props.color}` : "";
-    return `q-${type}__inner relative-position non-selectable q-${type}__inner--${state}${color}`;
-  });
-  const formAttrs = computed(() => {
-    const prop = { type: "checkbox" };
-    props.name !== void 0 && Object.assign(prop, {
-      ".checked": isTrue.value,
-      "^checked": isTrue.value === true ? "checked" : void 0,
-      name: props.name,
-      value: modelIsArray.value === true ? props.val : props.trueValue
-    });
-    return prop;
-  });
-  const injectFormInput = useFormInject(formAttrs);
-  const attributes = computed(() => {
-    const attrs = {
-      tabindex: tabindex.value,
-      role: type === "toggle" ? "switch" : "checkbox",
-      "aria-label": props.label,
-      "aria-checked": isIndeterminate.value === true ? "mixed" : isTrue.value === true ? "true" : "false"
-    };
-    if (props.disable === true) {
-      attrs["aria-disabled"] = "true";
-    }
-    return attrs;
-  });
-  function onClick(e) {
-    if (e !== void 0) {
-      stopAndPrevent(e);
-      refocusTarget(e);
-    }
-    if (props.disable !== true) {
-      emit("update:modelValue", getNextValue(), e);
-    }
-  }
-  function getNextValue() {
-    if (modelIsArray.value === true) {
-      if (isTrue.value === true) {
-        const val = props.modelValue.slice();
-        val.splice(index.value, 1);
-        return val;
-      }
-      return props.modelValue.concat([props.val]);
-    }
-    if (isTrue.value === true) {
-      if (props.toggleOrder !== "ft" || props.toggleIndeterminate === false) {
-        return props.falseValue;
-      }
-    } else if (isFalse.value === true) {
-      if (props.toggleOrder === "ft" || props.toggleIndeterminate === false) {
-        return props.trueValue;
-      }
-    } else {
-      return props.toggleOrder !== "ft" ? props.trueValue : props.falseValue;
-    }
-    return props.indeterminateValue;
-  }
-  function onKeydown(e) {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      stopAndPrevent(e);
-    }
-  }
-  function onKeyup(e) {
-    if (e.keyCode === 13 || e.keyCode === 32) {
-      onClick(e);
-    }
-  }
-  const getInnerContent = getInner(isTrue, isIndeterminate);
-  Object.assign(proxy, { toggle: onClick });
-  return () => {
-    const inner = getInnerContent();
-    props.disable !== true && injectFormInput(
-      inner,
-      "unshift",
-      ` q-${type}__native absolute q-ma-none q-pa-none`
-    );
-    const child = [
-      h("div", {
-        class: innerClass.value,
-        style: sizeStyle.value,
-        "aria-hidden": "true"
-      }, inner)
-    ];
-    if (refocusTargetEl.value !== null) {
-      child.push(refocusTargetEl.value);
-    }
-    const label = props.label !== void 0 ? hMergeSlot(slots.default, [props.label]) : hSlot(slots.default);
-    label !== void 0 && child.push(
-      h("div", {
-        class: `q-${type}__label q-anchor--skip`
-      }, label)
-    );
-    return h("div", {
-      ref: rootRef,
-      class: classes.value,
-      ...attributes.value,
-      onClick,
-      onKeydown,
-      onKeyup
-    }, child);
-  };
-}
-const bgNode = h("div", {
-  key: "svg",
-  class: "q-checkbox__bg absolute"
-}, [
-  h("svg", {
-    class: "q-checkbox__svg fit absolute-full",
-    viewBox: "0 0 24 24"
-  }, [
-    h("path", {
-      class: "q-checkbox__truthy",
-      fill: "none",
-      d: "M1.73,12.91 8.1,19.28 22.79,4.59"
-    }),
-    h("path", {
-      class: "q-checkbox__indet",
-      d: "M4,14H20V10H4"
-    })
-  ])
-]);
-var QCheckbox = createComponent({
-  name: "QCheckbox",
-  props: useCheckboxProps,
-  emits: useCheckboxEmits,
-  setup(props) {
-    function getInner(isTrue, isIndeterminate) {
-      const icon = computed(
-        () => (isTrue.value === true ? props.checkedIcon : isIndeterminate.value === true ? props.indeterminateIcon : props.uncheckedIcon) || null
-      );
-      return () => icon.value !== null ? [
-        h("div", {
-          key: "icon",
-          class: "q-checkbox__icon-container absolute-full flex flex-center no-wrap"
-        }, [
-          h(QIcon, {
-            class: "q-checkbox__icon",
-            name: icon.value
-          })
-        ])
-      ] : [bgNode];
-    }
-    return useCheckbox("checkbox", getInner);
   }
 });
 function useInterval() {
@@ -812,19 +556,6 @@ const NewScarabs4 = {
     { id: "empty", name: "", icon: "", description: [], chaos: 0, exalted: 0, divine: 0, level: 0 }
   )
 };
-function clearSelection() {
-  if (window.getSelection !== void 0) {
-    const selection = window.getSelection();
-    if (selection.empty !== void 0) {
-      selection.empty();
-    } else if (selection.removeAllRanges !== void 0) {
-      selection.removeAllRanges();
-      Platform.is.mobile !== true && selection.addRange(document.createRange());
-    }
-  } else if (document.selection !== void 0) {
-    document.selection.empty();
-  }
-}
 const useAnchorProps = {
   target: {
     default: true
@@ -872,11 +603,11 @@ function useAnchor({
         }
         proxy.hide(evt);
         anchorEl.value.classList.add("non-selectable");
-        const target2 = evt.target;
+        const target = evt.target;
         addEvt(anchorEvents, "anchor", [
-          [target2, "touchmove", "mobileCleanup", "passive"],
-          [target2, "touchend", "mobileCleanup", "passive"],
-          [target2, "touchcancel", "mobileCleanup", "passive"],
+          [target, "touchmove", "mobileCleanup", "passive"],
+          [target, "touchend", "mobileCleanup", "passive"],
+          [target, "touchcancel", "mobileCleanup", "passive"],
           [anchorEl.value, "contextmenu", "prevent", "notPassive"]
         ]);
         touchTimer = setTimeout(() => {
@@ -1137,39 +868,6 @@ function useModelToggle({
   Object.assign(proxy, publicMethods);
   return publicMethods;
 }
-let queue = [];
-let waitFlags = [];
-function clearFlag(flag) {
-  waitFlags = waitFlags.filter((entry) => entry !== flag);
-}
-function addFocusWaitFlag(flag) {
-  clearFlag(flag);
-  waitFlags.push(flag);
-}
-function removeFocusWaitFlag(flag) {
-  clearFlag(flag);
-  if (waitFlags.length === 0 && queue.length !== 0) {
-    queue[queue.length - 1]();
-    queue = [];
-  }
-}
-let portalIndex = 1;
-let target = document.body;
-function createGlobalNode(id, portalType) {
-  const el = document.createElement("div");
-  el.id = portalType !== void 0 ? `q-portal--${portalType}--${portalIndex++}` : id;
-  if (globalConfig.globalNodes !== void 0) {
-    const cls = globalConfig.globalNodes.class;
-    if (cls !== void 0) {
-      el.className = cls;
-    }
-  }
-  target.appendChild(el);
-  return el;
-}
-function removeGlobalNode(el) {
-  el.remove();
-}
 const portalProxyList = [];
 const QPortal = createComponent({
   name: "QPortal",
@@ -1297,15 +995,15 @@ function useTick() {
 }
 const { notPassiveCapture } = listenOpts, registeredList = [];
 function globalHandler(evt) {
-  const target2 = evt.target;
-  if (target2 === void 0 || target2.nodeType === 8 || target2.classList.contains("no-pointer-events") === true) {
+  const target = evt.target;
+  if (target === void 0 || target.nodeType === 8 || target.classList.contains("no-pointer-events") === true) {
     return;
   }
-  let portalIndex2 = portalProxyList.length - 1;
-  while (portalIndex2 >= 0) {
-    const proxy = portalProxyList[portalIndex2].$;
+  let portalIndex = portalProxyList.length - 1;
+  while (portalIndex >= 0) {
+    const proxy = portalProxyList[portalIndex].$;
     if (proxy.type.name === "QTooltip") {
-      portalIndex2--;
+      portalIndex--;
       continue;
     }
     if (proxy.type.name !== "QDialog") {
@@ -1314,11 +1012,11 @@ function globalHandler(evt) {
     if (proxy.props.seamless !== true) {
       return;
     }
-    portalIndex2--;
+    portalIndex--;
   }
   for (let i = registeredList.length - 1; i >= 0; i--) {
     const state = registeredList[i];
-    if ((state.anchorEl.value === null || state.anchorEl.value.contains(target2) === false) && (target2 === document.body || state.innerRef.value !== null && state.innerRef.value.contains(target2) === false)) {
+    if ((state.anchorEl.value === null || state.anchorEl.value.contains(target) === false) && (target === document.body || state.innerRef.value !== null && state.innerRef.value.contains(target) === false)) {
       evt.qClickOutside = true;
       state.onClickOutside(evt);
     } else {
@@ -1743,8 +1441,8 @@ var QTooltip = createComponent({
       if ($q.platform.is.mobile === true) {
         clearSelection();
         document.body.classList.add("non-selectable");
-        const target2 = anchorEl.value;
-        const evts = ["touchmove", "touchcancel", "touchend", "click"].map((e) => [target2, e, "delayHide", "passiveCapture"]);
+        const target = anchorEl.value;
+        const evts = ["touchmove", "touchcancel", "touchend", "click"].map((e) => [target, e, "delayHide", "passiveCapture"]);
         addEvt(anchorEvents, "tooltipTemp", evts);
       }
       registerTimeout(() => {
@@ -1805,13 +1503,6 @@ var QTooltip = createComponent({
   }
 });
 var ScarabItem_vue_vue_type_style_index_0_scoped_true_lang = "";
-var _export_sfc = (sfc, props) => {
-  const target2 = sfc.__vccOpts || sfc;
-  for (const [key, val] of props) {
-    target2[key] = val;
-  }
-  return target2;
-};
 const _hoisted_1$1 = {
   key: 0,
   class: "scarab-box empty"
@@ -1922,7 +1613,7 @@ const _sfc_main$1 = defineComponent({
 });
 var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-10f936d8"]]);
 var ScarabsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-43c1840e"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-5aca90ac"), n = n(), popScopeId(), n);
 const _hoisted_1 = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
@@ -2227,5 +1918,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-43c1840e"]]);
+var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5aca90ac"]]);
 export { ScarabsPage as default };

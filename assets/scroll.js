@@ -1,4 +1,4 @@
-import { g as getElement, c as css } from "./vm.js";
+import { J as getElement, K as css } from "./index.js";
 const scrollTargets = [null, document, document.body, document.scrollingElement, document.documentElement];
 function getScrollTarget(el, targetEl) {
   let target = getElement(targetEl);
@@ -15,6 +15,70 @@ function getVerticalScrollPosition(scrollTarget) {
 }
 function getHorizontalScrollPosition(scrollTarget) {
   return scrollTarget === window ? window.pageXOffset || window.scrollX || document.body.scrollLeft || 0 : scrollTarget.scrollLeft;
+}
+function animVerticalScrollTo(el, to, duration = 0) {
+  const prevTime = arguments[3] === void 0 ? performance.now() : arguments[3];
+  const pos = getVerticalScrollPosition(el);
+  if (duration <= 0) {
+    if (pos !== to) {
+      setScroll(el, to);
+    }
+    return;
+  }
+  requestAnimationFrame((nowTime) => {
+    const frameTime = nowTime - prevTime;
+    const newPos = pos + (to - pos) / Math.max(frameTime, duration) * frameTime;
+    setScroll(el, newPos);
+    if (newPos !== to) {
+      animVerticalScrollTo(el, to, duration - frameTime, nowTime);
+    }
+  });
+}
+function animHorizontalScrollTo(el, to, duration = 0) {
+  const prevTime = arguments[3] === void 0 ? performance.now() : arguments[3];
+  const pos = getHorizontalScrollPosition(el);
+  if (duration <= 0) {
+    if (pos !== to) {
+      setHorizontalScroll(el, to);
+    }
+    return;
+  }
+  requestAnimationFrame((nowTime) => {
+    const frameTime = nowTime - prevTime;
+    const newPos = pos + (to - pos) / Math.max(frameTime, duration) * frameTime;
+    setHorizontalScroll(el, newPos);
+    if (newPos !== to) {
+      animHorizontalScrollTo(el, to, duration - frameTime, nowTime);
+    }
+  });
+}
+function setScroll(scrollTarget, offset) {
+  if (scrollTarget === window) {
+    window.scrollTo(window.pageXOffset || window.scrollX || document.body.scrollLeft || 0, offset);
+    return;
+  }
+  scrollTarget.scrollTop = offset;
+}
+function setHorizontalScroll(scrollTarget, offset) {
+  if (scrollTarget === window) {
+    window.scrollTo(offset, window.pageYOffset || window.scrollY || document.body.scrollTop || 0);
+    return;
+  }
+  scrollTarget.scrollLeft = offset;
+}
+function setVerticalScrollPosition(scrollTarget, offset, duration) {
+  if (duration) {
+    animVerticalScrollTo(scrollTarget, offset, duration);
+    return;
+  }
+  setScroll(scrollTarget, offset);
+}
+function setHorizontalScrollPosition(scrollTarget, offset, duration) {
+  if (duration) {
+    animHorizontalScrollTo(scrollTarget, offset, duration);
+    return;
+  }
+  setHorizontalScroll(scrollTarget, offset);
 }
 let size;
 function getScrollbarWidth() {
@@ -47,4 +111,4 @@ function getScrollbarWidth() {
   size = w1 - w2;
   return size;
 }
-export { getVerticalScrollPosition as a, getHorizontalScrollPosition as b, getScrollbarWidth as c, getScrollTarget as g };
+export { getScrollTarget as a, getVerticalScrollPosition as b, getHorizontalScrollPosition as c, setHorizontalScrollPosition as d, getScrollbarWidth as g, setVerticalScrollPosition as s };
