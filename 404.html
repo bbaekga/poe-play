@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <title>poe-play</title>
   <script>
-    const location = window.location
-    const pathname = location.pathname
-    const url = location.protocol +
-      location.hostname +
+    const l = window.location
+    const pathname = l.pathname
+    const url = l.protocol +
+      l.hostname +
       pathname.split('/').slice(0, 2).join('/') +
       '/?p=/' +
       pathname.slice(1).split('/')[1]
-    location.replace(url)
+    l.replace(url)
   </script>
 </head>
 <body>
