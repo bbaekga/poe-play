@@ -8,7 +8,7 @@
     const pathname = l.pathname
     const url = l.protocol + '//' + l.hostname +
       pathname.split('/').slice(0, 2).join('/') +
-      '/?p=/' + pathname.slice(1).split('/')[1]
+      '/?p=' + pathname.slice(1).split('/')[1]
     l.replace(url)
   </script>
 </head>
