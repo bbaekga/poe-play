@@ -1615,7 +1615,7 @@ const _sfc_main$1 = defineComponent({
 });
 var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-1dcb5cfc"]]);
 var ScarabsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-5aca90ac"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-98201ef8"), n = n(), popScopeId(), n);
 const _hoisted_1 = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
@@ -1689,7 +1689,7 @@ const _sfc_main = defineComponent({
     }
     async function getMetaData() {
       fetchLoading.value = true;
-      const response = await api.get("https://www.logisnet.co.kr/dev-api/poe/scarabs/Settlers");
+      const response = await api.get("https://www.logisnet.co.kr/dev-api/poe/scarabs/Mercenaries");
       const res = response.data.lines;
       res.forEach((data) => {
         setMetaData(row1Groups.value, data);
@@ -1920,5 +1920,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-5aca90ac"]]);
+var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-98201ef8"]]);
 export { ScarabsPage as default };

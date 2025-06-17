@@ -59,57 +59,57 @@
 .scarab-description[data-v-1dcb5cfc] {
   font-size: 14px;
   margin-top: 12px;
-}.scarab-stash[data-v-5aca90ac] {
+}.scarab-stash[data-v-98201ef8] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/icons/background-scarab.png");
   background-size: 800px 800px;
   background-repeat: no-repeat;
 }
-.scarab-groups.gutter-30 > div[data-v-5aca90ac] {
+.scarab-groups.gutter-30 > div[data-v-98201ef8] {
   margin-left: 30px;
 }
-.scarab-groups.gutter-30 > div[data-v-5aca90ac]:first-child {
+.scarab-groups.gutter-30 > div[data-v-98201ef8]:first-child {
   margin-left: 0;
 }
-.scarab-groups.gutter-40 > div[data-v-5aca90ac] {
+.scarab-groups.gutter-40 > div[data-v-98201ef8] {
   margin-left: 40px;
 }
-.scarab-groups.gutter-40 > div[data-v-5aca90ac]:first-child {
+.scarab-groups.gutter-40 > div[data-v-98201ef8]:first-child {
   margin-left: 0;
 }
-.scarab-groups.gutter-50 > div[data-v-5aca90ac] {
+.scarab-groups.gutter-50 > div[data-v-98201ef8] {
   margin-left: 50px;
 }
-.scarab-groups.gutter-50 > div[data-v-5aca90ac]:first-child {
+.scarab-groups.gutter-50 > div[data-v-98201ef8]:first-child {
   margin-left: 0;
 }
-.scarab-groups.gutter-80 > div[data-v-5aca90ac] {
+.scarab-groups.gutter-80 > div[data-v-98201ef8] {
   margin-left: 76px;
 }
-.scarab-groups.gutter-80 > div[data-v-5aca90ac]:first-child {
+.scarab-groups.gutter-80 > div[data-v-98201ef8]:first-child {
   margin-left: 0;
 }
-.scarab-group[data-v-5aca90ac] {
+.scarab-group[data-v-98201ef8] {
   position: relative;
 }
-.scarab-type-icon[data-v-5aca90ac] {
+.scarab-type-icon[data-v-98201ef8] {
   z-index: 4;
   top: -12px;
   left: -16px;
 }
-.currency-type[data-v-5aca90ac] {
+.currency-type[data-v-98201ef8] {
   opacity: 0.4;
   filter: grayscale(1);
 }
-.currency-type.active-currency[data-v-5aca90ac] {
+.currency-type.active-currency[data-v-98201ef8] {
   opacity: 1;
   filter: grayscale(0);
 }
-.loading-chaos[data-v-5aca90ac] {
-  animation: loading-5aca90ac 3s linear infinite;
+.loading-chaos[data-v-98201ef8] {
+  animation: loading-98201ef8 3s linear infinite;
 }
-@keyframes loading-5aca90ac {
+@keyframes loading-98201ef8 {
 0% {
     transform: translate(-150px, -40px) rotate(0deg);
 }
