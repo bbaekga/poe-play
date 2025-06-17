@@ -1,4 +1,4 @@
-import { a as computed, r as ref, h, a9 as useSize, q as hMergeSlot, d as hSlot, aa as useSizeProps, g as getCurrentInstance, ab as toRaw, _ as stopAndPrevent, c as createComponent, ac as QIcon, ad as Platform } from "./index.js";
+import { a as computed, r as ref, h, aa as useSize, q as hMergeSlot, d as hSlot, ab as useSizeProps, g as getCurrentInstance, ac as toRaw, $ as stopAndPrevent, c as createComponent, ad as QIcon, ae as Platform } from "./index.js";
 const useDarkProps = {
   dark: {
     type: Boolean,
