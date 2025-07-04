@@ -1,17 +1,17 @@
-.gutter-80 .scarab-box[data-v-1dcb5cfc] {
-  margin-right: 6px;
+.scarab-group.wide .scarab-box[data-v-67740da5] {
+  margin-right: 7px;
 }
-.scarab-box[data-v-1dcb5cfc] {
+.scarab-box[data-v-67740da5] {
   position: relative;
   width: 46px;
   height: 46px;
   margin-right: 3px;
 }
-.scarab-box.empty[data-v-1dcb5cfc] {
+.scarab-box.empty[data-v-67740da5] {
   border-color: transparent;
   background-color: transparent;
 }
-.scarab-box[data-v-1dcb5cfc]:after {
+.scarab-box[data-v-67740da5]:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -19,97 +19,83 @@
   filter: opacity(0.7);
   z-index: 1;
 }
-.scarab-box[data-v-1dcb5cfc]:last-child {
+.scarab-box[data-v-67740da5]:last-child {
   margin-right: 0;
 }
-.scarab-box .highlight0-text[data-v-1dcb5cfc] {
+.scarab-box .q-img[data-v-67740da5] {
+  opacity: 0.75;
+}
+.scarab-box .highlight0-text[data-v-67740da5] {
   color: white;
 }
-.scarab-box .highlight1-text[data-v-1dcb5cfc] {
+.scarab-box .highlight1-text[data-v-67740da5] {
   color: #fff176;
 }
-.scarab-box .highlight2-text[data-v-1dcb5cfc] {
+.scarab-box .highlight2-text[data-v-67740da5] {
   color: #ffca28;
 }
-.scarab-box .highlight3-text[data-v-1dcb5cfc] {
+.scarab-box .highlight3-text[data-v-67740da5] {
   color: #ffb300;
 }
-.scarab-box .highlight4-text[data-v-1dcb5cfc] {
+.scarab-box .highlight4-text[data-v-67740da5] {
   color: #ffa726;
 }
-.scarab-box .highlight5-text[data-v-1dcb5cfc] {
+.scarab-box .highlight5-text[data-v-67740da5] {
   color: #ff9800;
 }
-.scarab-box .highlight6-text[data-v-1dcb5cfc] {
+.scarab-box .highlight6-text[data-v-67740da5] {
   color: #fb8c00;
 }
-.scarab-box .highlight7-text[data-v-1dcb5cfc] {
+.scarab-box .highlight7-text[data-v-67740da5] {
   color: #ff7043;
 }
-.scarab-box .highlight8-text[data-v-1dcb5cfc] {
+.scarab-box .highlight8-text[data-v-67740da5] {
   color: #ff5722;
 }
-.scarab-box .highlight9-text[data-v-1dcb5cfc] {
+.scarab-box .highlight9-text[data-v-67740da5] {
   color: red;
 }
-.scarab-name[data-v-1dcb5cfc] {
+.scarab-box.highlight9[data-v-67740da5]:after {
+  background-color: rgba(255, 0, 0, 0.35);
+}
+.scarab-box.highlight9 .q-img[data-v-67740da5] {
+  opacity: 1;
+}
+.scarab-name[data-v-67740da5] {
   color: #b2ebf2;
   font-size: 16px;
 }
-.scarab-description[data-v-1dcb5cfc] {
+.scarab-description[data-v-67740da5] {
   font-size: 14px;
   margin-top: 12px;
-}.scarab-stash[data-v-98201ef8] {
+}.scarab-stash[data-v-08632f5a] {
   width: 800px;
   height: 800px;
-  background-image: url("/poe-play/icons/background-scarab.png");
+  background-image: url("/poe-play/icons/scarab-stash-3.26.png");
   background-size: 800px 800px;
   background-repeat: no-repeat;
-}
-.scarab-groups.gutter-30 > div[data-v-98201ef8] {
-  margin-left: 30px;
-}
-.scarab-groups.gutter-30 > div[data-v-98201ef8]:first-child {
-  margin-left: 0;
-}
-.scarab-groups.gutter-40 > div[data-v-98201ef8] {
-  margin-left: 40px;
-}
-.scarab-groups.gutter-40 > div[data-v-98201ef8]:first-child {
-  margin-left: 0;
-}
-.scarab-groups.gutter-50 > div[data-v-98201ef8] {
-  margin-left: 50px;
-}
-.scarab-groups.gutter-50 > div[data-v-98201ef8]:first-child {
-  margin-left: 0;
-}
-.scarab-groups.gutter-80 > div[data-v-98201ef8] {
-  margin-left: 76px;
-}
-.scarab-groups.gutter-80 > div[data-v-98201ef8]:first-child {
-  margin-left: 0;
-}
-.scarab-group[data-v-98201ef8] {
   position: relative;
 }
-.scarab-type-icon[data-v-98201ef8] {
+.scarab-group[data-v-08632f5a] {
+  position: absolute;
+}
+.scarab-type-icon[data-v-08632f5a] {
   z-index: 4;
   top: -12px;
   left: -16px;
 }
-.currency-type[data-v-98201ef8] {
+.currency-type[data-v-08632f5a] {
   opacity: 0.4;
   filter: grayscale(1);
 }
-.currency-type.active-currency[data-v-98201ef8] {
+.currency-type.active-currency[data-v-08632f5a] {
   opacity: 1;
   filter: grayscale(0);
 }
-.loading-chaos[data-v-98201ef8] {
-  animation: loading-98201ef8 3s linear infinite;
+.loading-chaos[data-v-08632f5a] {
+  animation: loading-08632f5a 3s linear infinite;
 }
-@keyframes loading-98201ef8 {
+@keyframes loading-08632f5a {
 0% {
     transform: translate(-150px, -40px) rotate(0deg);
 }
