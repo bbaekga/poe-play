@@ -390,6 +390,9 @@ const _sfc_main = defineComponent({
     const scarabsPage = computed(() => {
       return currentPage.value === "scarabs";
     });
+    const beastsPage = computed(() => {
+      return currentPage.value === "beasts";
+    });
     const reCombinationPage = computed(() => {
       return currentPage.value === "reCombination";
     });
@@ -426,6 +429,12 @@ const _sfc_main = defineComponent({
                       color: scarabsPage.value ? "blue-5" : "",
                       flat: "",
                       to: { name: "scarabs" }
+                    }, null, 8, ["color"]),
+                    createVNode(QBtn, {
+                      label: "\uC57C\uC218",
+                      color: beastsPage.value ? "blue-5" : "",
+                      flat: "",
+                      to: { name: "beasts" }
                     }, null, 8, ["color"]),
                     createVNode(QBtn, {
                       label: "\uC7AC\uC870\uD569 \uACC4\uC0B0\uAE30",

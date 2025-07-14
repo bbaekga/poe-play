@@ -1,4 +1,4 @@
-import { a as computed, r as ref, h, aa as useSize, q as hMergeSlot, d as hSlot, ab as useSizeProps, g as getCurrentInstance, ac as toRaw, $ as stopAndPrevent, c as createComponent, ad as QIcon, ae as Platform } from "./index.js";
+import { a as computed, r as ref, h, aa as useSize, q as hMergeSlot, d as hSlot, ab as useSizeProps, g as getCurrentInstance, ac as toRaw, _ as stopAndPrevent, c as createComponent, ad as QIcon } from "./index.js";
 const useDarkProps = {
   dark: {
     type: Boolean,
@@ -257,45 +257,6 @@ var QCheckbox = createComponent({
     return useCheckbox("checkbox", getInner);
   }
 });
-function clearSelection() {
-  if (window.getSelection !== void 0) {
-    const selection = window.getSelection();
-    if (selection.empty !== void 0) {
-      selection.empty();
-    } else if (selection.removeAllRanges !== void 0) {
-      selection.removeAllRanges();
-      Platform.is.mobile !== true && selection.addRange(document.createRange());
-    }
-  } else if (document.selection !== void 0) {
-    document.selection.empty();
-  }
-}
-let queue = [];
-let waitFlags = [];
-function clearFlag(flag) {
-  waitFlags = waitFlags.filter((entry) => entry !== flag);
-}
-function addFocusWaitFlag(flag) {
-  clearFlag(flag);
-  waitFlags.push(flag);
-}
-function removeFocusWaitFlag(flag) {
-  clearFlag(flag);
-  if (waitFlags.length === 0 && queue.length !== 0) {
-    queue[queue.length - 1]();
-    queue = [];
-  }
-}
-function addFocusFn(fn) {
-  if (waitFlags.length === 0) {
-    fn();
-  } else {
-    queue.push(fn);
-  }
-}
-function removeFocusFn(fn) {
-  queue = queue.filter((entry) => entry !== fn);
-}
 var _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -303,4 +264,4 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-export { QCheckbox as Q, _export_sfc as _, addFocusWaitFlag as a, addFocusFn as b, clearSelection as c, useDark as d, removeFocusFn as e, useFormProps as f, useFormInputNameAttr as g, removeFocusWaitFlag as r, useDarkProps as u };
+export { QCheckbox as Q, _export_sfc as _, useDark as a, useFormProps as b, useFormInputNameAttr as c, useDarkProps as u };

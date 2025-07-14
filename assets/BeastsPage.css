@@ -1,0 +1,19 @@
+.currency-type[data-v-02d4f71b] {
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+.currency-type.active-currency[data-v-02d4f71b] {
+  opacity: 1;
+  filter: grayscale(0);
+}
+.reg-exp-box[data-v-02d4f71b] {
+  border: 1px solid #bdbdbd;
+  width: 800px;
+  min-height: 48px;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ef9a9a;
+  font-size: 16px;
+}
