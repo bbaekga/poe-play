@@ -1,17 +1,17 @@
-.scarab-group.wide .scarab-box[data-v-67740da5] {
+.scarab-group.wide .scarab-box[data-v-669cfc6c] {
   margin-right: 7px;
 }
-.scarab-box[data-v-67740da5] {
+.scarab-box[data-v-669cfc6c] {
   position: relative;
   width: 46px;
   height: 46px;
   margin-right: 3px;
 }
-.scarab-box.empty[data-v-67740da5] {
+.scarab-box.empty[data-v-669cfc6c] {
   border-color: transparent;
   background-color: transparent;
 }
-.scarab-box[data-v-67740da5]:after {
+.scarab-box[data-v-669cfc6c]:after {
   content: "";
   position: absolute;
   width: 100%;
@@ -19,56 +19,56 @@
   filter: opacity(0.7);
   z-index: 1;
 }
-.scarab-box[data-v-67740da5]:last-child {
+.scarab-box[data-v-669cfc6c]:last-child {
   margin-right: 0;
 }
-.scarab-box .q-img[data-v-67740da5] {
+.scarab-box .q-img[data-v-669cfc6c] {
   opacity: 0.75;
 }
-.scarab-box .highlight0-text[data-v-67740da5] {
+.scarab-box .highlight0-text[data-v-669cfc6c] {
   color: white;
 }
-.scarab-box .highlight1-text[data-v-67740da5] {
+.scarab-box .highlight1-text[data-v-669cfc6c] {
   color: #fff176;
 }
-.scarab-box .highlight2-text[data-v-67740da5] {
+.scarab-box .highlight2-text[data-v-669cfc6c] {
   color: #ffca28;
 }
-.scarab-box .highlight3-text[data-v-67740da5] {
+.scarab-box .highlight3-text[data-v-669cfc6c] {
   color: #ffb300;
 }
-.scarab-box .highlight4-text[data-v-67740da5] {
+.scarab-box .highlight4-text[data-v-669cfc6c] {
   color: #ffa726;
 }
-.scarab-box .highlight5-text[data-v-67740da5] {
+.scarab-box .highlight5-text[data-v-669cfc6c] {
   color: #ff9800;
 }
-.scarab-box .highlight6-text[data-v-67740da5] {
+.scarab-box .highlight6-text[data-v-669cfc6c] {
   color: #fb8c00;
 }
-.scarab-box .highlight7-text[data-v-67740da5] {
+.scarab-box .highlight7-text[data-v-669cfc6c] {
   color: #ff7043;
 }
-.scarab-box .highlight8-text[data-v-67740da5] {
+.scarab-box .highlight8-text[data-v-669cfc6c] {
   color: #ff5722;
 }
-.scarab-box .highlight9-text[data-v-67740da5] {
+.scarab-box .highlight9-text[data-v-669cfc6c] {
   color: red;
 }
-.scarab-box.highlight9[data-v-67740da5]:after {
+.scarab-box.highlight9[data-v-669cfc6c]:after {
   background-color: rgba(255, 0, 0, 0.35);
 }
-.scarab-box.highlight9 .q-img[data-v-67740da5] {
+.scarab-box.highlight9 .q-img[data-v-669cfc6c] {
   opacity: 1;
 }
-.scarab-name[data-v-67740da5] {
+.scarab-name[data-v-669cfc6c] {
   color: #b2ebf2;
   font-size: 16px;
 }
-.scarab-description[data-v-67740da5] {
+.scarab-description[data-v-669cfc6c] {
   font-size: 14px;
   margin-top: 12px;
-}.scarab-stash[data-v-08632f5a] {
+}.scarab-stash[data-v-c7e32206] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/icons/scarab-stash-3.26.png");
@@ -76,26 +76,26 @@
   background-repeat: no-repeat;
   position: relative;
 }
-.scarab-group[data-v-08632f5a] {
+.scarab-group[data-v-c7e32206] {
   position: absolute;
 }
-.scarab-type-icon[data-v-08632f5a] {
+.scarab-type-icon[data-v-c7e32206] {
   z-index: 4;
   top: -12px;
   left: -16px;
 }
-.currency-type[data-v-08632f5a] {
+.currency-type[data-v-c7e32206] {
   opacity: 0.4;
   filter: grayscale(1);
 }
-.currency-type.active-currency[data-v-08632f5a] {
+.currency-type.active-currency[data-v-c7e32206] {
   opacity: 1;
   filter: grayscale(0);
 }
-.loading-chaos[data-v-08632f5a] {
-  animation: loading-08632f5a 3s linear infinite;
+.loading-chaos[data-v-c7e32206] {
+  animation: loading-c7e32206 3s linear infinite;
 }
-@keyframes loading-08632f5a {
+@keyframes loading-c7e32206 {
 0% {
     transform: translate(-150px, -40px) rotate(0deg);
 }

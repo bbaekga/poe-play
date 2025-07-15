@@ -1,6 +1,7 @@
 import { c as createComponent, a as computed, h, d as hSlot, i as inject, e as emptyRenderFn, r as ref, w as watch, o as onBeforeUnmount, f as hUniqueSlot, l as layoutKey, g as getCurrentInstance, p as provide, j as pageContainerKey, k as isRuntimeSsrPreHydration, m as reactive, n as onUnmounted, q as hMergeSlot, s as defineComponent, u as useRouter, t as onBeforeMount, v as onMounted, x as resolveComponent, y as openBlock, z as createBlock, A as withCtx, B as createVNode, C as createBaseVNode, D as createTextVNode, Q as QBtn, E as normalizeStyle } from "./index.js";
-import { Q as QResizeObserver, a as QScrollObserver, u as useQuasar } from "./use-quasar.js";
+import { Q as QResizeObserver, a as QScrollObserver } from "./QScrollObserver.js";
 import { g as getScrollbarWidth } from "./scroll.js";
+import { u as useQuasar } from "./use-quasar.js";
 var QToolbarTitle = createComponent({
   name: "QToolbarTitle",
   props: {
@@ -393,9 +394,6 @@ const _sfc_main = defineComponent({
     const beastsPage = computed(() => {
       return currentPage.value === "beasts";
     });
-    const reCombinationPage = computed(() => {
-      return currentPage.value === "reCombination";
-    });
     onBeforeMount(() => {
       $q.dark.set(true);
     });
@@ -435,12 +433,6 @@ const _sfc_main = defineComponent({
                       color: beastsPage.value ? "blue-5" : "",
                       flat: "",
                       to: { name: "beasts" }
-                    }, null, 8, ["color"]),
-                    createVNode(QBtn, {
-                      label: "\uC7AC\uC870\uD569 \uACC4\uC0B0\uAE30",
-                      color: reCombinationPage.value ? "blue-5" : "",
-                      flat: "",
-                      to: { name: "reCombination" }
                     }, null, 8, ["color"])
                   ], 4)
                 ]),

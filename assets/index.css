@@ -12595,3 +12595,6 @@ body {
 .t-op-8 {
   opacity: 0.5;
 }
+.col-fit {
+  flex: 1 0 0;
+}

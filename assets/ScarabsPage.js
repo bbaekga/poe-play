@@ -1,7 +1,7 @@
 import { u as useTimeout, Q as QImg, a as useInterval } from "./use-interval.js";
 import { _ as _export_sfc, Q as QCheckbox } from "./plugin-vue_export-helper.js";
 import { Q as QPage } from "./QPage.js";
-import { r as ref, M as isKeyCode, N as prevent, G as nextTick, O as addEvt, w as watch, v as onMounted, o as onBeforeUnmount, g as getCurrentInstance, P as cleanEvt, H as listenOpts, R as vmHasRouter, c as createComponent, n as onUnmounted, S as injectProp, h, T as Teleport, U as createGlobalNode, V as removeGlobalNode, a as computed, W as onDeactivated, X as vmIsDestroyed, Y as client, Z as Transition, d as hSlot, _ as stopAndPrevent, s as defineComponent, y as openBlock, $ as createElementBlock, B as createVNode, C as createBaseVNode, a0 as Fragment, D as createTextVNode, a1 as toDisplayString, a2 as createCommentVNode, a3 as normalizeClass, A as withCtx, a4 as renderList, z as createBlock, a5 as withDirectives, a6 as vShow, E as normalizeStyle, a7 as pushScopeId, a8 as popScopeId } from "./index.js";
+import { r as ref, M as isKeyCode, N as prevent, H as nextTick, O as addEvt, w as watch, v as onMounted, o as onBeforeUnmount, g as getCurrentInstance, P as cleanEvt, I as listenOpts, R as vmHasRouter, c as createComponent, n as onUnmounted, S as injectProp, h, T as Teleport, U as createGlobalNode, V as removeGlobalNode, a as computed, W as onDeactivated, X as vmIsDestroyed, Y as client, Z as Transition, d as hSlot, _ as stopAndPrevent, s as defineComponent, y as openBlock, $ as createElementBlock, B as createVNode, C as createBaseVNode, a0 as Fragment, D as createTextVNode, a1 as toDisplayString, a2 as createCommentVNode, a3 as normalizeClass, A as withCtx, a4 as renderList, z as createBlock, a5 as withDirectives, a6 as vShow, E as normalizeStyle, a7 as pushScopeId, a8 as popScopeId } from "./index.js";
 import { a as axios } from "./axios2.js";
 import { c as clearSelection, r as removeFocusWaitFlag, a as addFocusWaitFlag } from "./focus-manager.js";
 import { g as getScrollbarWidth, a as getScrollTarget } from "./scroll.js";
@@ -1294,7 +1294,6 @@ const _sfc_main$1 = defineComponent({
   props: {
     scarab: {},
     chaosType: { type: Boolean },
-    exaltedType: { type: Boolean },
     divineType: { type: Boolean },
     highlight: { type: Boolean }
   },
@@ -1319,10 +1318,7 @@ const _sfc_main$1 = defineComponent({
           _ctx.chaosType ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
             createTextVNode(toDisplayString(props.scarab.chaos), 1)
           ], 64)) : createCommentVNode("", true),
-          _ctx.exaltedType ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-            createTextVNode(toDisplayString(props.scarab.exalted), 1)
-          ], 64)) : createCommentVNode("", true),
-          _ctx.divineType ? (openBlock(), createElementBlock(Fragment, { key: 2 }, [
+          _ctx.divineType ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
             createTextVNode(toDisplayString(props.scarab.divine), 1)
           ], 64)) : createCommentVNode("", true)
         ], 2),
@@ -1374,9 +1370,9 @@ const _sfc_main$1 = defineComponent({
     };
   }
 });
-var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-67740da5"]]);
+var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-669cfc6c"]]);
 var ScarabsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-08632f5a"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-c7e32206"), n = n(), popScopeId(), n);
 const _hoisted_1 = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
@@ -1404,7 +1400,6 @@ const _sfc_main = defineComponent({
     const { registerInterval, removeInterval } = useInterval();
     const currencyType = ref("chaos");
     const chaosType = computed(() => currencyType.value === "chaos");
-    const exaltedType = computed(() => currencyType.value === "exalted");
     const divineType = computed(() => currencyType.value === "divine");
     const fetchLoading = ref(false);
     const highlight = ref(true);
@@ -1520,17 +1515,8 @@ const _sfc_main = defineComponent({
               })
             ], 2),
             createBaseVNode("div", {
-              class: normalizeClass(["cursor-pointer currency-type", exaltedType.value ? "active-currency" : ""]),
-              onClick: _cache[1] || (_cache[1] = ($event) => currencyType.value = "exalted")
-            }, [
-              createVNode(QImg, {
-                src: "icons/exalted.png",
-                width: "32px"
-              })
-            ], 2),
-            createBaseVNode("div", {
               class: normalizeClass(["cursor-pointer currency-type", divineType.value ? "active-currency" : ""]),
-              onClick: _cache[2] || (_cache[2] = ($event) => currencyType.value = "divine")
+              onClick: _cache[1] || (_cache[1] = ($event) => currencyType.value = "divine")
             }, [
               createVNode(QImg, {
                 src: "icons/divine.png",
@@ -1540,7 +1526,7 @@ const _sfc_main = defineComponent({
             createVNode(QCheckbox, {
               label: "\uAC00\uACA9 \uD558\uC774\uB77C\uC774\uD2B8",
               modelValue: highlight.value,
-              "onUpdate:modelValue": _cache[3] || (_cache[3] = ($event) => highlight.value = $event),
+              "onUpdate:modelValue": _cache[2] || (_cache[2] = ($event) => highlight.value = $event),
               dense: "",
               style: { "margin-left": "32px" }
             }, null, 8, ["modelValue"])
@@ -1557,10 +1543,9 @@ const _sfc_main = defineComponent({
                     key: `${index}-${sIndex}`,
                     scarab,
                     "chaos-type": chaosType.value,
-                    "exalted-type": exaltedType.value,
                     "divine-type": divineType.value,
                     highlight: highlight.value
-                  }, null, 8, ["scarab", "chaos-type", "exalted-type", "divine-type", "highlight"]);
+                  }, null, 8, ["scarab", "chaos-type", "divine-type", "highlight"]);
                 }), 128))
               ], 6);
             }), 128))
@@ -1571,5 +1556,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-08632f5a"]]);
+var ScarabsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-c7e32206"]]);
 export { ScarabsPage as default };
