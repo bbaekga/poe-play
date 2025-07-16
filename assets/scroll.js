@@ -1,4 +1,124 @@
-import { J as getElement, K as css } from "./index.js";
+import { r as ref, k as isRuntimeSsrPreHydration, v as onMounted, c as createComponent, o as onBeforeUnmount, G as noop, H as nextTick, h, g as getCurrentInstance, I as listenOpts, J as getElement, K as css } from "./index.js";
+function useHydration() {
+  const isHydrated = ref(!isRuntimeSsrPreHydration.value);
+  if (isHydrated.value === false) {
+    onMounted(() => {
+      isHydrated.value = true;
+    });
+  }
+  return { isHydrated };
+}
+const hasObserver = typeof ResizeObserver !== "undefined";
+const resizeProps = hasObserver === true ? {} : {
+  style: "display:block;position:absolute;top:0;left:0;right:0;bottom:0;height:100%;width:100%;overflow:hidden;pointer-events:none;z-index:-1;",
+  url: "about:blank"
+};
+var QResizeObserver = createComponent({
+  name: "QResizeObserver",
+  props: {
+    debounce: {
+      type: [String, Number],
+      default: 100
+    }
+  },
+  emits: ["resize"],
+  setup(props, { emit }) {
+    let timer = null, targetEl, size2 = { width: -1, height: -1 };
+    function trigger(immediately) {
+      if (immediately === true || props.debounce === 0 || props.debounce === "0") {
+        emitEvent();
+      } else if (timer === null) {
+        timer = setTimeout(emitEvent, props.debounce);
+      }
+    }
+    function emitEvent() {
+      if (timer !== null) {
+        clearTimeout(timer);
+        timer = null;
+      }
+      if (targetEl) {
+        const { offsetWidth: width, offsetHeight: height } = targetEl;
+        if (width !== size2.width || height !== size2.height) {
+          size2 = { width, height };
+          emit("resize", size2);
+        }
+      }
+    }
+    const { proxy } = getCurrentInstance();
+    proxy.trigger = trigger;
+    if (hasObserver === true) {
+      let observer;
+      const init = (stop) => {
+        targetEl = proxy.$el.parentNode;
+        if (targetEl) {
+          observer = new ResizeObserver(trigger);
+          observer.observe(targetEl);
+          emitEvent();
+        } else if (stop !== true) {
+          nextTick(() => {
+            init(true);
+          });
+        }
+      };
+      onMounted(() => {
+        init();
+      });
+      onBeforeUnmount(() => {
+        timer !== null && clearTimeout(timer);
+        if (observer !== void 0) {
+          if (observer.disconnect !== void 0) {
+            observer.disconnect();
+          } else if (targetEl) {
+            observer.unobserve(targetEl);
+          }
+        }
+      });
+      return noop;
+    } else {
+      let cleanup = function() {
+        if (timer !== null) {
+          clearTimeout(timer);
+          timer = null;
+        }
+        if (curDocView !== void 0) {
+          if (curDocView.removeEventListener !== void 0) {
+            curDocView.removeEventListener("resize", trigger, listenOpts.passive);
+          }
+          curDocView = void 0;
+        }
+      }, onObjLoad = function() {
+        cleanup();
+        if (targetEl && targetEl.contentDocument) {
+          curDocView = targetEl.contentDocument.defaultView;
+          curDocView.addEventListener("resize", trigger, listenOpts.passive);
+          emitEvent();
+        }
+      };
+      const { isHydrated } = useHydration();
+      let curDocView;
+      onMounted(() => {
+        nextTick(() => {
+          targetEl = proxy.$el;
+          targetEl && onObjLoad();
+        });
+      });
+      onBeforeUnmount(cleanup);
+      return () => {
+        if (isHydrated.value === true) {
+          return h("object", {
+            class: "q--avoid-card-border",
+            style: resizeProps.style,
+            tabindex: -1,
+            type: "text/html",
+            data: resizeProps.url,
+            "aria-hidden": "true",
+            onLoad: onObjLoad
+          });
+        }
+      };
+    }
+  }
+});
 const scrollTargets = [null, document, document.body, document.scrollingElement, document.documentElement];
 function getScrollTarget(el, targetEl) {
   let target = getElement(targetEl);
@@ -111,4 +231,4 @@ function getScrollbarWidth() {
   size = w1 - w2;
   return size;
 }
-export { getScrollTarget as a, getVerticalScrollPosition as b, getHorizontalScrollPosition as c, setHorizontalScrollPosition as d, getScrollbarWidth as g, setVerticalScrollPosition as s };
+export { QResizeObserver as Q, getScrollTarget as a, getVerticalScrollPosition as b, getHorizontalScrollPosition as c, setHorizontalScrollPosition as d, getScrollbarWidth as g, setVerticalScrollPosition as s };

@@ -5,7 +5,7 @@ var __publicField = (obj, key, value) => {
   return value;
 };
 import { a as useInterval, Q as QImg } from "./use-interval.js";
-import { s as defineComponent, v as onMounted, o as onBeforeUnmount, r as ref, a as computed, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, a3 as normalizeClass, B as createVNode, a1 as toDisplayString, ad as QIcon, $ as createElementBlock, a4 as renderList, a0 as Fragment, a2 as createCommentVNode, a7 as pushScopeId, a8 as popScopeId } from "./index.js";
+import { s as defineComponent, v as onMounted, o as onBeforeUnmount, r as ref, a as computed, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, ah as normalizeClass, B as createVNode, af as toDisplayString, T as QIcon, ad as createElementBlock, ai as renderList, ae as Fragment, ag as createCommentVNode, ak as pushScopeId, al as popScopeId } from "./index.js";
 import { _ as _export_sfc, Q as QCheckbox } from "./plugin-vue_export-helper.js";
 import { Q as QPage } from "./QPage.js";
 import { a as axios } from "./axios2.js";
@@ -99,29 +99,45 @@ const beastInfos = [
   { id: "vivid-abberarach", name: "\uD608\uAE30 \uC560\uBC84\uB77C\uB77C\uD06C", regExp: "\uAE30.\uC560" }
 ];
 var BeastsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-43d36454"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-abd1edec"), n = n(), popScopeId(), n);
 const _hoisted_1 = { class: "row justify-center items-center q-mb-md q-gutter-x-md relative-position" };
 const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", null, "\uD654\uD3D0\uB2E8\uC704", -1));
-const _hoisted_3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
-  class: "q-mx-auto",
-  style: { "font-size": "24px", "width": "800px" }
-}, " \u{1F44D}\u{1F3FB} \u{1F98D}\u{1F982}\u{1F438} ", -1));
-const _hoisted_4 = { class: "row items-center no-wrap reg-exp-box relative-position" };
-const _hoisted_5 = { class: "row items-center col-fit" };
-const _hoisted_6 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
-  class: "q-mx-auto",
-  style: { "font-size": "24px", "width": "800px" }
-}, " \u{1F44E}\u{1F3FB} \u{1F645}\u{1F3FB}\u{1F4A3}\u{1F5D1}\uFE0F ", -1));
-const _hoisted_7 = { class: "row items-center no-wrap reg-exp-box relative-position" };
-const _hoisted_8 = { class: "row items-center col-fit text-red-4" };
-const _hoisted_9 = {
+const _hoisted_3 = {
+  class: "row items-center relative-position",
+  style: { "margin": "0 auto 24px", "width": "fit-content" }
+};
+const _hoisted_4 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  class: "q-mr-md",
+  style: { "font-size": "36px" }
+}, "\u{1F44D}\u{1F3FB}", -1));
+const _hoisted_5 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  class: "t-mr-10",
+  style: { "font-size": "24px" }
+}, " \u{1F98D}\u{1F982}\u{1F438} ", -1));
+const _hoisted_6 = { class: "row items-center no-wrap reg-exp-box" };
+const _hoisted_7 = { class: "row items-center col-fit" };
+const _hoisted_8 = {
+  class: "row items-center relative-position",
+  style: { "margin": "0 auto 24px", "width": "fit-content" }
+};
+const _hoisted_9 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  class: "q-mr-md",
+  style: { "font-size": "36px" }
+}, "\u{1F44E}\u{1F3FB}", -1));
+const _hoisted_10 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  class: "t-mr-10",
+  style: { "font-size": "24px" }
+}, " \u{1F645}\u{1F3FB}\u{1F4A3}\u{1F5D1}\uFE0F ", -1));
+const _hoisted_11 = { class: "row items-center no-wrap reg-exp-box" };
+const _hoisted_12 = { class: "row items-center col-fit text-red-4" };
+const _hoisted_13 = {
   class: "q-mx-auto",
   style: { "width": "300px", "margin-bottom": "200px" }
 };
-const _hoisted_10 = ["onClick"];
-const _hoisted_11 = { class: "q-ml-sm" };
-const _hoisted_12 = { class: "text-right col-grow" };
-const _hoisted_13 = { class: "text-right col-grow" };
+const _hoisted_14 = ["onClick"];
+const _hoisted_15 = { class: "q-ml-sm" };
+const _hoisted_16 = { class: "text-right col-grow" };
+const _hoisted_17 = { class: "text-right col-grow" };
 const _sfc_main = defineComponent({
   ...{
     name: "BeastsPage"
@@ -188,9 +204,14 @@ const _sfc_main = defineComponent({
       preciousRegExpString.value = getRegGroups(preciousRegExps);
     }
     function makeGarbageRegExp() {
-      const garbage = list.value.filter((b) => !b.selected);
-      const garbageRegExps = orderBy(garbage, ["regExp"]).map((b) => b.regExp);
-      garbageRegExpString.value = getRegGroups(garbageRegExps);
+      const precious = list.value.filter((b) => b.selected);
+      if (!precious.length) {
+        garbageRegExpString.value = "";
+      } else {
+        const garbage = list.value.filter((b) => !b.selected);
+        const garbageRegExps = orderBy(garbage, ["regExp"]).map((b) => b.regExp);
+        garbageRegExpString.value = getRegGroups(garbageRegExps);
+      }
     }
     function getRegGroups(list2) {
       const groups = [];
@@ -246,7 +267,7 @@ const _sfc_main = defineComponent({
               onClick: _cache[0] || (_cache[0] = ($event) => currencyType.value = "chaos")
             }, [
               createVNode(QImg, {
-                src: "icons/chaos.png",
+                src: "images/chaos.png",
                 width: "32px"
               })
             ], 2),
@@ -255,34 +276,40 @@ const _sfc_main = defineComponent({
               onClick: _cache[1] || (_cache[1] = ($event) => currencyType.value = "divine")
             }, [
               createVNode(QImg, {
-                src: "icons/divine.png",
+                src: "images/divine.png",
                 width: "32px"
               })
             ], 2)
           ]),
-          _hoisted_3,
-          createBaseVNode("div", _hoisted_4, [
-            createBaseVNode("div", _hoisted_5, toDisplayString(preciousRegExpString.value), 1),
-            createVNode(QIcon, {
-              name: "sym_r_content_copy",
-              color: "white",
-              size: "24px",
-              class: "cursor-pointer",
-              onClick: copyPreciousRegExp
-            })
+          createBaseVNode("div", _hoisted_3, [
+            _hoisted_4,
+            _hoisted_5,
+            createBaseVNode("div", _hoisted_6, [
+              createBaseVNode("div", _hoisted_7, toDisplayString(preciousRegExpString.value), 1),
+              createVNode(QIcon, {
+                name: "sym_r_content_copy",
+                color: "white",
+                size: "24px",
+                class: "cursor-pointer",
+                onClick: copyPreciousRegExp
+              })
+            ])
           ]),
-          _hoisted_6,
-          createBaseVNode("div", _hoisted_7, [
-            createBaseVNode("div", _hoisted_8, toDisplayString(garbageRegExpString.value), 1),
-            createVNode(QIcon, {
-              name: "sym_r_content_copy",
-              color: "white",
-              size: "24px",
-              class: "cursor-pointer",
-              onClick: copyGarbageRegExp
-            })
+          createBaseVNode("div", _hoisted_8, [
+            _hoisted_9,
+            _hoisted_10,
+            createBaseVNode("div", _hoisted_11, [
+              createBaseVNode("div", _hoisted_12, toDisplayString(garbageRegExpString.value), 1),
+              createVNode(QIcon, {
+                name: "sym_r_content_copy",
+                color: "white",
+                size: "24px",
+                class: "cursor-pointer",
+                onClick: copyGarbageRegExp
+              })
+            ])
           ]),
-          createBaseVNode("div", _hoisted_9, [
+          createBaseVNode("div", _hoisted_13, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(list.value, (beast, index) => {
               return openBlock(), createElementBlock("div", {
                 key: index,
@@ -294,24 +321,24 @@ const _sfc_main = defineComponent({
                   "onUpdate:modelValue": [($event) => beast.selected = $event, makeRegExp],
                   dense: ""
                 }, null, 8, ["modelValue", "onUpdate:modelValue"]),
-                createBaseVNode("div", _hoisted_11, toDisplayString(beast.name), 1),
+                createBaseVNode("div", _hoisted_15, toDisplayString(beast.name), 1),
                 chaosType.value ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                  createBaseVNode("div", _hoisted_12, toDisplayString(beast.chaos), 1),
+                  createBaseVNode("div", _hoisted_16, toDisplayString(beast.chaos), 1),
                   createVNode(QImg, {
-                    src: "icons/chaos.png",
+                    src: "images/chaos.png",
                     class: "q-ml-xs",
                     width: "20px"
                   })
                 ], 64)) : createCommentVNode("", true),
                 divineType.value ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                  createBaseVNode("div", _hoisted_13, toDisplayString(beast.divine), 1),
+                  createBaseVNode("div", _hoisted_17, toDisplayString(beast.divine), 1),
                   createVNode(QImg, {
-                    src: "icons/divine.png",
+                    src: "images/divine.png",
                     class: "q-ml-xs",
                     width: "20px"
                   })
                 ], 64)) : createCommentVNode("", true)
-              ], 10, _hoisted_10);
+              ], 10, _hoisted_14);
             }), 128))
           ])
         ]),
@@ -320,5 +347,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var BeastsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-43d36454"]]);
+var BeastsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-abd1edec"]]);
 export { BeastsPage as default };

@@ -62,6 +62,7 @@ const hasOwn = (val, key) => hasOwnProperty$1.call(val, key);
 const isArray$1 = Array.isArray;
 const isMap = (val) => toTypeString(val) === "[object Map]";
 const isSet = (val) => toTypeString(val) === "[object Set]";
+const isRegExp = (val) => toTypeString(val) === "[object RegExp]";
 const isFunction = (val) => typeof val === "function";
 const isString = (val) => typeof val === "string";
 const isSymbol = (val) => typeof val === "symbol";
@@ -2357,6 +2358,191 @@ function defineComponent(options, extraOptions) {
 }
 const isAsyncWrapper = (i) => !!i.type.__asyncLoader;
 const isKeepAlive = (vnode) => vnode.type.__isKeepAlive;
+const KeepAliveImpl = {
+  name: `KeepAlive`,
+  __isKeepAlive: true,
+  props: {
+    include: [String, RegExp, Array],
+    exclude: [String, RegExp, Array],
+    max: [String, Number]
+  },
+  setup(props, { slots }) {
+    const instance = getCurrentInstance();
+    const sharedContext = instance.ctx;
+    if (!sharedContext.renderer) {
+      return () => {
+        const children = slots.default && slots.default();
+        return children && children.length === 1 ? children[0] : children;
+      };
+    }
+    const cache = /* @__PURE__ */ new Map();
+    const keys = /* @__PURE__ */ new Set();
+    let current = null;
+    const parentSuspense = instance.suspense;
+    const {
+      renderer: {
+        p: patch,
+        m: move,
+        um: _unmount,
+        o: { createElement }
+      }
+    } = sharedContext;
+    const storageContainer = createElement("div");
+    sharedContext.activate = (vnode, container, anchor, namespace, optimized) => {
+      const instance2 = vnode.component;
+      move(vnode, container, anchor, 0, parentSuspense);
+      patch(
+        instance2.vnode,
+        vnode,
+        container,
+        anchor,
+        instance2,
+        parentSuspense,
+        namespace,
+        vnode.slotScopeIds,
+        optimized
+      );
+      queuePostRenderEffect(() => {
+        instance2.isDeactivated = false;
+        if (instance2.a) {
+          invokeArrayFns(instance2.a);
+        }
+        const vnodeHook = vnode.props && vnode.props.onVnodeMounted;
+        if (vnodeHook) {
+          invokeVNodeHook(vnodeHook, instance2.parent, vnode);
+        }
+      }, parentSuspense);
+    };
+    sharedContext.deactivate = (vnode) => {
+      const instance2 = vnode.component;
+      move(vnode, storageContainer, null, 1, parentSuspense);
+      queuePostRenderEffect(() => {
+        if (instance2.da) {
+          invokeArrayFns(instance2.da);
+        }
+        const vnodeHook = vnode.props && vnode.props.onVnodeUnmounted;
+        if (vnodeHook) {
+          invokeVNodeHook(vnodeHook, instance2.parent, vnode);
+        }
+        instance2.isDeactivated = true;
+      }, parentSuspense);
+    };
+    function unmount(vnode) {
+      resetShapeFlag(vnode);
+      _unmount(vnode, instance, parentSuspense, true);
+    }
+    function pruneCache(filter) {
+      cache.forEach((vnode, key) => {
+        const name = getComponentName(vnode.type);
+        if (name && (!filter || !filter(name))) {
+          pruneCacheEntry(key);
+        }
+      });
+    }
+    function pruneCacheEntry(key) {
+      const cached = cache.get(key);
+      if (!current || !isSameVNodeType(cached, current)) {
+        unmount(cached);
+      } else if (current) {
+        resetShapeFlag(current);
+      }
+      cache.delete(key);
+      keys.delete(key);
+    }
+    watch(
+      () => [props.include, props.exclude],
+      ([include, exclude]) => {
+        include && pruneCache((name) => matches(include, name));
+        exclude && pruneCache((name) => !matches(exclude, name));
+      },
+      { flush: "post", deep: true }
+    );
+    let pendingCacheKey = null;
+    const cacheSubtree = () => {
+      if (pendingCacheKey != null) {
+        cache.set(pendingCacheKey, getInnerChild(instance.subTree));
+      }
+    };
+    onMounted(cacheSubtree);
+    onUpdated(cacheSubtree);
+    onBeforeUnmount(() => {
+      cache.forEach((cached) => {
+        const { subTree, suspense } = instance;
+        const vnode = getInnerChild(subTree);
+        if (cached.type === vnode.type && cached.key === vnode.key) {
+          resetShapeFlag(vnode);
+          const da = vnode.component.da;
+          da && queuePostRenderEffect(da, suspense);
+          return;
+        }
+        unmount(cached);
+      });
+    });
+    return () => {
+      pendingCacheKey = null;
+      if (!slots.default) {
+        return null;
+      }
+      const children = slots.default();
+      const rawVNode = children[0];
+      if (children.length > 1) {
+        current = null;
+        return children;
+      } else if (!isVNode(rawVNode) || !(rawVNode.shapeFlag & 4) && !(rawVNode.shapeFlag & 128)) {
+        current = null;
+        return rawVNode;
+      }
+      let vnode = getInnerChild(rawVNode);
+      const comp = vnode.type;
+      const name = getComponentName(
+        isAsyncWrapper(vnode) ? vnode.type.__asyncResolved || {} : comp
+      );
+      const { include, exclude, max } = props;
+      if (include && (!name || !matches(include, name)) || exclude && name && matches(exclude, name)) {
+        current = vnode;
+        return rawVNode;
+      }
+      const key = vnode.key == null ? comp : vnode.key;
+      const cachedVNode = cache.get(key);
+      if (vnode.el) {
+        vnode = cloneVNode(vnode);
+        if (rawVNode.shapeFlag & 128) {
+          rawVNode.ssContent = vnode;
+        }
+      }
+      pendingCacheKey = key;
+      if (cachedVNode) {
+        vnode.el = cachedVNode.el;
+        vnode.component = cachedVNode.component;
+        if (vnode.transition) {
+          setTransitionHooks(vnode, vnode.transition);
+        }
+        vnode.shapeFlag |= 512;
+        keys.delete(key);
+        keys.add(key);
+      } else {
+        keys.add(key);
+        if (max && keys.size > parseInt(max, 10)) {
+          pruneCacheEntry(keys.values().next().value);
+        }
+      }
+      vnode.shapeFlag |= 256;
+      current = vnode;
+      return isSuspense(rawVNode.type) ? rawVNode : vnode;
+    };
+  }
+};
+const KeepAlive = KeepAliveImpl;
+function matches(pattern, name) {
+  if (isArray$1(pattern)) {
+    return pattern.some((p2) => matches(p2, name));
+  } else if (isString(pattern)) {
+    return pattern.split(",").includes(name);
+  } else if (isRegExp(pattern)) {
+    return pattern.test(name);
+  }
+  return false;
+}
 function onActivated(hook, target2) {
   registerKeepAliveHook(hook, "a", target2);
 }
@@ -2395,6 +2581,13 @@ function injectToKeepAliveRoot(hook, type, target2, keepAliveRoot) {
   onUnmounted(() => {
     remove(keepAliveRoot[type], injected);
   }, target2);
+}
+function resetShapeFlag(vnode) {
+  vnode.shapeFlag &= ~256;
+  vnode.shapeFlag &= ~512;
+}
+function getInnerChild(vnode) {
+  return vnode.shapeFlag & 128 ? vnode.ssContent : vnode;
 }
 function injectHook(type, hook, target2 = currentInstance, prepend = false) {
   if (target2) {
@@ -7347,12 +7540,106 @@ const quasarKey = "_q_";
 const layoutKey = "_q_l_";
 const pageContainerKey = "_q_pc_";
 const formKey = "_q_fo_";
+const tabsKey = "_q_tabs_";
 const emptyRenderFn = () => {
 };
 const globalConfig = {};
 let globalConfigIsFrozen = false;
 function freezeGlobalConfig() {
   globalConfigIsFrozen = true;
+}
+function isDeepEqual(a, b) {
+  if (a === b) {
+    return true;
+  }
+  if (a !== null && b !== null && typeof a === "object" && typeof b === "object") {
+    if (a.constructor !== b.constructor) {
+      return false;
+    }
+    let length, i;
+    if (a.constructor === Array) {
+      length = a.length;
+      if (length !== b.length) {
+        return false;
+      }
+      for (i = length; i-- !== 0; ) {
+        if (isDeepEqual(a[i], b[i]) !== true) {
+          return false;
+        }
+      }
+      return true;
+    }
+    if (a.constructor === Map) {
+      if (a.size !== b.size) {
+        return false;
+      }
+      let iter = a.entries();
+      i = iter.next();
+      while (i.done !== true) {
+        if (b.has(i.value[0]) !== true) {
+          return false;
+        }
+        i = iter.next();
+      }
+      iter = a.entries();
+      i = iter.next();
+      while (i.done !== true) {
+        if (isDeepEqual(i.value[1], b.get(i.value[0])) !== true) {
+          return false;
+        }
+        i = iter.next();
+      }
+      return true;
+    }
+    if (a.constructor === Set) {
+      if (a.size !== b.size) {
+        return false;
+      }
+      const iter = a.entries();
+      i = iter.next();
+      while (i.done !== true) {
+        if (b.has(i.value[0]) !== true) {
+          return false;
+        }
+        i = iter.next();
+      }
+      return true;
+    }
+    if (a.buffer != null && a.buffer.constructor === ArrayBuffer) {
+      length = a.length;
+      if (length !== b.length) {
+        return false;
+      }
+      for (i = length; i-- !== 0; ) {
+        if (a[i] !== b[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    if (a.constructor === RegExp) {
+      return a.source === b.source && a.flags === b.flags;
+    }
+    if (a.valueOf !== Object.prototype.valueOf) {
+      return a.valueOf() === b.valueOf();
+    }
+    if (a.toString !== Object.prototype.toString) {
+      return a.toString() === b.toString();
+    }
+    const keys = Object.keys(a).filter((key) => a[key] !== void 0);
+    length = keys.length;
+    if (length !== Object.keys(b).filter((key) => b[key] !== void 0).length) {
+      return false;
+    }
+    for (i = length; i-- !== 0; ) {
+      const key = keys[i];
+      if (isDeepEqual(a[key], b[key]) !== true) {
+        return false;
+      }
+    }
+    return true;
+  }
+  return a !== a && b !== b;
 }
 function isObject(v) {
   return v !== null && typeof v === "object" && Array.isArray(v) !== true;
@@ -9132,7 +9419,7 @@ function useRouter() {
 const routes = [
   {
     path: "/",
-    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/QScrollObserver.js","assets/scroll.js","assets/use-quasar.js"] : void 0),
+    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/scroll.js","assets/QScrollObserver.js","assets/use-quasar.js"] : void 0),
     children: [
       {
         path: "",
@@ -9140,9 +9427,9 @@ const routes = [
         component: () => __vitePreload(() => import("./IndexPage.js"), true ? ["assets/IndexPage.js","assets/QPage.js"] : void 0)
       },
       {
-        path: "scarabs",
-        name: "scarabs",
-        component: () => __vitePreload(() => import("./ScarabsPage.js"), true ? ["assets/ScarabsPage.js","assets/ScarabsPage.css","assets/use-interval.js","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios2.js","assets/focus-manager.js","assets/scroll.js"] : void 0)
+        path: "stash",
+        name: "stash",
+        component: () => __vitePreload(() => import("./StashPage.js"), true ? ["assets/StashPage.js","assets/StashPage.css","assets/focus-manager.js","assets/scroll.js","assets/use-interval.js","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios2.js"] : void 0)
       },
       {
         path: "beasts",
@@ -9152,7 +9439,7 @@ const routes = [
       {
         path: "reCombination",
         name: "reCombination",
-        component: () => __vitePreload(() => import("./ReCombinationPage.js"), true ? ["assets/ReCombinationPage.js","assets/ReCombinationPage.css","assets/plugin-vue_export-helper.js","assets/focus-manager.js","assets/QScrollObserver.js","assets/scroll.js","assets/QPage.js","assets/use-quasar.js","assets/orderBy.js"] : void 0)
+        component: () => __vitePreload(() => import("./ReCombinationPage.js"), true ? ["assets/ReCombinationPage.js","assets/ReCombinationPage.css","assets/plugin-vue_export-helper.js","assets/focus-manager.js","assets/scroll.js","assets/QScrollObserver.js","assets/QPage.js","assets/use-quasar.js","assets/orderBy.js"] : void 0)
       }
     ]
   },
@@ -9306,6 +9593,11 @@ function hMergeSlotSafely(slot, source) {
   }
   return source !== void 0 ? source.concat(slot()) : slot();
 }
+function hDir(tag, data, children, key, condition, getDirsFn) {
+  data.key = key + condition;
+  const vnode = h(tag, data, children);
+  return condition === true ? withDirectives(vnode, getDirsFn()) : vnode;
+}
 const defaultViewBox = "0 0 24 24";
 const sameFn = (i) => i;
 const ionFn = (i) => `ionicons ${i}`;
@@ -9406,27 +9698,27 @@ var QIcon = createComponent({
         };
       }
       let content = " ";
-      const matches = icon.match(libRE);
-      if (matches !== null) {
-        cls = libMap[matches[1]](icon);
+      const matches2 = icon.match(libRE);
+      if (matches2 !== null) {
+        cls = libMap[matches2[1]](icon);
       } else if (faRE.test(icon) === true) {
         cls = icon;
       } else if (ionRE.test(icon) === true) {
         cls = `ionicons ion-${$q.platform.is.ios === true ? "ios" : "md"}${icon.substring(3)}`;
       } else if (symRE.test(icon) === true) {
         cls = "notranslate material-symbols";
-        const matches2 = icon.match(symRE);
-        if (matches2 !== null) {
+        const matches3 = icon.match(symRE);
+        if (matches3 !== null) {
           icon = icon.substring(6);
-          cls += symMap[matches2[1]];
+          cls += symMap[matches3[1]];
         }
         content = icon;
       } else {
         cls = "notranslate material-icons";
-        const matches2 = icon.match(matRE);
-        if (matches2 !== null) {
+        const matches3 = icon.match(matRE);
+        if (matches3 !== null) {
           icon = icon.substring(2);
-          cls += matMap[matches2[1]];
+          cls += matMap[matches3[1]];
         }
         content = icon;
       }
@@ -9710,6 +10002,24 @@ function useAlign(props) {
     const align = props.align === void 0 ? props.vertical === true ? "stretch" : "left" : props.align;
     return `${props.vertical === true ? "items" : "justify"}-${alignMap[align]}`;
   });
+}
+function fillNormalizedVNodes(children, vnode) {
+  if (typeof vnode.type === "symbol") {
+    if (Array.isArray(vnode.children) === true) {
+      vnode.children.forEach((child) => {
+        fillNormalizedVNodes(children, child);
+      });
+    }
+  } else {
+    children.add(vnode);
+  }
+}
+function getNormalizedVNodes(vnodes) {
+  const children = /* @__PURE__ */ new Set();
+  vnodes.forEach((vnode) => {
+    fillNormalizedVNodes(children, vnode);
+  });
+  return Array.from(children);
 }
 function vmHasRouter(vm) {
   return vm.appContext.config.globalProperties.$router !== void 0;
@@ -10770,4 +11080,4 @@ createQuasarApp(createApp, quasarUserOptions).then((app2) => {
     start(app2, boot2);
   });
 });
-export { createElementBlock as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, quasarKey as F, noop$1 as G, nextTick as H, listenOpts as I, getElement as J, css as K, routes as L, isKeyCode as M, prevent as N, addEvt as O, cleanEvt as P, QBtn as Q, vmHasRouter as R, injectProp as S, Teleport as T, createGlobalNode as U, removeGlobalNode as V, onDeactivated as W, vmIsDestroyed as X, client as Y, Transition as Z, stopAndPrevent as _, computed as a, Fragment as a0, toDisplayString as a1, createCommentVNode as a2, normalizeClass as a3, renderList as a4, withDirectives as a5, vShow as a6, pushScopeId as a7, popScopeId as a8, QSpinner as a9, useSize as aa, useSizeProps as ab, toRaw as ac, QIcon as ad, Platform as ae, formKey as af, debounce as ag, onBeforeUpdate as ah, onActivated as ai, shouldIgnoreKey as aj, stop as ak, createDirective as al, leftClick as am, preventDraggable as an, position as ao, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };
+export { addEvt as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, quasarKey as F, noop$1 as G, nextTick as H, listenOpts as I, getElement as J, css as K, routes as L, tabsKey as M, withDirectives as N, stopAndPrevent as O, isKeyCode as P, QBtn as Q, Ripple as R, shouldIgnoreKey as S, QIcon as T, isDeepEqual as U, onDeactivated as V, vmIsDestroyed as W, onActivated as X, createDirective as Y, client as Z, leftClick as _, computed as a, preventDraggable as a0, position as a1, cleanEvt as a2, Transition as a3, getNormalizedVNodes as a4, KeepAlive as a5, hDir as a6, prevent as a7, vmHasRouter as a8, injectProp as a9, Teleport as aa, createGlobalNode as ab, removeGlobalNode as ac, createElementBlock as ad, Fragment as ae, toDisplayString as af, createCommentVNode as ag, normalizeClass as ah, renderList as ai, vShow as aj, pushScopeId as ak, popScopeId as al, QSpinner as am, useSize as an, useSizeProps as ao, toRaw as ap, Platform as aq, formKey as ar, debounce as as, onBeforeUpdate as at, stop as au, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };

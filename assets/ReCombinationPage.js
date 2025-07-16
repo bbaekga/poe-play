@@ -4,11 +4,11 @@ var __publicField = (obj, key, value2) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value2);
   return value2;
 };
-import { h, c as createComponent, k as isRuntimeSsrPreHydration, r as ref, v as onMounted, w as watch, a as computed, i as inject, o as onBeforeUnmount, af as formKey, g as getCurrentInstance, ag as debounce, S as injectProp, ah as onBeforeUpdate, _ as stopAndPrevent, H as nextTick, W as onDeactivated, ai as onActivated, N as prevent, ad as QIcon, a9 as QSpinner, d as hSlot, Z as Transition, aj as shouldIgnoreKey, Y as client, ak as stop, al as createDirective, G as noop, am as leftClick, O as addEvt, an as preventDraggable, ao as position, P as cleanEvt, q as hMergeSlot, a5 as withDirectives, s as defineComponent, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, B as createVNode, Q as QBtn, a2 as createCommentVNode, $ as createElementBlock, a4 as renderList, a0 as Fragment, a1 as toDisplayString, a7 as pushScopeId, a8 as popScopeId } from "./index.js";
+import { h, c as createComponent, k as isRuntimeSsrPreHydration, r as ref, v as onMounted, w as watch, a as computed, i as inject, o as onBeforeUnmount, ar as formKey, g as getCurrentInstance, as as debounce, a9 as injectProp, at as onBeforeUpdate, O as stopAndPrevent, H as nextTick, V as onDeactivated, X as onActivated, a7 as prevent, T as QIcon, am as QSpinner, d as hSlot, a3 as Transition, S as shouldIgnoreKey, Z as client, au as stop, Y as createDirective, G as noop, _ as leftClick, $ as addEvt, a0 as preventDraggable, a1 as position, a2 as cleanEvt, q as hMergeSlot, N as withDirectives, s as defineComponent, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, B as createVNode, Q as QBtn, ag as createCommentVNode, ad as createElementBlock, ai as renderList, ae as Fragment, af as toDisplayString, ak as pushScopeId, al as popScopeId } from "./index.js";
 import { u as useDarkProps, a as useDark, b as useFormProps, c as useFormInputNameAttr, _ as _export_sfc, Q as QCheckbox } from "./plugin-vue_export-helper.js";
-import { b as addFocusFn, d as removeFocusFn, c as clearSelection } from "./focus-manager.js";
-import { Q as QResizeObserver, a as QScrollObserver } from "./QScrollObserver.js";
-import { s as setVerticalScrollPosition, d as setHorizontalScrollPosition } from "./scroll.js";
+import { u as uid$1, b as addFocusFn, d as removeFocusFn, g as getModifierDirections, s as shouldStart, c as clearSelection } from "./focus-manager.js";
+import { Q as QResizeObserver, s as setVerticalScrollPosition, d as setHorizontalScrollPosition } from "./scroll.js";
+import { Q as QScrollObserver } from "./QScrollObserver.js";
 import { Q as QPage } from "./QPage.js";
 import { u as useQuasar } from "./use-quasar.js";
 import { o as orderBy } from "./orderBy.js";
@@ -19,44 +19,6 @@ var QSpace = createComponent({
     return () => space;
   }
 });
-let buf, bufIdx = 0;
-const hexBytes = new Array(256);
-for (let i = 0; i < 256; i++) {
-  hexBytes[i] = (i + 256).toString(16).substring(1);
-}
-const randomBytes = (() => {
-  const lib = typeof crypto !== "undefined" ? crypto : typeof window !== "undefined" ? window.crypto || window.msCrypto : void 0;
-  if (lib !== void 0) {
-    if (lib.randomBytes !== void 0) {
-      return lib.randomBytes;
-    }
-    if (lib.getRandomValues !== void 0) {
-      return (n) => {
-        const bytes = new Uint8Array(n);
-        lib.getRandomValues(bytes);
-        return bytes;
-      };
-    }
-  }
-  return (n) => {
-    const r = [];
-    for (let i = n; i > 0; i--) {
-      r.push(Math.floor(Math.random() * 256));
-    }
-    return r;
-  };
-})();
-const BUFFER_SIZE = 4096;
-function uid$1() {
-  if (buf === void 0 || bufIdx + 16 > BUFFER_SIZE) {
-    bufIdx = 0;
-    buf = randomBytes(BUFFER_SIZE);
-  }
-  const b = Array.prototype.slice.call(buf, bufIdx, bufIdx += 16);
-  b[6] = b[6] & 15 | 64;
-  b[8] = b[8] & 63 | 128;
-  return hexBytes[b[0]] + hexBytes[b[1]] + hexBytes[b[2]] + hexBytes[b[3]] + "-" + hexBytes[b[4]] + hexBytes[b[5]] + "-" + hexBytes[b[6]] + hexBytes[b[7]] + "-" + hexBytes[b[8]] + hexBytes[b[9]] + "-" + hexBytes[b[10]] + hexBytes[b[11]] + hexBytes[b[12]] + hexBytes[b[13]] + hexBytes[b[14]] + hexBytes[b[15]];
-}
 function parseValue(val) {
   return val === void 0 || val === null ? null : val;
 }
@@ -1452,45 +1414,6 @@ var QSeparator = createComponent({
     });
   }
 });
-const modifiersAll = {
-  left: true,
-  right: true,
-  up: true,
-  down: true,
-  horizontal: true,
-  vertical: true
-};
-const directionList = Object.keys(modifiersAll);
-modifiersAll.all = true;
-function getModifierDirections(mod) {
-  const dir = {};
-  for (const direction of directionList) {
-    if (mod[direction] === true) {
-      dir[direction] = true;
-    }
-  }
-  if (Object.keys(dir).length === 0) {
-    return modifiersAll;
-  }
-  if (dir.horizontal === true) {
-    dir.left = dir.right = true;
-  } else if (dir.left === true && dir.right === true) {
-    dir.horizontal = true;
-  }
-  if (dir.vertical === true) {
-    dir.up = dir.down = true;
-  } else if (dir.up === true && dir.down === true) {
-    dir.vertical = true;
-  }
-  if (dir.horizontal === true && dir.vertical === true) {
-    dir.all = true;
-  }
-  return dir;
-}
-const avoidNodeNamesList = ["INPUT", "TEXTAREA"];
-function shouldStart(evt, ctx) {
-  return ctx.event === void 0 && evt.target !== void 0 && evt.target.draggable !== true && typeof ctx.handler === "function" && avoidNodeNamesList.includes(evt.target.nodeName.toUpperCase()) === false && (evt.qClonedBy === void 0 || evt.qClonedBy.indexOf(ctx.uid) === -1);
-}
 function getChanges(evt, ctx, isFinal) {
   const pos = position(evt);
   let dir, distX = pos.left - ctx.event.x, distY = pos.top - ctx.event.y, absX = Math.abs(distX), absY = Math.abs(distY);
