@@ -13069,3 +13069,41 @@ body {
     transform: translate(150px, -40px) rotate(1440deg);
   }
 }
+.item-box {
+  position: relative;
+  overflow: hidden;
+}
+.item-box:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: opacity(0.7);
+  z-index: 1;
+}
+.item-tooltip {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  min-width: 365px;
+  font-size: 14px;
+}
+.item-tooltip .item-separator {
+  background: url("/poe-play/images/item-separator.png") center no-repeat;
+  width: 100%;
+  height: 8px;
+  margin: 4px 0;
+}
+.item-tooltip .tooltip-header {
+  height: 34px;
+  background: url("/poe-play/images/item-header-left.png") top left no-repeat, url("/poe-play/images/item-header-right.png") top right no-repeat, url("/poe-play/images/item-header-middle.png") top center repeat-x;
+}
+.item-tooltip .item-name {
+  color: #aa9e82;
+  font-size: 16px;
+}
+.item-tooltip .item-content {
+  padding: 16px 50px;
+}
+.item-tooltip .item-description {
+  color: #88f;
+}

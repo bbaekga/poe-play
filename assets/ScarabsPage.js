@@ -1474,8 +1474,8 @@ const _sfc_main = defineComponent({
         group.list.forEach((scarab) => {
           if (scarab.id === data.detailsId) {
             scarab.icon = data.icon;
-            scarab.chaos = Number(Number(data.chaosValue || 0).toFixed(2));
-            scarab.exalted = Number(Number(data.exaltedValue || 0).toFixed(2));
+            scarab.chaos = Number(Number(data.chaosValue || 0).toFixed(1));
+            scarab.exalted = Number(Number(data.exaltedValue || 0).toFixed(1));
             scarab.divine = Number(Number(data.divineValue || 0).toFixed(2));
             scarab.level = calcLevel(data.chaosValue);
           }

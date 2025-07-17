@@ -1,12 +1,12 @@
-.currency-type[data-v-abd1edec] {
+.currency-type[data-v-df65eda2] {
   opacity: 0.4;
   filter: grayscale(1);
 }
-.currency-type.active-currency[data-v-abd1edec] {
+.currency-type.active-currency[data-v-df65eda2] {
   opacity: 1;
   filter: grayscale(0);
 }
-.reg-exp-box[data-v-abd1edec] {
+.reg-exp-box[data-v-df65eda2] {
   border: 1px solid #bdbdbd;
   width: 800px;
   min-height: 50px;

@@ -1,4 +1,4 @@
-import { aq as Platform } from "./index.js";
+import { am as Platform } from "./index.js";
 let buf, bufIdx = 0;
 const hexBytes = new Array(256);
 for (let i = 0; i < 256; i++) {

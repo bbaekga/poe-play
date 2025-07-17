@@ -5,12 +5,12 @@ var __publicField = (obj, key, value) => {
   return value;
 };
 import { a as useInterval, Q as QImg } from "./use-interval.js";
-import { s as defineComponent, v as onMounted, o as onBeforeUnmount, r as ref, a as computed, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, ah as normalizeClass, B as createVNode, af as toDisplayString, T as QIcon, ad as createElementBlock, ai as renderList, ae as Fragment, ag as createCommentVNode, ak as pushScopeId, al as popScopeId } from "./index.js";
-import { _ as _export_sfc, Q as QCheckbox } from "./plugin-vue_export-helper.js";
+import { s as defineComponent, v as onMounted, o as onBeforeUnmount, r as ref, a as computed, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, af as normalizeClass, B as createVNode, ae as toDisplayString, T as QIcon, ad as createElementBlock, ah as renderList, ag as Fragment, an as createCommentVNode, ai as pushScopeId, aj as popScopeId } from "./index.js";
+import { Q as QCheckbox, o as orderBy } from "./orderBy.js";
 import { Q as QPage } from "./QPage.js";
 import { a as axios } from "./axios2.js";
 import { u as useQuasar } from "./use-quasar.js";
-import { o as orderBy } from "./orderBy.js";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.js";
 class Beast {
   constructor(data) {
     __publicField(this, "id");
@@ -22,7 +22,7 @@ class Beast {
     this.id = data.id || null;
     this.name = (data == null ? void 0 : data.detailsId) ? getBeastName(data.detailsId) : null;
     this.chaos = ((data == null ? void 0 : data.chaosValue) || 0).toFixed(1);
-    this.divine = ((data == null ? void 0 : data.divineValue) || 0).toFixed(1);
+    this.divine = ((data == null ? void 0 : data.divineValue) || 0).toFixed(2);
     this.regExp = (data == null ? void 0 : data.detailsId) ? getRegExp(data.detailsId) : "";
     this.selected = false;
   }
@@ -99,7 +99,7 @@ const beastInfos = [
   { id: "vivid-abberarach", name: "\uD608\uAE30 \uC560\uBC84\uB77C\uB77C\uD06C", regExp: "\uAE30.\uC560" }
 ];
 var BeastsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-abd1edec"), n = n(), popScopeId(), n);
+const _withScopeId = (n) => (pushScopeId("data-v-df65eda2"), n = n(), popScopeId(), n);
 const _hoisted_1 = { class: "row justify-center items-center q-mb-md q-gutter-x-md relative-position" };
 const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", null, "\uD654\uD3D0\uB2E8\uC704", -1));
 const _hoisted_3 = {
@@ -173,7 +173,7 @@ const _sfc_main = defineComponent({
         }
       });
     }
-    function priorityClass(chaos) {
+    function pricelessClass(chaos) {
       const value = Number(chaos);
       if (value >= 300) {
         return "text-red";
@@ -313,7 +313,7 @@ const _sfc_main = defineComponent({
             (openBlock(true), createElementBlock(Fragment, null, renderList(list.value, (beast, index) => {
               return openBlock(), createElementBlock("div", {
                 key: index,
-                class: normalizeClass(["row items-center q-mb-sm cursor-pointer", priorityClass(beast.chaos)]),
+                class: normalizeClass(["row items-center q-mb-sm cursor-pointer", pricelessClass(beast.chaos)]),
                 onClick: ($event) => onBeastClicked(beast)
               }, [
                 createVNode(QCheckbox, {
@@ -347,5 +347,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var BeastsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-abd1edec"]]);
+var BeastsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-df65eda2"]]);
 export { BeastsPage as default };
