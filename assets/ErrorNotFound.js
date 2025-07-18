@@ -1,4 +1,4 @@
-import { s as defineComponent, y as openBlock, ad as createElementBlock, C as createBaseVNode, B as createVNode, Q as QBtn } from "./index.js";
+import { s as defineComponent, y as openBlock, aa as createElementBlock, C as createBaseVNode, B as createVNode, Q as QBtn } from "./index.js";
 const _hoisted_1 = { class: "fullscreen bg-blue text-white text-center q-pa-md flex flex-center" };
 const _hoisted_2 = /* @__PURE__ */ createBaseVNode("div", { style: { "font-size": "30vh" } }, " 404 ", -1);
 const _hoisted_3 = /* @__PURE__ */ createBaseVNode("div", {

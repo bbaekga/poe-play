@@ -9419,7 +9419,7 @@ function useRouter() {
 const routes = [
   {
     path: "/",
-    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/scroll.js","assets/QScrollObserver.js","assets/use-quasar.js"] : void 0),
+    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/use-interval.js","assets/scroll.js","assets/QScrollObserver.js","assets/use-quasar.js","assets/store.js","assets/axios.js","assets/axios2.js"] : void 0),
     children: [
       {
         path: "",
@@ -9429,12 +9429,12 @@ const routes = [
       {
         path: "stash",
         name: "stash",
-        component: () => __vitePreload(() => import("./StashPage.js"), true ? ["assets/StashPage.js","assets/StashPage.css","assets/focus-manager.js","assets/scroll.js","assets/use-interval.js","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios2.js"] : void 0)
+        component: () => __vitePreload(() => import("./StashPage.js"), true ? ["assets/StashPage.js","assets/StashPage.css","assets/focus-manager.js","assets/scroll.js","assets/use-interval.js","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios.js","assets/axios2.js","assets/store.js"] : void 0)
       },
       {
         path: "beasts",
         name: "beasts",
-        component: () => __vitePreload(() => import("./BeastsPage.js"), true ? ["assets/BeastsPage.js","assets/BeastsPage.css","assets/use-interval.js","assets/orderBy.js","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios2.js","assets/use-quasar.js"] : void 0)
+        component: () => __vitePreload(() => import("./BeastsPage.js"), true ? ["assets/BeastsPage.js","assets/BeastsPage.css","assets/orderBy.js","assets/plugin-vue_export-helper.js","assets/use-interval.js","assets/QPage.js","assets/axios2.js","assets/use-quasar.js"] : void 0)
       },
       {
         path: "reCombination",
@@ -11080,4 +11080,4 @@ createQuasarApp(createApp, quasarUserOptions).then((app2) => {
     start(app2, boot2);
   });
 });
-export { addEvt as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, quasarKey as F, noop$1 as G, nextTick as H, listenOpts as I, getElement as J, css as K, routes as L, tabsKey as M, withDirectives as N, stopAndPrevent as O, isKeyCode as P, QBtn as Q, Ripple as R, shouldIgnoreKey as S, QIcon as T, isDeepEqual as U, onDeactivated as V, vmIsDestroyed as W, onActivated as X, createDirective as Y, client as Z, leftClick as _, computed as a, preventDraggable as a0, position as a1, cleanEvt as a2, Transition as a3, getNormalizedVNodes as a4, KeepAlive as a5, hDir as a6, prevent as a7, vmHasRouter as a8, injectProp as a9, Teleport as aa, createGlobalNode as ab, removeGlobalNode as ac, createElementBlock as ad, toDisplayString as ae, normalizeClass as af, Fragment as ag, renderList as ah, pushScopeId as ai, popScopeId as aj, vShow as ak, QSpinner as al, Platform as am, createCommentVNode as an, useSize as ao, useSizeProps as ap, toRaw as aq, formKey as ar, debounce as as, onBeforeUpdate as at, stop as au, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };
+export { onActivated as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, toDisplayString as F, unref as G, onDeactivated as H, vmIsDestroyed as I, QSpinner as J, quasarKey as K, noop$1 as L, nextTick as M, listenOpts as N, getElement as O, css as P, QBtn as Q, routes as R, tabsKey as S, Transition as T, withDirectives as U, Ripple as V, stopAndPrevent as W, isKeyCode as X, shouldIgnoreKey as Y, QIcon as Z, isDeepEqual as _, computed as a, createDirective as a0, client as a1, leftClick as a2, addEvt as a3, preventDraggable as a4, position as a5, cleanEvt as a6, getNormalizedVNodes as a7, KeepAlive as a8, hDir as a9, createElementBlock as aa, Fragment as ab, vShow as ac, pushScopeId as ad, popScopeId as ae, prevent as af, vmHasRouter as ag, injectProp as ah, Teleport as ai, createGlobalNode as aj, removeGlobalNode as ak, createCommentVNode as al, renderList as am, normalizeClass as an, Platform as ao, useSize as ap, useSizeProps as aq, toRaw as ar, formKey as as, debounce as at, onBeforeUpdate as au, stop as av, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };

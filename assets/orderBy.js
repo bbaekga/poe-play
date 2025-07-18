@@ -1,4 +1,4 @@
-import { r as ref, a as computed, h, ao as useSize, q as hMergeSlot, d as hSlot, ap as useSizeProps, g as getCurrentInstance, aq as toRaw, O as stopAndPrevent, c as createComponent, T as QIcon } from "./index.js";
+import { r as ref, a as computed, h, ap as useSize, q as hMergeSlot, d as hSlot, aq as useSizeProps, g as getCurrentInstance, ar as toRaw, W as stopAndPrevent, c as createComponent, Z as QIcon } from "./index.js";
 import { a as useDark, u as useDarkProps } from "./plugin-vue_export-helper.js";
 function useRefocusTarget(props, rootRef) {
   const refocusRef = ref(null);

@@ -1,4 +1,4 @@
-import { c as createComponent, w as watch, v as onMounted, o as onBeforeUnmount, G as noop, g as getCurrentInstance, I as listenOpts } from "./index.js";
+import { c as createComponent, w as watch, v as onMounted, o as onBeforeUnmount, L as noop, g as getCurrentInstance, N as listenOpts } from "./index.js";
 import { a as getScrollTarget, b as getVerticalScrollPosition, c as getHorizontalScrollPosition } from "./scroll.js";
 const { passive } = listenOpts;
 const axisValues = ["both", "horizontal", "vertical"];

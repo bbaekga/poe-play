@@ -1,4 +1,15 @@
-import { V as onDeactivated, o as onBeforeUnmount, W as vmIsDestroyed, g as getCurrentInstance, a as computed, c as createComponent, r as ref, k as isRuntimeSsrPreHydration, v as onMounted, h, a3 as Transition, d as hSlot, al as QSpinner, w as watch } from "./index.js";
+import { a as computed, H as onDeactivated, o as onBeforeUnmount, I as vmIsDestroyed, g as getCurrentInstance, c as createComponent, r as ref, k as isRuntimeSsrPreHydration, v as onMounted, h, T as Transition, d as hSlot, J as QSpinner, w as watch } from "./index.js";
+const useRatioProps = {
+  ratio: [String, Number]
+};
+function useRatio(props, naturalRatio) {
+  return computed(() => {
+    const ratio = Number(
+      props.ratio || (naturalRatio !== void 0 ? naturalRatio.value : void 0)
+    );
+    return isNaN(ratio) !== true && ratio > 0 ? { paddingBottom: `${100 / ratio}%` } : null;
+  });
+}
 function useTimeout() {
   let timer = null;
   const vm = getCurrentInstance();
@@ -22,17 +33,6 @@ function useTimeout() {
       }
     }
   };
-}
-const useRatioProps = {
-  ratio: [String, Number]
-};
-function useRatio(props, naturalRatio) {
-  return computed(() => {
-    const ratio = Number(
-      props.ratio || (naturalRatio !== void 0 ? naturalRatio.value : void 0)
-    );
-    return isNaN(ratio) !== true && ratio > 0 ? { paddingBottom: `${100 / ratio}%` } : null;
-  });
 }
 const defaultRatio = 1.7778;
 var QImg = createComponent({
@@ -294,4 +294,4 @@ function useInterval() {
     }
   };
 }
-export { QImg as Q, useInterval as a, useTimeout as u };
+export { QImg as Q, useTimeout as a, useInterval as u };

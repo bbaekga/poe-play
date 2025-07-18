@@ -4,9 +4,9 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-import { a as useInterval, Q as QImg } from "./use-interval.js";
-import { s as defineComponent, v as onMounted, o as onBeforeUnmount, r as ref, a as computed, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, af as normalizeClass, B as createVNode, ae as toDisplayString, T as QIcon, ad as createElementBlock, ah as renderList, ag as Fragment, an as createCommentVNode, ai as pushScopeId, aj as popScopeId } from "./index.js";
+import { s as defineComponent, v as onMounted, o as onBeforeUnmount, r as ref, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, F as toDisplayString, B as createVNode, Z as QIcon, aa as createElementBlock, am as renderList, an as normalizeClass, ab as Fragment, ad as pushScopeId, ae as popScopeId } from "./index.js";
 import { Q as QCheckbox, o as orderBy } from "./orderBy.js";
+import { u as useInterval, Q as QImg } from "./use-interval.js";
 import { Q as QPage } from "./QPage.js";
 import { a as axios } from "./axios2.js";
 import { u as useQuasar } from "./use-quasar.js";
@@ -99,45 +99,34 @@ const beastInfos = [
   { id: "vivid-abberarach", name: "\uD608\uAE30 \uC560\uBC84\uB77C\uB77C\uD06C", regExp: "\uAE30.\uC560" }
 ];
 var BeastsPage_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-df65eda2"), n = n(), popScopeId(), n);
-const _hoisted_1 = { class: "row justify-center items-center q-mb-md q-gutter-x-md relative-position" };
-const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", null, "\uD654\uD3D0\uB2E8\uC704", -1));
-const _hoisted_3 = {
-  class: "row items-center relative-position",
-  style: { "margin": "0 auto 24px", "width": "fit-content" }
-};
-const _hoisted_4 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
-  class: "q-mr-md",
-  style: { "font-size": "36px" }
+const _withScopeId = (n) => (pushScopeId("data-v-b6b70646"), n = n(), popScopeId(), n);
+const _hoisted_1 = { class: "row items-center no-wrap reg-exp-box q-mx-auto q-mb-lg" };
+const _hoisted_2 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  class: "t-mr-10",
+  style: { "font-size": "24px" }
 }, "\u{1F44D}\u{1F3FB}", -1));
-const _hoisted_5 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
-  class: "t-mr-10",
-  style: { "font-size": "24px" }
-}, " \u{1F98D}\u{1F982}\u{1F438} ", -1));
-const _hoisted_6 = { class: "row items-center no-wrap reg-exp-box" };
-const _hoisted_7 = { class: "row items-center col-fit" };
-const _hoisted_8 = {
-  class: "row items-center relative-position",
-  style: { "margin": "0 auto 24px", "width": "fit-content" }
-};
-const _hoisted_9 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+const _hoisted_3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
   class: "q-mr-md",
-  style: { "font-size": "36px" }
-}, "\u{1F44E}\u{1F3FB}", -1));
-const _hoisted_10 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  style: { "font-size": "20px" }
+}, " \u{1F98D}\u{1F982}\u{1F438} ", -1));
+const _hoisted_4 = { class: "row items-center col-fit" };
+const _hoisted_5 = { class: "row items-center no-wrap reg-exp-box q-mx-auto q-mb-lg" };
+const _hoisted_6 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
   class: "t-mr-10",
   style: { "font-size": "24px" }
+}, "\u{1F44E}\u{1F3FB}", -1));
+const _hoisted_7 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+  class: "q-mr-md",
+  style: { "font-size": "20px" }
 }, " \u{1F645}\u{1F3FB}\u{1F4A3}\u{1F5D1}\uFE0F ", -1));
-const _hoisted_11 = { class: "row items-center no-wrap reg-exp-box" };
-const _hoisted_12 = { class: "row items-center col-fit text-red-4" };
-const _hoisted_13 = {
+const _hoisted_8 = { class: "row items-center col-fit text-red-4" };
+const _hoisted_9 = {
   class: "q-mx-auto",
-  style: { "width": "300px", "margin-bottom": "200px" }
+  style: { "width": "300px", "padding-bottom": "200px" }
 };
-const _hoisted_14 = ["onClick"];
-const _hoisted_15 = { class: "q-ml-sm" };
-const _hoisted_16 = { class: "text-right col-grow" };
-const _hoisted_17 = { class: "text-right col-grow" };
+const _hoisted_10 = ["onClick"];
+const _hoisted_11 = { class: "q-ml-sm" };
+const _hoisted_12 = { class: "text-right col-grow" };
 const _sfc_main = defineComponent({
   ...{
     name: "BeastsPage"
@@ -156,14 +145,11 @@ const _sfc_main = defineComponent({
     const $q = useQuasar();
     const api = axios.create();
     const { registerInterval, removeInterval } = useInterval();
-    const currencyType = ref("chaos");
-    const chaosType = computed(() => currencyType.value === "chaos");
-    const divineType = computed(() => currencyType.value === "divine");
     const list = ref([]);
     const preciousRegExpString = ref("");
     const garbageRegExpString = ref("");
     async function getMetaData() {
-      const response = await api.get("https://www.logisnet.co.kr/dev-api/poe/Beast/Mercenaries");
+      const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Beast/${"Mercenaries"}`);
       const res = response.data.lines;
       const beastIds = beastInfos.map((b) => b.id);
       res.forEach((data) => {
@@ -262,54 +248,29 @@ const _sfc_main = defineComponent({
         default: withCtx(() => [
           createBaseVNode("div", _hoisted_1, [
             _hoisted_2,
-            createBaseVNode("div", {
-              class: normalizeClass(["cursor-pointer currency-type", chaosType.value ? "active-currency" : ""]),
-              onClick: _cache[0] || (_cache[0] = ($event) => currencyType.value = "chaos")
-            }, [
-              createVNode(QImg, {
-                src: "images/chaos.png",
-                width: "32px"
-              })
-            ], 2),
-            createBaseVNode("div", {
-              class: normalizeClass(["cursor-pointer currency-type", divineType.value ? "active-currency" : ""]),
-              onClick: _cache[1] || (_cache[1] = ($event) => currencyType.value = "divine")
-            }, [
-              createVNode(QImg, {
-                src: "images/divine.png",
-                width: "32px"
-              })
-            ], 2)
+            _hoisted_3,
+            createBaseVNode("div", _hoisted_4, toDisplayString(preciousRegExpString.value), 1),
+            createVNode(QIcon, {
+              name: "sym_r_content_copy",
+              color: "white",
+              size: "24px",
+              class: "cursor-pointer",
+              onClick: copyPreciousRegExp
+            })
           ]),
-          createBaseVNode("div", _hoisted_3, [
-            _hoisted_4,
-            _hoisted_5,
-            createBaseVNode("div", _hoisted_6, [
-              createBaseVNode("div", _hoisted_7, toDisplayString(preciousRegExpString.value), 1),
-              createVNode(QIcon, {
-                name: "sym_r_content_copy",
-                color: "white",
-                size: "24px",
-                class: "cursor-pointer",
-                onClick: copyPreciousRegExp
-              })
-            ])
+          createBaseVNode("div", _hoisted_5, [
+            _hoisted_6,
+            _hoisted_7,
+            createBaseVNode("div", _hoisted_8, toDisplayString(garbageRegExpString.value), 1),
+            createVNode(QIcon, {
+              name: "sym_r_content_copy",
+              color: "white",
+              size: "24px",
+              class: "cursor-pointer",
+              onClick: copyGarbageRegExp
+            })
           ]),
-          createBaseVNode("div", _hoisted_8, [
-            _hoisted_9,
-            _hoisted_10,
-            createBaseVNode("div", _hoisted_11, [
-              createBaseVNode("div", _hoisted_12, toDisplayString(garbageRegExpString.value), 1),
-              createVNode(QIcon, {
-                name: "sym_r_content_copy",
-                color: "white",
-                size: "24px",
-                class: "cursor-pointer",
-                onClick: copyGarbageRegExp
-              })
-            ])
-          ]),
-          createBaseVNode("div", _hoisted_13, [
+          createBaseVNode("div", _hoisted_9, [
             (openBlock(true), createElementBlock(Fragment, null, renderList(list.value, (beast, index) => {
               return openBlock(), createElementBlock("div", {
                 key: index,
@@ -321,24 +282,14 @@ const _sfc_main = defineComponent({
                   "onUpdate:modelValue": [($event) => beast.selected = $event, makeRegExp],
                   dense: ""
                 }, null, 8, ["modelValue", "onUpdate:modelValue"]),
-                createBaseVNode("div", _hoisted_15, toDisplayString(beast.name), 1),
-                chaosType.value ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-                  createBaseVNode("div", _hoisted_16, toDisplayString(beast.chaos), 1),
-                  createVNode(QImg, {
-                    src: "images/chaos.png",
-                    class: "q-ml-xs",
-                    width: "20px"
-                  })
-                ], 64)) : createCommentVNode("", true),
-                divineType.value ? (openBlock(), createElementBlock(Fragment, { key: 1 }, [
-                  createBaseVNode("div", _hoisted_17, toDisplayString(beast.divine), 1),
-                  createVNode(QImg, {
-                    src: "images/divine.png",
-                    class: "q-ml-xs",
-                    width: "20px"
-                  })
-                ], 64)) : createCommentVNode("", true)
-              ], 10, _hoisted_14);
+                createBaseVNode("div", _hoisted_11, toDisplayString(beast.name), 1),
+                createBaseVNode("div", _hoisted_12, toDisplayString(beast.chaos), 1),
+                createVNode(QImg, {
+                  src: "images/chaos.png",
+                  class: "q-ml-xs",
+                  width: "20px"
+                })
+              ], 10, _hoisted_10);
             }), 128))
           ])
         ]),
@@ -347,5 +298,5 @@ const _sfc_main = defineComponent({
     };
   }
 });
-var BeastsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-df65eda2"]]);
+var BeastsPage = /* @__PURE__ */ _export_sfc(_sfc_main, [["__scopeId", "data-v-b6b70646"]]);
 export { BeastsPage as default };

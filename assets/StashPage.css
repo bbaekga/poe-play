@@ -1,54 +1,95 @@
-.scarab-group.wide .scarab-box[data-v-779bab02] {
+.currency-stash[data-v-538bf23f] {
+  width: 800px;
+  height: 800px;
+  background-image: url("/poe-play/images/currency-stash.png");
+  background-size: 800px 800px;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: 32px;
+}.influence-stash[data-v-f3b3fc22] {
+  width: 800px;
+  height: 800px;
+  background-image: url("/poe-play/images/influence-stash.png");
+  background-size: 800px 800px;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: 32px;
+}.item-tooltip[data-v-10f767c2] {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  min-width: 365px;
+  font-size: 14px;
+}
+.item-tooltip .item-separator[data-v-10f767c2] {
+  background: url("/poe-play/images/item-separator.png") center no-repeat;
+  width: 100%;
+  height: 8px;
+  margin: 4px 0;
+}
+.item-tooltip .tooltip-header[data-v-10f767c2] {
+  height: 34px;
+  background: url("/poe-play/images/item-header-left.png") top left no-repeat, url("/poe-play/images/item-header-right.png") top right no-repeat, url("/poe-play/images/item-header-middle.png") top center repeat-x;
+}
+.item-tooltip .item-name[data-v-10f767c2] {
+  color: #aa9e82;
+  font-size: 16px;
+}
+.item-tooltip .item-content[data-v-10f767c2] {
+  padding: 16px 50px;
+}
+.item-tooltip .item-description[data-v-10f767c2] {
+  color: #88f;
+}.scarab-group.wide .scarab-box[data-v-df5fcf40] {
   margin-right: 7px;
 }
-.scarab-box[data-v-779bab02] {
+.scarab-box[data-v-df5fcf40] {
   width: 46px;
   height: 46px;
   margin-right: 3px;
 }
-.scarab-box.empty[data-v-779bab02] {
+.scarab-box.empty[data-v-df5fcf40] {
   border-color: transparent;
   background-color: transparent;
 }
-.scarab-box[data-v-779bab02]:last-child {
+.scarab-box[data-v-df5fcf40]:last-child {
   margin-right: 0;
 }
-.scarab-box .highlight0-text[data-v-779bab02] {
+.scarab-box .highlight0-text[data-v-df5fcf40] {
   color: white;
 }
-.scarab-box .highlight1-text[data-v-779bab02] {
+.scarab-box .highlight1-text[data-v-df5fcf40] {
   color: #fff176;
 }
-.scarab-box .highlight2-text[data-v-779bab02] {
+.scarab-box .highlight2-text[data-v-df5fcf40] {
   color: #ffca28;
 }
-.scarab-box .highlight3-text[data-v-779bab02] {
+.scarab-box .highlight3-text[data-v-df5fcf40] {
   color: #ffb300;
 }
-.scarab-box .highlight4-text[data-v-779bab02] {
+.scarab-box .highlight4-text[data-v-df5fcf40] {
   color: #ffa726;
 }
-.scarab-box .highlight5-text[data-v-779bab02] {
+.scarab-box .highlight5-text[data-v-df5fcf40] {
   color: #ff9800;
 }
-.scarab-box .highlight6-text[data-v-779bab02] {
+.scarab-box .highlight6-text[data-v-df5fcf40] {
   color: #fb8c00;
 }
-.scarab-box .highlight7-text[data-v-779bab02] {
+.scarab-box .highlight7-text[data-v-df5fcf40] {
   color: #ff7043;
 }
-.scarab-box .highlight8-text[data-v-779bab02] {
+.scarab-box .highlight8-text[data-v-df5fcf40] {
   color: #ff5722;
 }
-.scarab-box .highlight9-text[data-v-779bab02] {
+.scarab-box .highlight9-text[data-v-df5fcf40] {
   color: red;
 }
-.scarab-box.highlight9[data-v-779bab02]:after {
+.scarab-box.highlight9[data-v-df5fcf40]:after {
   background-color: rgba(255, 0, 0, 0.3);
 }
-.scarab-box.highlight9 .q-img[data-v-779bab02] {
+.scarab-box.highlight9 .q-img[data-v-df5fcf40] {
   opacity: 1;
-}.scarab-stash[data-v-560ce4f5] {
+}.scarab-stash[data-v-3f6d0fe0] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/images/scarab-stash-3.26.png");
@@ -57,56 +98,56 @@
   position: relative;
   margin-top: 32px;
 }
-.scarab-group[data-v-560ce4f5] {
+.scarab-group[data-v-3f6d0fe0] {
   position: absolute;
 }
-.scarab-type-icon[data-v-560ce4f5] {
+.scarab-type-icon[data-v-3f6d0fe0] {
   z-index: 4;
   top: -12px;
   left: -16px;
-}.fossil-box[data-v-e3f828a4] {
+}.fossil-box[data-v-3d4fa21b] {
   width: 70px;
   height: 70px;
   border-radius: 4px;
 }
-.fossil-box.highlight-red[data-v-e3f828a4]:after {
+.fossil-box.highlight-red[data-v-3d4fa21b]:after {
   background-color: rgba(255, 0, 0, 0.3);
-}.resonator-box[data-v-0df36b59] {
+}.resonator-box[data-v-5904578c] {
   position: relative;
   overflow: hidden;
 }
-.resonator-box.unit-size-1[data-v-0df36b59] {
+.resonator-box.unit-size-1[data-v-5904578c] {
   width: 71px;
   height: 73px;
 }
-.resonator-box.unit-size-1 .q-img[data-v-0df36b59] {
+.resonator-box.unit-size-1 .q-img[data-v-5904578c] {
   width: 49px;
 }
-.resonator-box.unit-size-2[data-v-0df36b59] {
+.resonator-box.unit-size-2[data-v-5904578c] {
   width: 76px;
   height: 124px;
 }
-.resonator-box.unit-size-2 .q-img[data-v-0df36b59] {
+.resonator-box.unit-size-2 .q-img[data-v-5904578c] {
   width: 52px;
 }
-.resonator-box.unit-size-3[data-v-0df36b59] {
+.resonator-box.unit-size-3[data-v-5904578c] {
   width: 124px;
   height: 124px;
 }
-.resonator-box.unit-size-3 .q-img[data-v-0df36b59] {
+.resonator-box.unit-size-3 .q-img[data-v-5904578c] {
   width: 94px;
 }
-.resonator-box.unit-size-4[data-v-0df36b59] {
+.resonator-box.unit-size-4[data-v-5904578c] {
   width: 124px;
   height: 124px;
 }
-.resonator-box.unit-size-4 .q-img[data-v-0df36b59] {
+.resonator-box.unit-size-4 .q-img[data-v-5904578c] {
   width: 96px;
 }
-.resonator-name[data-v-0df36b59] {
+.resonator-name[data-v-5904578c] {
   color: #b2ebf2;
   font-size: 16px;
-}.fossil-stash[data-v-a2f75018] {
+}.fossil-stash[data-v-cd5b0ea8] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/images/fossil-stash.png");
@@ -114,20 +155,14 @@
   background-repeat: no-repeat;
   position: relative;
   margin-top: 32px;
-}
-.fossil-stash .fossil-unit[data-v-a2f75018] {
-  position: absolute;
-}
-.fossil-stash .resonator-unit[data-v-a2f75018] {
-  position: absolute;
-}.oil-box[data-v-46be3e02] {
+}.oil-box[data-v-091ddfd4] {
   width: 65px;
   height: 64px;
   border-radius: 4px;
 }
-.oil-box.highlight-red[data-v-46be3e02]:after {
+.oil-box.highlight-red[data-v-091ddfd4]:after {
   background-color: rgba(255, 0, 0, 0.3);
-}.oil-stash[data-v-5954c458] {
+}.oil-stash[data-v-5d6688d4] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/images/oil-stash.png");
@@ -135,13 +170,10 @@
   background-repeat: no-repeat;
   position: relative;
   margin-top: 32px;
-}
-.oil-stash .oil-unit[data-v-5954c458] {
-  position: absolute;
-}.orb-box[data-v-aa8b067a] {
+}.orb-box[data-v-36610ab5] {
   width: 73px;
   height: 72px;
-}.delirium-orb-stash[data-v-666aa1d3] {
+}.delirium-orb-stash[data-v-58b20716] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/images/delirium-orb-stash.png");
@@ -149,11 +181,10 @@
   background-repeat: no-repeat;
   position: relative;
   margin-top: 32px;
-}
-.delirium-orb-stash .orb-unit[data-v-666aa1d3] {
-  position: absolute;
-  border: 1px solid rgba(150, 150, 180, 0.3);
-}.catalyst-stash[data-v-072a90d7] {
+}.catalyst-box[data-v-05522993] {
+  width: 72px;
+  height: 72px;
+}.catalyst-stash[data-v-742ab4ab] {
   width: 800px;
   height: 800px;
   background-image: url("/poe-play/images/catalyst-stash.png");

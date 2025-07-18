@@ -1,5 +1,5 @@
 import { Q as QPage } from "./QPage.js";
-import { s as defineComponent, u as useRouter, v as onMounted, L as routes, y as openBlock, z as createBlock } from "./index.js";
+import { s as defineComponent, u as useRouter, v as onMounted, R as routes, y as openBlock, z as createBlock } from "./index.js";
 const _sfc_main = defineComponent({
   ...{
     name: "IndexPage"
