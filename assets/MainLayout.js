@@ -4345,11 +4345,13 @@ const _hoisted_5 = { class: "q-ml-xs" };
 const _hoisted_6 = { class: "t-text-11 t-pt-10 t-ml-10" };
 const _hoisted_7 = /* @__PURE__ */ createBaseVNode("div", { class: "wallpaper" }, null, -1);
 const _hoisted_8 = { class: "page-container" };
+const _hoisted_9 = { class: "text-right t-py-3" };
 const _sfc_main = defineComponent({
   __name: "MainLayout",
   setup(__props) {
     const $q = useQuasar();
     const router = useRouter();
+    const currentLeague = computed(() => "Keepers");
     const toolbarStyle = computed(() => {
       return {
         width: "100vw",
@@ -4421,7 +4423,7 @@ const _sfc_main = defineComponent({
                   ], 4),
                   createBaseVNode("div", _hoisted_2, [
                     createVNode(QImg, {
-                      src: "images/divine2.png",
+                      src: "images/divine.png",
                       width: "24px",
                       height: "24px"
                     }),
@@ -4445,6 +4447,7 @@ const _sfc_main = defineComponent({
             default: withCtx(() => [
               _hoisted_7,
               createBaseVNode("div", _hoisted_8, [
+                createBaseVNode("div", _hoisted_9, "\uD604\uC7AC \uB9AC\uADF8 : " + toDisplayString(currentLeague.value), 1),
                 createVNode(_component_router_view)
               ])
             ]),
