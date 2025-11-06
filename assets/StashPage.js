@@ -1528,7 +1528,7 @@ class Scarab {
       VariousScarabs3,
       VariousScarabs4
     ];
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Scarab/${"Mercenaries"}`);
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Scarab/${"Keepers"}`);
     const res = response.data.lines;
     res.forEach((data) => {
       groups.forEach((group) => {
@@ -2753,7 +2753,7 @@ class Fossil {
       { id: "glyphic-fossil", name: "\uC0C1\uD615 \uBB38\uC790 \uD654\uC11D", icon: "", chaos: 0, description: ["\uD0C0\uB77D \uC5D0\uC13C\uC2A4 \uC18D\uC131 \uBD80\uC5EC \uBCF4\uC720"], top: "310px", left: "113px" },
       { id: "faceted-fossil", name: "\uC5F0\uB9C8\uD55C \uD654\uC11D", icon: "", chaos: 0, description: ["\uC82C \uC18D\uC131 \uBD80\uC5EC \uC99D\uAC00"], top: "310px", left: "618px" }
     ];
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Fossil/${"Mercenaries"}`);
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Fossil/${"Keepers"}`);
     const res = response.data.lines;
     res.forEach((data) => {
       list.forEach((fossil) => {
@@ -2783,7 +2783,7 @@ class Resonator {
       { id: "powerful-chaotic-resonator", name: "\uAC15\uB825 \uD63C\uB3C8 \uACF5\uBA85\uAE30", icon: "", chaos: 0, level: 3, top: "607px", left: "354px" },
       { id: "prime-chaotic-resonator", name: "\uCD5C\uC885\uD615 \uD63C\uB3C8 \uACF5\uBA85\uAE30", icon: "", chaos: 0, level: 4, top: "605px", left: "489px" }
     ];
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Resonator/${"Mercenaries"}`);
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Resonator/${"Keepers"}`);
     const res = response.data.lines;
     res.forEach((data) => {
       list.forEach((resonator) => {
@@ -2984,7 +2984,7 @@ class Oil {
       { id: "reflective-oil", name: "\uD22C\uC601 \uC131\uC720", icon: "", chaos: 0, top: "101px", left: "619px", description: [] },
       { id: "prismatic-oil", name: "\uBD84\uAD11 \uC131\uC720", icon: "", chaos: 0, top: "101px", left: "698px", description: [] }
     ];
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Oil/${"Mercenaries"}`);
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Oil/${"Keepers"}`);
     const res = response.data.lines;
     res.forEach((data) => {
       list.forEach((oil) => {
@@ -3147,7 +3147,7 @@ class DeliriumOrb {
       { id: "diviners-delirium-orb", name: "\uC608\uC5B8\uC790\uC758 \uD658\uC601\uC758 \uC624\uBE0C", icon: "", chaos: 0, max: 0, top: "291px", left: "598px", description: ["\uC9C0\uB3C4 \uC544\uC774\uD15C\uC5D0 \uC810\uC220 \uCE74\uB4DC \uBCF4\uC0C1 \uC720\uD615\uC774 \uD3EC\uD568\uB41C \uD658\uC601 \uD604\uC0C1\uC744 \uCD94\uAC00\uD569\uB2C8\uB2E4"] },
       { id: "blighted-delirium-orb", name: "\uC5ED\uBCD1 \uAC78\uB9B0 \uD658\uC601\uC758 \uC624\uBE0C", icon: "", chaos: 0, max: 0, top: "291px", left: "683px", description: ["\uC9C0\uB3C4 \uC544\uC774\uD15C\uC5D0 \uC5ED\uBCD1 \uBCF4\uC0C1 \uC720\uD615\uC774 \uD3EC\uD568\uB41C \uD658\uC601 \uD604\uC0C1\uC744 \uCD94\uAC00\uD569\uB2C8\uB2E4"] }
     ];
-    const responseD = await api.get(`https://www.logisnet.co.kr/dev-api/poe/DeliriumOrb/${"Mercenaries"}`);
+    const responseD = await api.get(`https://www.logisnet.co.kr/dev-api/poe/DeliriumOrb/${"Keepers"}`);
     const resD = responseD.data.lines;
     resD.forEach((data) => {
       list.forEach((orb) => {
@@ -3157,7 +3157,7 @@ class DeliriumOrb {
         }
       });
     });
-    const responseF = await api.get(`https://www.logisnet.co.kr/dev-api/poe/fragment/${"Mercenaries"}`);
+    const responseF = await api.get(`https://www.logisnet.co.kr/dev-api/poe/fragment/${"Keepers"}`);
     const resF = responseF.data.lines;
     const simulacrum = resF.filter((r) => r.detailsId.indexOf("simulacrum") !== -1);
     simulacrum.forEach((data) => {
@@ -3294,7 +3294,7 @@ class Catalyst {
       { id: "intrinsic-catalyst", name: "\uBCF8\uC9C8\uC758 \uAE30\uD3ED\uC81C", icon: "https://cdn.poedb.tw/image/Art/2DItems/Currency/Catalysts/IntrinsicCatalyst.webp", chaos: 0, top: "213px", left: "558px", description: ["\uD004\uB9AC\uD2F0\uB97C \uCD94\uAC00\uD558\uC5EC \uBC18\uC9C0\uB098 \uBAA9\uAC78\uC774, \uD5C8\uB9AC\uB760\uC5D0 \uBD80\uC5EC\uB41C \uB2A5\uB825\uCE58 \uC18D\uC131\uC744 \uD5A5\uC0C1\uD569\uB2C8\uB2E4.", "\uAE30\uC874 \uD004\uB9AC\uD2F0 \uC720\uD615\uC744 \uB300\uCCB4\uD569\uB2C8\uB2E4."] },
       { id: "noxious-catalyst", name: "\uC720\uB3C5\uC131 \uAE30\uD3ED\uC81C", icon: "https://cdn.poedb.tw/image/Art/2DItems/Currency/Catalysts/ChaosPhysicalCatalyst.webp", chaos: 0, top: "213px", left: "639px", description: ["\uD004\uB9AC\uD2F0\uB97C \uCD94\uAC00\uD558\uC5EC \uBC18\uC9C0\uB098 \uBAA9\uAC78\uC774, \uD5C8\uB9AC\uB760\uC5D0 \uBD80\uC5EC\uB41C \uBB3C\uB9AC \uBC0F \uCE74\uC624\uC2A4 \uD53C\uD574 \uC18D\uC131\uC744 \uD5A5\uC0C1\uD569\uB2C8\uB2E4.", "\uAE30\uC874 \uD004\uB9AC\uD2F0 \uC720\uD615\uC744 \uB300\uCCB4\uD569\uB2C8\uB2E4."] }
     ];
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/currency/${"Mercenaries"}`);
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/currency/${"Keepers"}`);
     const res = response.data.lines;
     const catalyst = res.filter((d) => d.detailsId.indexOf("catalyst") !== -1);
     catalyst.forEach((data) => {
