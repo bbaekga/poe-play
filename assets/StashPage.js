@@ -1181,7 +1181,7 @@ const Titanic = {
   list: Array(
     { id: "titanic-scarab", name: "\uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uBB34\uB9AC \uADDC\uBAA8 \uC99D\uAC00 1%\uB2F9 \uACE0\uC720 \uBAAC\uC2A4\uD130\uC758 \uAC15\uC778\uD568, \uD53C\uD574, \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC544\uC774\uD15C\uC758 \uD76C\uADC0\uB3C4 \uBC0F \uC218\uB7C9 1% \uC99D\uAC00"], chaos: 0, level: 0, max: 1 },
     { id: "titanic-scarab-of-treasures", name: "\uBCF4\uBB3C\uC758 \uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uBCF4\uC0C1 1\uAC1C \uCD94\uAC00 \uBCF4\uC720", "\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130\uC758 \uAC15\uC778\uD568 30% \uC99D\uAC00"], chaos: 0, level: 0, max: 3 },
-    { id: "titanic-scarab-of-legend", name: "\uC804\uC124\uC758 \uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uBAAC\uC2A4\uD130 \uC18D\uC131 2\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, level: 0, max: 1 }
+    { id: "titanic-scarab-of-legend", name: "\uC804\uC124\uC758 \uAC70\uB300\uD55C \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uBAAC\uC2A4\uD130 \uC18D\uC131 4\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, level: 0, max: 1 }
   )
 };
 const Sulphite = {
@@ -1312,9 +1312,9 @@ const Torment = {
   left: "302px",
   class: "",
   list: Array(
-    { id: "torment-scarab", name: "\uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31 3\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5", "\uC0AC\uB85C\uC7A1\uD78C \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC9C0\uC5ED \uB0B4", "\uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 25%\uC758 \uD655\uB960\uB85C \uD574\uBC29"], chaos: 0, level: 0, max: 2 },
+    { id: "torment-scarab", name: "\uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31 3\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5", "\uC0AC\uB85C\uC7A1\uD78C \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC9C0\uC5ED \uB0B4", "\uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 50%\uC758 \uD655\uB960\uB85C \uD574\uBC29"], chaos: 0, level: 0, max: 2 },
     { id: "torment-scarab-of-peculiarity", name: "\uAE30\uC774\uD568\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uB0B4 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC774 \uD2B9\uC774\uD55C \uBCC0\uD654\uD615\uC73C\uB85C \uB4F1\uC7A5"], chaos: 0, level: 0, max: 1 },
-    { id: "torment-scarab-of-possession", name: "\uC0AC\uB85C\uC7A1\uD798\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 1/4 \uD655\uB960\uB85C \uCD5C\uB300 1\uB9C8\uB9AC\uC758 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC5D0\uAC8C \uC0AC\uB85C\uC7A1\uD798"], chaos: 0, level: 0, max: 4 }
+    { id: "torment-scarab-of-possession", name: "\uC0AC\uB85C\uC7A1\uD798\uC758 \uACE0\uD1B5 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 1/4 \uD655\uB960\uB85C \uCD5C\uB300 3\uB9C8\uB9AC\uC758 \uACE0\uD1B5\uBC1B\uB294 \uD63C\uBC31\uC5D0\uAC8C \uC0AC\uB85C\uC7A1\uD798"], chaos: 0, level: 0, max: 3 }
   )
 };
 const Cartography = {
@@ -1323,7 +1323,7 @@ const Cartography = {
   class: "",
   list: Array(
     { id: "cartography-scarab-of-escalation", name: "\uC99D\uB300\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC601\uD5A5\uC744 \uC8FC\uB294 \uC9C0\uB3C4 \uC18D\uC131 \uD558\uB098\uB2F9 \uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC9C0\uB3C4 10% \uC99D\uAC00"], chaos: 0, level: 0, max: 1 },
-    { id: "cartography-scarab-of-risk", name: "\uC704\uD5D8\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uBB34\uC791\uC704 \uC18D\uC131 2\uAC1C \uCD94\uAC00"], chaos: 0, level: 0, max: 5 },
+    { id: "cartography-scarab-of-risk", name: "\uC704\uD5D8\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uBB34\uC791\uC704 \uC18D\uC131 2\uAC1C \uCD94\uAC00"], chaos: 0, level: 0, max: 1 },
     { id: "cartography-scarab-of-corruption", name: "\uD0C0\uB77D\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uBE44-\uACE0\uC720 \uC9C0\uB3C4\uAC00 \uC18D\uC131 8\uAC1C\uAC00 \uBD80\uC5EC\uB41C \uD0C0\uB77D\uD55C \uC9C0\uB3C4\uB85C \uB5A8\uC5B4\uC9D0"], chaos: 0, level: 0, max: 1 },
     { id: "cartography-scarab-of-the-multitude", name: "\uAD70\uC911\uC758 \uC9C0\uB3C4 \uC81C\uC791 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1\uC774 \uB192\uC740 \uBAAC\uC2A4\uD130\uB85C", "\uC774\uB8E8\uC5B4\uC9C4 \uBB34\uB9AC\uAC00 8~12\uAC1C \uB4F1\uC7A5\uD569\uB2C8\uB2E4. \uC774\uB7EC\uD55C \uBAAC\uC2A4\uD130\uB294 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC9C0\uB3C4 \uC218\uB7C9\uC774 300% \uC99D\uAC00\uD569\uB2C8\uB2E4."], chaos: 0, level: 0, max: 3 }
   )
@@ -1334,7 +1334,7 @@ const Beyond = {
   class: "",
   list: Array(
     { id: "beyond-scarab", name: "\uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uC11C\uB85C \uAC00\uAE4C\uC774 \uC788\uB294 \uC801\uC744 \uCC98\uCE58\uD558\uBA74 \uC774\uACC4 \uBAAC\uC2A4\uD130\uB97C \uBD88\uB7EC\uC634"], chaos: 0, level: 0, max: 1 },
-    { id: "beyond-scarab-of-haemophilia", name: "\uD608\uC6B0\uBCD1\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC758 \uBCD1\uD569 \uBC94\uC704 50% \uC99D\uAC00"], chaos: 0, level: 0, max: 2 },
+    { id: "beyond-scarab-of-haemophilia", name: "\uD608\uC6B0\uBCD1\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC758 \uBCD1\uD569 \uBC94\uC704 50% \uC99D\uAC00", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD76C\uADC0 \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uCE90\uB9AD\uD130\uAC00 \uADF8\uB4E4\uC758 \uC18D\uC131\uC744 20\uCD08 \uB3D9\uC548 30% \uD655\uB960\uB85C \uD68D\uB4DD"], chaos: 0, level: 0, max: 2 },
     { id: "beyond-scarab-of-resurgence", name: "\uC7AC\uAE30\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uBCF4\uC2A4\uAC00 \uB0AE\uC740 \uC0DD\uBA85\uB825 \uC0C1\uD0DC\uC5D0\uC11C \uACA9\uC559\uD568", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uBCF4\uC2A4\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uB354\uB7FD\uD600\uC9C4 \uD654\uD3D0 100% \uC99D\uAC00", "\uC9C0\uC5ED \uB0B4 \uC774\uACC4 \uD3EC\uD0C8\uC774 \uACE0\uC720 \uBCF4\uC2A4\uB97C \uC0DD\uC131\uD560 \uD655\uB960 30% \uC99D\uAC00"], chaos: 0, level: 0, max: 1 },
     { id: "beyond-scarab-of-the-invasion", name: "\uCE68\uB7B5\uC758 \uC774\uACC4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBC0F \uACE0\uC720 \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC774\uACC4 \uD3EC\uD0C8 8~12\uAC1C \uCD94\uAC00 \uC0DD\uC131"], chaos: 0, level: 0, max: 1 }
   )
@@ -1414,8 +1414,8 @@ const Abyss = {
   class: "",
   list: Array(
     { id: "abyss-scarab", name: "\uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uC2EC\uC5F0 1\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, level: 0, max: 2 },
-    { id: "abyss-scarab-of-multitudes", name: "\uAD70\uC911\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC5D0\uC11C \uC0DD\uC131\uB418\uB294 \uBAAC\uC2A4\uD130 75% \uC99D\uAC00"], chaos: 0, level: 0, max: 2 },
-    { id: "abyss-scarab-of-edifice", name: "\uAC74\uCD95\uBB3C\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0 \uC9C0\uD558\uB85C \uC5F0\uACB0\uB418\uC9C0 \uC54A\uB294 \uC2EC\uC5F0\uC774 \uBA85\uACC4\uC758 \uCCA8\uD0D1\uC73C\uB85C \uC774\uC5B4\uC9D0", "\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC774 \uC774\uB3D9\uD558\uBA70 \uBE44\uCD95\uBB3C \uC0DD\uC131"], chaos: 0, level: 0, max: 1 },
+    { id: "abyss-scarab-of-multitudes", name: "\uAD70\uC911\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC5D0\uC11C \uC0DD\uC131\uB418\uB294 \uBAAC\uC2A4\uD130 50% \uC99D\uAC00"], chaos: 0, level: 0, max: 2 },
+    { id: "abyss-scarab-of-edifice", name: "\uAC74\uCD95\uBB3C\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0 \uC9C0\uD558\uB85C \uC774\uC5B4\uC9C0\uC9C0 \uC54A\uB294 \uC2EC\uC5F0\uC774 \uBA85\uACC4\uC758 \uCCA8\uD0D1\uC73C\uB85C \uC774\uC5B4\uC9D0", "\uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0 \uC9C0\uD558\uB85C \uC774\uC5B4\uC9C0\uAC70\uB098 \uC2EC\uC5F0\uC758 \uBC1C\uACAC\uBB3C\uC744 \uC0DD\uC131\uD558\uC9C0 \uC54A\uB294 \uC2EC\uC5F0 \uAD6C\uB369\uC774\uAC00 \uC791\uC740 \uBA85\uACC4\uC758 \uCCA8\uD0D1\uC744 \uC0DD\uC131\uD568"], chaos: 0, level: 0, max: 1 },
     { id: "abyss-scarab-of-profound-depth", name: "\uC2EC\uC6D0\uD55C \uAE4A\uC774\uC758 \uC2EC\uC5F0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uD574\uB2F9 \uC2EC\uC5F0 \uB0B4\uC5D0 \uBA3C\uC800 \uB4F1\uC7A5\uD558\uB294 \uAD6C\uB369\uC774\uC758 \uC218\uC5D0 \uB530\uB77C \uC9C0\uC5ED \uB0B4 \uC2EC\uC5F0\uC5D0\uC11C \uB098\uC628", "\uBAAC\uC2A4\uD130\uC758 \uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1 \uC99D\uAC00"], chaos: 0, level: 0, max: 1 }
   )
 };
@@ -1426,7 +1426,7 @@ const Essence = {
   list: Array(
     { id: "essence-scarab", name: "\uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uAC07\uD78C \uBAAC\uC2A4\uD130 2\uB9C8\uB9AC \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, level: 0, max: 5 },
     { id: "essence-scarab-of-ascent", name: "\uC0C1\uC2B9\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0\uC11C \uBC1C\uACAC\uD558\uB294 \uC5D0\uC13C\uC2A4\uAC00 1\uB4F1\uAE09 \uB192\uAC8C \uBC1C\uACAC\uB428"], chaos: 0, level: 0, max: 1 },
-    { id: "essence-scarab-of-stability", name: "\uC548\uC815\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uD0C0\uB77D\uC758 \uC720\uBB3C \uC0AC\uC6A9 \uC2DC \uC5D0\uC13C\uC2A4\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uB610\uB294", "\uBCC0\uD654\uC2DC\uD0A4\uB294 \uACB0\uACFC\uB9CC \uAC00\uB2A5"], chaos: 0, level: 0, max: 1 },
+    { id: "essence-scarab-of-stability", name: "\uC548\uC815\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4\uC5D0\uC11C \uC5D0\uC13C\uC2A4 \uD0C0\uB77D \uC2DC \uC5D0\uC13C\uC2A4\uB97C \uC5C5\uADF8\uB808\uC774\uB4DC \uB610\uB294", "\uBCC0\uD654\uC2DC\uD0A4\uB294 \uACB0\uACFC\uB9CC \uAC00\uB2A5"], chaos: 0, level: 0, max: 1 },
     { id: "essence-scarab-of-calcification", name: "\uC11D\uD68C\uD654\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uC790\uC5F0\uC801\uC73C\uB85C \uC11C\uC2DD\uD558\uB294 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC5D0\uC13C\uC2A4\uC5D0 \uAC07\uD798"], chaos: 0, level: 0, max: 1 },
     { id: "essence-scarab-of-adaptation", name: "\uC801\uC751\uC758 \uC5D0\uC13C\uC2A4 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uAC07\uD78C \uBAAC\uC2A4\uD130\uAC00 \uD480\uB824\uB098\uBA74 \uC9C0\uC5ED \uB0B4 \uB2E4\uB978 \uAC07\uD78C \uBAAC\uC2A4\uD130\uC5D0\uAC8C \uBB34\uC791\uC704 \uC5D0\uC13C\uC2A4 \uC18D\uC131 \uBD80\uC5EC", "\uC5D0\uC13C\uC2A4 \uC18D\uC131\uC758 \uC218\uC5D0 \uB530\uB77C \uC9C0\uC5ED \uB0B4 \uAC07\uD78C \uBAAC\uC2A4\uD130\uC758", "\uB09C\uC774\uB3C4\uC640 \uBCF4\uC0C1 \uC99D\uAC00"], chaos: 0, level: 0, max: 1 }
   )
@@ -1450,7 +1450,7 @@ const VariousScarabs1 = {
   list: Array(
     { id: "scarab-of-monstrous-lineage", name: "\uAE30\uAD34\uD55C \uD608\uD1B5\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uB9C8\uBC95 \uBB34\uB9AC \uADDC\uBAA8 40% \uC99D\uAC00"], chaos: 0, level: 0, max: 2 },
     { id: "scarab-of-adversaries", name: "\uC801\uC218\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uBCF5\uC81C\uB41C \uD76C\uADC0 \uBAAC\uC2A4\uD130\uB97C \uD3EC\uD568\uD55C \uBB34\uB9AC 4\uAC1C \uCD94\uAC00 \uB4F1\uC7A5"], chaos: 0, level: 0, max: 2 },
-    { id: "scarab-of-divinity", name: "\uC2E0\uC131\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD310\uD14C\uC628\uC758 \uC190\uAE38\uC5D0 \uB2FF\uC740 \uD76C\uADC0 \uBAAC\uC2A4\uD130 \uCD5C\uB300 2\uB9C8\uB9AC \uCD94\uAC00", "\uD310\uD14C\uC628\uC758 \uC190\uAE38\uC5D0 \uB2FF\uC740 \uBAAC\uC2A4\uD130\uAC00 \uC0DD\uC131\uD558\uB294 \uC720\uB839\uC774 \uC8FC\uB294 \uD53C\uD574 100% \uC99D\uAC00"], chaos: 0, level: 0, max: 2 },
+    { id: "scarab-of-divinity", name: "\uC2E0\uC131\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD310\uD14C\uC628\uC758 \uC190\uAE38\uC5D0 \uB2FF\uC740 \uD76C\uADC0 \uBAAC\uC2A4\uD130 \uCD5C\uB300 3\uB9C8\uB9AC \uCD94\uAC00", "\uD310\uD14C\uC628\uC758 \uC190\uAE38\uC5D0 \uB2FF\uC740 \uBAAC\uC2A4\uD130\uAC00 \uC0DD\uC131\uD558\uB294 \uC720\uB839\uC774 \uC8FC\uB294 \uD53C\uD574 100% \uC99D\uAC00"], chaos: 0, level: 0, max: 3 },
     { id: "scarab-of-hunted-traitors", name: "\uCAD3\uAE30\uB294 \uBC30\uC2E0\uC790\uC758 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC5D0 \uCAD3\uAE30\uB294 \uBC30\uC2E0\uC790 \uB4F1\uC7A5"], chaos: 0, level: 0, max: 1 }
   )
 };
@@ -1459,8 +1459,8 @@ const VariousScarabs2 = {
   left: "425px",
   class: "wide",
   list: Array(
-    { id: "horned-scarab-of-bloodlines", name: "\uD608\uB9F9\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC758 \uB9C8\uBC95 \uBAAC\uC2A4\uD130 150% \uC99D\uAC00"], chaos: 0, level: 0, max: 1 },
-    { id: "horned-scarab-of-nemeses", name: "\uCC9C\uBC8C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC18D\uC131 2\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, level: 0, max: 1 },
+    { id: "horned-scarab-of-bloodlines", name: "\uD608\uB9F9\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED\uC758 \uB9C8\uBC95 \uBAAC\uC2A4\uD130 150% \uC99D\uAC00", "\uC9C0\uC5ED \uB0B4 \uB9C8\uBC95 \uBAAC\uC2A4\uD130\uAC00 \uC18D\uC131 1\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, level: 0, max: 1 },
+    { id: "horned-scarab-of-nemeses", name: "\uCC9C\uBC8C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD76C\uADC0 \uBAAC\uC2A4\uD130\uAC00 \uC18D\uC131 2\uAC1C \uCD94\uAC00 \uBCF4\uC720"], chaos: 0, level: 0, max: 2 },
     { id: "horned-scarab-of-preservation", name: "\uBCF4\uC804\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uB2E4\uB978 \uAC11\uCDA9\uC11D\uB4E4\uC774 \uC0AC\uC6A9\uD574\uB3C4 \uC18C\uBAA8\uB418\uC9C0 \uC54A\uC74C"], chaos: 0, level: 0, max: 1 },
     { id: "horned-scarab-of-awakening", name: "\uAC01\uC131\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uB3C4 \uC7A5\uCE58\uC5D0\uC11C \uBD80\uC5EC\uB41C \uC81C\uC791 \uC635\uC158 1\uAC1C \uC120\uD0DD \uAC00\uB2A5"], chaos: 0, level: 0, max: 1 },
     { id: "horned-scarab-of-tradition", name: "\uC804\uD1B5\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAA8\uB4E0 \uD76C\uADC0 \uBC0F \uACE0\uC720 \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC544\uC774\uD15C\uC774", "\uBCF4\uC0C1 \uC18D\uC131\uC5D0 \uC758\uD574 \uBCC0\uD654\uB428"], chaos: 0, level: 0, max: 1 }
@@ -1482,7 +1482,7 @@ const VariousScarabs4 = {
   left: "504px",
   class: "wide",
   list: Array(
-    { id: "horned-scarab-of-glittering", name: "\uBC88\uCA4D\uC784\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD50C\uB808\uC774\uC5B4\uAC00 \uCD5C\uADFC 4\uCD08 \uC774\uB0B4 \uCC98\uCE58\uD55C \uBAAC\uC2A4\uD130 \uC218\uC5D0 \uB530\uB77C \uC544\uC774\uD15C \uD76C\uADC0\uB3C4\uAC00 \uCD5C\uB300 200%\uAE4C\uC9C0, \uC544\uC774\uD15C \uC218\uB7C9\uC774 \uCD5C\uB300 50%\uAE4C\uC9C0 \uC99D\uAC00"], chaos: 0, level: 0, max: 1 },
+    { id: "horned-scarab-of-glittering", name: "\uBC88\uCA4D\uC784\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uD50C\uB808\uC774\uC5B4\uAC00 \uCC98\uCE58\uD55C \uBAAC\uC2A4\uD130 \uC218\uC5D0 \uB530\uB77C \uC544\uC774\uD15C \uD76C\uADC0\uB3C4\uAC00 \uCD5C\uB300 400%\uAE4C\uC9C0", "\uC99D\uAC00\uD558\uACE0 \uC2DC\uAC04\uC774 \uC9C0\uB098\uBA74\uC11C \uC11C\uC11C\uD788 \uAC10\uC18C"], chaos: 0, level: 0, max: 1 },
     { id: "horned-scarab-of-pandemonium", name: "\uD63C\uB780 \uC720\uBC1C\uC758 \uBFD4 \uB2EC\uB9B0 \uAC11\uCDA9\uC11D", icon: "", description: ["\uC9C0\uC5ED \uB0B4 \uBAAC\uC2A4\uD130 \uBB34\uB9AC\uAC00 15% \uD655\uB960\uB85C \uBB34\uC791\uC704 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4 1\uB9C8\uB9AC\uB85C \uB4F1\uC7A5", "\uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uBCF4\uC2A4\uC5D0 \uB300\uD55C \uC18D\uC131\uC774 \uD574\uB2F9 \uC544\uD2C0\uB77C\uC2A4 \uBCF4\uC2A4\uC5D0\uB3C4 \uC801\uC6A9"], chaos: 0, level: 0, max: 1 }
   )
 };
@@ -1529,14 +1529,23 @@ class Scarab {
       VariousScarabs4
     ];
     const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Scarab/${"Keepers"}`);
-    const res = response.data.lines;
-    res.forEach((data) => {
+    const priceRes = response.data.lines;
+    const iconRes = response.data.items;
+    priceRes.forEach((data) => {
       groups.forEach((group) => {
         group.list.forEach((scarab) => {
-          if (scarab.id === data.detailsId) {
-            scarab.icon = data.icon;
-            scarab.chaos = Number(Number(data.chaosValue || 0).toFixed(1));
-            scarab.level = calcLevel(data.chaosValue);
+          if (scarab.id === data.id) {
+            scarab.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+            scarab.level = calcLevel(data.primaryValue);
+          }
+        });
+      });
+    });
+    iconRes.forEach((data) => {
+      groups.forEach((group) => {
+        group.list.forEach((scarab) => {
+          if (scarab.id === data.id) {
+            scarab.icon = `https://web.poecdn.com${data.image}`;
           }
         });
       });
@@ -2754,12 +2763,19 @@ class Fossil {
       { id: "faceted-fossil", name: "\uC5F0\uB9C8\uD55C \uD654\uC11D", icon: "", chaos: 0, description: ["\uC82C \uC18D\uC131 \uBD80\uC5EC \uC99D\uAC00"], top: "310px", left: "618px" }
     ];
     const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Fossil/${"Keepers"}`);
-    const res = response.data.lines;
-    res.forEach((data) => {
+    const priceRes = response.data.lines;
+    const iconRes = response.data.items;
+    priceRes.forEach((data) => {
       list.forEach((fossil) => {
-        if (fossil.id === data.detailsId) {
-          fossil.icon = data.icon;
-          fossil.chaos = Number(Number(data.chaosValue || 0).toFixed(1));
+        if (fossil.id === data.id) {
+          fossil.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    iconRes.forEach((data) => {
+      list.forEach((fossil) => {
+        if (fossil.id === data.id) {
+          fossil.icon = `https://web.poecdn.com${data.image}`;
         }
       });
     });
@@ -2784,12 +2800,19 @@ class Resonator {
       { id: "prime-chaotic-resonator", name: "\uCD5C\uC885\uD615 \uD63C\uB3C8 \uACF5\uBA85\uAE30", icon: "", chaos: 0, level: 4, top: "605px", left: "489px" }
     ];
     const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Resonator/${"Keepers"}`);
-    const res = response.data.lines;
-    res.forEach((data) => {
+    const priceRes = response.data.lines;
+    const iconRes = response.data.items;
+    priceRes.forEach((data) => {
       list.forEach((resonator) => {
-        if (resonator.id === data.detailsId) {
-          resonator.icon = data.icon;
-          resonator.chaos = Number(Number(data.chaosValue || 0).toFixed(1));
+        if (resonator.id === data.id) {
+          resonator.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    iconRes.forEach((data) => {
+      list.forEach((resonator) => {
+        if (resonator.id === data.id) {
+          resonator.icon = `https://web.poecdn.com${data.image}`;
         }
       });
     });
@@ -2985,12 +3008,19 @@ class Oil {
       { id: "prismatic-oil", name: "\uBD84\uAD11 \uC131\uC720", icon: "", chaos: 0, top: "101px", left: "698px", description: [] }
     ];
     const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Oil/${"Keepers"}`);
-    const res = response.data.lines;
-    res.forEach((data) => {
+    const priceRes = response.data.lines;
+    const iconRes = response.data.items;
+    priceRes.forEach((data) => {
       list.forEach((oil) => {
-        if (oil.id === data.detailsId) {
-          oil.icon = data.icon;
-          oil.chaos = Number(Number(data.chaosValue || 0).toFixed(1));
+        if (oil.id === data.id) {
+          oil.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    iconRes.forEach((data) => {
+      list.forEach((oil) => {
+        if (oil.id === data.id) {
+          oil.icon = `https://web.poecdn.com${data.image}`;
         }
       });
     });
@@ -3148,22 +3178,38 @@ class DeliriumOrb {
       { id: "blighted-delirium-orb", name: "\uC5ED\uBCD1 \uAC78\uB9B0 \uD658\uC601\uC758 \uC624\uBE0C", icon: "", chaos: 0, max: 0, top: "291px", left: "683px", description: ["\uC9C0\uB3C4 \uC544\uC774\uD15C\uC5D0 \uC5ED\uBCD1 \uBCF4\uC0C1 \uC720\uD615\uC774 \uD3EC\uD568\uB41C \uD658\uC601 \uD604\uC0C1\uC744 \uCD94\uAC00\uD569\uB2C8\uB2E4"] }
     ];
     const responseD = await api.get(`https://www.logisnet.co.kr/dev-api/poe/DeliriumOrb/${"Keepers"}`);
-    const resD = responseD.data.lines;
-    resD.forEach((data) => {
+    const priceResD = responseD.data.lines;
+    const iconResD = responseD.data.items;
+    priceResD.forEach((data) => {
       list.forEach((orb) => {
-        if (orb.id === data.detailsId) {
-          orb.icon = data.icon;
-          orb.chaos = Number(Number(data.chaosValue || 0).toFixed(1));
+        if (orb.id === data.id) {
+          orb.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
         }
       });
     });
-    const responseF = await api.get(`https://www.logisnet.co.kr/dev-api/poe/fragment/${"Keepers"}`);
-    const resF = responseF.data.lines;
-    const simulacrum = resF.filter((r) => r.detailsId.indexOf("simulacrum") !== -1);
-    simulacrum.forEach((data) => {
+    iconResD.forEach((data) => {
       list.forEach((orb) => {
-        if (orb.id === data.detailsId) {
-          orb.chaos = Number(Number(data.chaosEquivalent || 0).toFixed(1));
+        if (orb.id === data.id) {
+          orb.icon = `https://web.poecdn.com${data.image}`;
+        }
+      });
+    });
+    const responseF = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Fragment/${"Keepers"}`);
+    const priceResF = responseF.data.lines;
+    const iconResF = responseF.data.items;
+    const simulacrumPrice = priceResF.filter((r) => r.id.indexOf("simulacrum") !== -1);
+    const simulacrumIcon = iconResF.filter((r) => r.id.indexOf("simulacrum") !== -1);
+    simulacrumPrice.forEach((data) => {
+      list.forEach((orb) => {
+        if (orb.id === data.id) {
+          orb.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    simulacrumIcon.forEach((data) => {
+      list.forEach((orb) => {
+        if (orb.id === data.id) {
+          orb.icon = `https://web.poecdn.com${data.image}`;
         }
       });
     });
@@ -3294,13 +3340,22 @@ class Catalyst {
       { id: "intrinsic-catalyst", name: "\uBCF8\uC9C8\uC758 \uAE30\uD3ED\uC81C", icon: "https://cdn.poedb.tw/image/Art/2DItems/Currency/Catalysts/IntrinsicCatalyst.webp", chaos: 0, top: "213px", left: "558px", description: ["\uD004\uB9AC\uD2F0\uB97C \uCD94\uAC00\uD558\uC5EC \uBC18\uC9C0\uB098 \uBAA9\uAC78\uC774, \uD5C8\uB9AC\uB760\uC5D0 \uBD80\uC5EC\uB41C \uB2A5\uB825\uCE58 \uC18D\uC131\uC744 \uD5A5\uC0C1\uD569\uB2C8\uB2E4.", "\uAE30\uC874 \uD004\uB9AC\uD2F0 \uC720\uD615\uC744 \uB300\uCCB4\uD569\uB2C8\uB2E4."] },
       { id: "noxious-catalyst", name: "\uC720\uB3C5\uC131 \uAE30\uD3ED\uC81C", icon: "https://cdn.poedb.tw/image/Art/2DItems/Currency/Catalysts/ChaosPhysicalCatalyst.webp", chaos: 0, top: "213px", left: "639px", description: ["\uD004\uB9AC\uD2F0\uB97C \uCD94\uAC00\uD558\uC5EC \uBC18\uC9C0\uB098 \uBAA9\uAC78\uC774, \uD5C8\uB9AC\uB760\uC5D0 \uBD80\uC5EC\uB41C \uBB3C\uB9AC \uBC0F \uCE74\uC624\uC2A4 \uD53C\uD574 \uC18D\uC131\uC744 \uD5A5\uC0C1\uD569\uB2C8\uB2E4.", "\uAE30\uC874 \uD004\uB9AC\uD2F0 \uC720\uD615\uC744 \uB300\uCCB4\uD569\uB2C8\uB2E4."] }
     ];
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/currency/${"Keepers"}`);
-    const res = response.data.lines;
-    const catalyst = res.filter((d) => d.detailsId.indexOf("catalyst") !== -1);
-    catalyst.forEach((data) => {
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Currency/${"Keepers"}`);
+    const priceRes = response.data.lines;
+    const iconRes = response.data.items;
+    const catPriceRes = priceRes.filter((r) => r.id.indexOf("catalyst") !== -1);
+    const catIconRes = iconRes.filter((r) => r.id.indexOf("catalyst") !== -1);
+    catPriceRes.forEach((data) => {
       list.forEach((cat) => {
-        if (cat.id === data.detailsId) {
-          cat.chaos = Number(Number(data.chaosEquivalent || 0).toFixed(1));
+        if (cat.id === data.id) {
+          cat.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    catIconRes.forEach((data) => {
+      list.forEach((cat) => {
+        if (cat.id === data.id) {
+          cat.icon = `https://web.poecdn.com${data.image}`;
         }
       });
     });
@@ -3438,6 +3493,14 @@ const _sfc_main = defineComponent({
                 label: "\uAC11\uCDA9\uC11D"
               }),
               createVNode(QTab, {
+                name: "legion",
+                label: "\uAD70\uB2E8"
+              }),
+              createVNode(QTab, {
+                name: "betrayal",
+                label: "\uBC30\uC2E0"
+              }),
+              createVNode(QTab, {
                 name: "fossil",
                 label: "\uD654\uC11D"
               }),
@@ -3480,6 +3543,8 @@ const _sfc_main = defineComponent({
                 ]),
                 _: 1
               }),
+              createVNode(QTabPanel, { name: "legion" }),
+              createVNode(QTabPanel, { name: "betrayal" }),
               createVNode(QTabPanel, { name: "fossil" }, {
                 default: withCtx(() => [
                   createVNode(FossilTab)
