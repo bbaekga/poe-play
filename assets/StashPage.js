@@ -1093,14 +1093,14 @@ var QTabPanels = createComponent({
   }
 });
 var CurrencyTab_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId$2 = (n) => (pushScopeId("data-v-538bf23f"), n = n(), popScopeId(), n);
-const _hoisted_1$d = {
+const _withScopeId$3 = (n) => (pushScopeId("data-v-538bf23f"), n = n(), popScopeId(), n);
+const _hoisted_1$g = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
 };
-const _hoisted_2$9 = { class: "loading-chaos" };
-const _hoisted_3$7 = /* @__PURE__ */ _withScopeId$2(() => /* @__PURE__ */ createBaseVNode("div", { class: "currency-stash q-mx-auto" }, null, -1));
-const _sfc_main$e = defineComponent({
+const _hoisted_2$c = { class: "loading-chaos" };
+const _hoisted_3$9 = /* @__PURE__ */ _withScopeId$3(() => /* @__PURE__ */ createBaseVNode("div", { class: "currency-stash q-mx-auto" }, null, -1));
+const _sfc_main$h = defineComponent({
   ...{
     name: "CurrencyTab"
   },
@@ -1114,8 +1114,8 @@ const _sfc_main$e = defineComponent({
           "leave-active-class": "animated fadeOutUp"
         }, {
           default: withCtx(() => [
-            withDirectives(createBaseVNode("div", _hoisted_1$d, [
-              createBaseVNode("div", _hoisted_2$9, [
+            withDirectives(createBaseVNode("div", _hoisted_1$g, [
+              createBaseVNode("div", _hoisted_2$c, [
                 createVNode(QImg, {
                   src: "images/chaos.png",
                   width: "30px"
@@ -1127,21 +1127,21 @@ const _sfc_main$e = defineComponent({
           ]),
           _: 1
         }),
-        _hoisted_3$7
+        _hoisted_3$9
       ], 64);
     };
   }
 });
-var CurrencyTab = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-538bf23f"]]);
+var CurrencyTab = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["__scopeId", "data-v-538bf23f"]]);
 var InfluenceTab_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId$1 = (n) => (pushScopeId("data-v-f3b3fc22"), n = n(), popScopeId(), n);
-const _hoisted_1$c = {
+const _withScopeId$2 = (n) => (pushScopeId("data-v-f3b3fc22"), n = n(), popScopeId(), n);
+const _hoisted_1$f = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
 };
-const _hoisted_2$8 = { class: "loading-chaos" };
-const _hoisted_3$6 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createBaseVNode("div", { class: "influence-stash q-mx-auto" }, null, -1));
-const _sfc_main$d = defineComponent({
+const _hoisted_2$b = { class: "loading-chaos" };
+const _hoisted_3$8 = /* @__PURE__ */ _withScopeId$2(() => /* @__PURE__ */ createBaseVNode("div", { class: "influence-stash q-mx-auto" }, null, -1));
+const _sfc_main$g = defineComponent({
   ...{
     name: "InfluenceTab"
   },
@@ -1155,8 +1155,8 @@ const _sfc_main$d = defineComponent({
           "leave-active-class": "animated fadeOutUp"
         }, {
           default: withCtx(() => [
-            withDirectives(createBaseVNode("div", _hoisted_1$c, [
-              createBaseVNode("div", _hoisted_2$8, [
+            withDirectives(createBaseVNode("div", _hoisted_1$f, [
+              createBaseVNode("div", _hoisted_2$b, [
                 createVNode(QImg, {
                   src: "images/chaos.png",
                   width: "30px"
@@ -1168,12 +1168,12 @@ const _sfc_main$d = defineComponent({
           ]),
           _: 1
         }),
-        _hoisted_3$6
+        _hoisted_3$8
       ], 64);
     };
   }
 });
-var InfluenceTab = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-f3b3fc22"]]);
+var InfluenceTab = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["__scopeId", "data-v-f3b3fc22"]]);
 const Titanic = {
   top: "64px",
   left: "152px",
@@ -2503,10 +2503,10 @@ var QTooltip = createComponent({
   }
 });
 var ItemTooltip_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _withScopeId = (n) => (pushScopeId("data-v-10f767c2"), n = n(), popScopeId(), n);
-const _hoisted_1$b = { class: "item-tooltip relative-position" };
-const _hoisted_2$7 = { class: "tooltip-header flex items-center" };
-const _hoisted_3$5 = { class: "item-name q-mx-auto" };
+const _withScopeId$1 = (n) => (pushScopeId("data-v-373269a2"), n = n(), popScopeId(), n);
+const _hoisted_1$e = { class: "item-tooltip relative-position" };
+const _hoisted_2$a = { class: "tooltip-header flex items-center" };
+const _hoisted_3$7 = { class: "item-name q-mx-auto" };
 const _hoisted_4 = { class: "item-content column items-center" };
 const _hoisted_5 = { class: "row items-center" };
 const _hoisted_6 = { class: "q-ml-xs" };
@@ -2519,17 +2519,17 @@ const _hoisted_9 = {
   key: 1,
   class: "row t-mt-10"
 };
-const _hoisted_10 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "q-ml-xs" }, "1", -1));
-const _hoisted_11 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", {
+const _hoisted_10 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createBaseVNode("div", { class: "q-ml-xs" }, "1", -1));
+const _hoisted_11 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createBaseVNode("div", {
   class: "t-ml-10 t-mr-6 t-text-16",
   style: { "line-height": "1.2" }
 }, "\u2248", -1));
 const _hoisted_12 = { class: "q-ml-xs" };
-const _hoisted_13 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "item-separator" }, null, -1));
+const _hoisted_13 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createBaseVNode("div", { class: "item-separator" }, null, -1));
 const _hoisted_14 = { class: "text-center scarab-description" };
-const _hoisted_15 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "item-separator" }, null, -1));
+const _hoisted_15 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createBaseVNode("div", { class: "item-separator" }, null, -1));
 const _hoisted_16 = { class: "item-description text-center" };
-const _sfc_main$c = defineComponent({
+const _sfc_main$f = defineComponent({
   ...{
     name: "ItemTooltip"
   },
@@ -2553,9 +2553,9 @@ const _sfc_main$c = defineComponent({
     return (_ctx, _cache) => {
       return openBlock(), createBlock(QTooltip, { style: { "padding": "0" } }, {
         default: withCtx(() => [
-          createBaseVNode("div", _hoisted_1$b, [
-            createBaseVNode("div", _hoisted_2$7, [
-              createBaseVNode("div", _hoisted_3$5, toDisplayString(_ctx.item.name), 1)
+          createBaseVNode("div", _hoisted_1$e, [
+            createBaseVNode("div", _hoisted_2$a, [
+              createBaseVNode("div", _hoisted_3$7, toDisplayString(_ctx.item.name), 1)
             ]),
             createBaseVNode("div", _hoisted_4, [
               createBaseVNode("div", _hoisted_5, [
@@ -2609,13 +2609,13 @@ const _sfc_main$c = defineComponent({
     };
   }
 });
-var ItemTooltip = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-10f767c2"]]);
+var ItemTooltip = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["__scopeId", "data-v-373269a2"]]);
 var ScarabItem_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$a = {
+const _hoisted_1$d = {
   key: 0,
   class: "scarab-box empty"
 };
-const _sfc_main$b = defineComponent({
+const _sfc_main$e = defineComponent({
   ...{
     name: "ScarabItem"
   },
@@ -2627,7 +2627,7 @@ const _sfc_main$b = defineComponent({
     const props = __props;
     const emptyScarabItem = computed(() => props.scarab.id === "empty");
     return (_ctx, _cache) => {
-      return emptyScarabItem.value ? (openBlock(), createElementBlock("div", _hoisted_1$a)) : (openBlock(), createElementBlock("div", {
+      return emptyScarabItem.value ? (openBlock(), createElementBlock("div", _hoisted_1$d)) : (openBlock(), createElementBlock("div", {
         key: 1,
         class: normalizeClass(["item-box scarab-box row flex-center", `highlight${_ctx.scarab.level}`])
       }, [
@@ -2650,15 +2650,15 @@ const _sfc_main$b = defineComponent({
     };
   }
 });
-var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-df5fcf40"]]);
+var ScarabItem = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["__scopeId", "data-v-df5fcf40"]]);
 var ScarabTab_vue_vue_type_style_index_0_scoped_true_lang = "";
-const _hoisted_1$9 = {
+const _hoisted_1$c = {
   class: "absolute flex flex-center",
   style: { "width": "100%", "height": "50px", "top": "0" }
 };
-const _hoisted_2$6 = { class: "loading-chaos" };
-const _hoisted_3$4 = { class: "scarab-stash q-mx-auto" };
-const _sfc_main$a = defineComponent({
+const _hoisted_2$9 = { class: "loading-chaos" };
+const _hoisted_3$6 = { class: "scarab-stash q-mx-auto" };
+const _sfc_main$d = defineComponent({
   ...{
     name: "ScarabTab"
   },
@@ -2690,8 +2690,8 @@ const _sfc_main$a = defineComponent({
           "leave-active-class": "animated fadeOutUp"
         }, {
           default: withCtx(() => [
-            withDirectives(createBaseVNode("div", _hoisted_1$9, [
-              createBaseVNode("div", _hoisted_2$6, [
+            withDirectives(createBaseVNode("div", _hoisted_1$c, [
+              createBaseVNode("div", _hoisted_2$9, [
                 createVNode(QImg, {
                   src: "images/chaos.png",
                   width: "30px"
@@ -2703,7 +2703,7 @@ const _sfc_main$a = defineComponent({
           ]),
           _: 1
         }),
-        createBaseVNode("div", _hoisted_3$4, [
+        createBaseVNode("div", _hoisted_3$6, [
           (openBlock(true), createElementBlock(Fragment, null, renderList(scarabGroups.value, (group, index) => {
             return openBlock(), createElementBlock("div", {
               key: index,
@@ -2723,7 +2723,233 @@ const _sfc_main$a = defineComponent({
     };
   }
 });
-var ScarabTab = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-3f6d0fe0"]]);
+var ScarabTab = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["__scopeId", "data-v-3f6d0fe0"]]);
+class Allflame {
+  constructor() {
+    __publicField(this, "id", "");
+    __publicField(this, "name", "");
+    __publicField(this, "icon", "");
+    __publicField(this, "chaos", 0);
+    __publicField(this, "max", 0);
+    __publicField(this, "top", "");
+    __publicField(this, "left", "");
+    __publicField(this, "description", []);
+  }
+  static async fetch() {
+    const list = [
+      { id: "syndicate-medallion", name: "\uC5F0\uD569 \uBA54\uB2EC\uB9AC\uC628", icon: "", chaos: 0, max: 0, top: "168px", left: "364px", description: [] },
+      { id: "allflame-ember-of-resplendence", name: "\uAD11\uD718\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 2, top: "339px", left: "234px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC \uBAAC\uC2A4\uD130\uAC00 \uC544\uC774\uD15C\uC744 \uB5A8\uC5B4\uB728\uB9AC\uC9C0 \uC54A\uC74C", "\uBB34\uB9AC \uBAAC\uC2A4\uD130 \uCC98\uCE58 \uC2DC \uC544\uC774\uD15C \uD76C\uADC0\uB3C4\uAC00 \uCD5C\uB300 400%\uAE4C\uC9C0 \uC99D\uAC00\uD558\uACE0", "\uC2DC\uAC04\uC774 \uC9C0\uB098\uBA74\uC11C \uC11C\uC11C\uD788 \uAC10\uC18C"] },
+      { id: "allflame-ember-of-kulemak", name: "\uCFE8\uB808\uB9C9\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 2, top: "339px", left: "320px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC \uC6B0\uB450\uBA38\uB9AC\uAC00 \uBB34\uC791\uC704 \uC5F0\uD569 \uC7A5\uBE44\uB97C \uC7A5\uCC29\uD558\uACE0 \uC788\uC744", "\uAC00\uB2A5\uC131\uC774 \uC788\uB294 \uBB34\uC791\uC704 \uC5F0\uD569 \uB2E8\uC6D0", "\uB9C8\uC9C0\uB9C9 \uC9C0\uB3C4 \uBCF4\uC2A4\uAC00 \uC4F0\uB7EC\uC9C4 \uD6C4 \uBB34\uB9AC \uBAAC\uC2A4\uD130\uAC00 \uBD80\uD65C\uD568"] },
+      { id: "allflame-ember-of-the-ethereal", name: "\uCC9C\uC0C1\uC5D0 \uC18D\uD55C \uC790\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 4, top: "339px", left: "406px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC \uBAAC\uC2A4\uD130\uAC00 \uC7A5\uBE44, \uD50C\uB77C\uC2A4\uD06C, \uD305\uD06C\uB97C", "\uB5A8\uC5B4\uB728\uB9AC\uC9C0 \uC54A\uC74C"] },
+      { id: "allflame-ember-of-propagation", name: "\uC99D\uC2DD\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 1, top: "339px", left: "494px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uD76C\uADC0\uC77C \uB54C \uC8FD\uB294 \uBB34\uB9AC \uBAAC\uC2A4\uD130\uAC00 \uC9C0\uC5ED \uB0B4 \uB2E4\uB978", "\uD76C\uADC0 \uBAAC\uC2A4\uD130\uC5D0\uAC8C \uC18D\uC131\uC744 \uD655\uC0B0\uC2DC\uD0B4"] },
+      { id: "allflame-ember-of-the-gilded", name: "\uB3C4\uAE08\uB41C \uC790\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 4, top: "442px", left: "234px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC \uBAAC\uC2A4\uD130\uAC00 \uB5A8\uC5B4\uB728\uB9AC\uB294 \uC7A5\uBE44\uAC00 \uACE8\uB4DC\uB85C \uC804\uD658"] },
+      { id: "allflame-ember-of-flesh", name: "\uC0B4\uC810\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 3, top: "442px", left: "320px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC\uC5D0 \uBAAC\uC2A4\uD130\uAC00 1\uB9C8\uB9AC \uC788\uC74C", "\uBAAC\uC2A4\uD130\uC758 \uC0DD\uBA85\uB825 \uD06C\uAC8C \uC99D\uAC00"] },
+      { id: "allflame-ember-of-toads", name: "\uB450\uAEBC\uBE44\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 3, top: "442px", left: "406px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC \uBAAC\uC2A4\uD130\uAC00 \uBB34\uD574\uD55C \uB450\uAEBC\uBE44\uB85C \uB4F1\uC7A5"] },
+      { id: "allflame-ember-of-the-wildwood", name: "\uC57C\uC0DD\uB9BC\uC758 \uC62C\uD50C\uB808\uC784 \uC789\uAC78\uBD88", icon: "", chaos: 0, max: 2, top: "442px", left: "494px", description: ["\uC9C0\uC5ED\uC758 \uBAAC\uC2A4\uD130 \uBB34\uB9AC \uAD50\uCCB4", "\uBB34\uB9AC \uC6B0\uB450\uBA38\uB9AC \uCC98\uCE58 \uC2DC \uC9C0\uB3C4 \uBCF4\uC2A4\uAC00", "\uC57C\uC0DD\uB9BC \uB3C4\uAE68\uBE44\uBD88\uB85C \uAC15\uD654"] }
+    ];
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/AllflameEmber/${"Keepers"}`);
+    const priceRes = response.data.lines;
+    const iconRes = response.data.items;
+    priceRes.forEach((data) => {
+      list.forEach((item) => {
+        if (item.id === data.id) {
+          item.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    iconRes.forEach((data) => {
+      list.forEach((item) => {
+        if (item.id === data.id) {
+          item.icon = `https://web.poecdn.com${data.image}`;
+        }
+      });
+    });
+    const responseF = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Fragment/${"Keepers"}`);
+    const priceResF = responseF.data.lines;
+    const iconResF = responseF.data.items;
+    const medallionPrice = priceResF.filter((r) => r.id.indexOf("medallion") !== -1);
+    const medallionIcon = iconResF.filter((r) => r.id.indexOf("medallion") !== -1);
+    medallionPrice.forEach((data) => {
+      list.forEach((item) => {
+        if (item.id === data.id) {
+          item.chaos = Number(Number(data.primaryValue || 0).toFixed(1));
+        }
+      });
+    });
+    medallionIcon.forEach((data) => {
+      list.forEach((item) => {
+        if (item.id === data.id) {
+          item.icon = `https://web.poecdn.com${data.image}`;
+        }
+      });
+    });
+    return list;
+  }
+}
+var LegionTab_vue_vue_type_style_index_0_scoped_true_lang = "";
+const _withScopeId = (n) => (pushScopeId("data-v-597aa662"), n = n(), popScopeId(), n);
+const _hoisted_1$b = {
+  class: "absolute flex flex-center",
+  style: { "width": "100%", "height": "50px", "top": "0" }
+};
+const _hoisted_2$8 = { class: "loading-chaos" };
+const _hoisted_3$5 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createBaseVNode("div", { class: "legion-stash q-mx-auto" }, null, -1));
+const _sfc_main$c = defineComponent({
+  ...{
+    name: "LegionTab"
+  },
+  __name: "LegionTab",
+  setup(__props) {
+    onMounted(async () => {
+      await getMetaData();
+      registerInterval(async () => {
+        await getMetaData();
+      }, 1e3 * 60 * 10);
+    });
+    onBeforeUnmount(() => {
+      removeInterval();
+    });
+    const { registerInterval, removeInterval } = useInterval();
+    const fetchLoading = ref(false);
+    const list = ref([]);
+    async function getMetaData() {
+      fetchLoading.value = true;
+      setTimeout(() => {
+        fetchLoading.value = false;
+      }, 3e3);
+      list.value = await Allflame.fetch();
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock(Fragment, null, [
+        createVNode(Transition, {
+          "enter-active-class": "animated fadeInDown",
+          "leave-active-class": "animated fadeOutUp"
+        }, {
+          default: withCtx(() => [
+            withDirectives(createBaseVNode("div", _hoisted_1$b, [
+              createBaseVNode("div", _hoisted_2$8, [
+                createVNode(QImg, {
+                  src: "images/chaos.png",
+                  width: "30px"
+                })
+              ])
+            ], 512), [
+              [vShow, fetchLoading.value]
+            ])
+          ]),
+          _: 1
+        }),
+        _hoisted_3$5
+      ], 64);
+    };
+  }
+});
+var LegionTab = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["__scopeId", "data-v-597aa662"]]);
+var AllflameItem_vue_vue_type_style_index_0_scoped_true_lang = "";
+const _hoisted_1$a = { class: "item-box allflame-box flex flex-center" };
+const _hoisted_2$7 = {
+  class: "absolute-bottom-right",
+  style: { "font-size": "12px", "line-height": "1", "bottom": "2px", "right": "4px", "z-index": "2" }
+};
+const _sfc_main$b = defineComponent({
+  ...{
+    name: "AllflameItem"
+  },
+  __name: "AllflameItem",
+  props: {
+    item: {}
+  },
+  setup(__props) {
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock("div", _hoisted_1$a, [
+        createVNode(QImg, {
+          src: _ctx.item.icon,
+          width: "62px",
+          style: { "z-index": "2" }
+        }, null, 8, ["src"]),
+        createBaseVNode("div", _hoisted_2$7, toDisplayString(_ctx.item.chaos), 1),
+        _ctx.item.id === "syndicate-medallion" ? (openBlock(), createBlock(ItemTooltip, {
+          key: 0,
+          item: _ctx.item
+        }, null, 8, ["item"])) : (openBlock(), createBlock(ItemTooltip, {
+          key: 1,
+          item: _ctx.item,
+          max: "",
+          description: ""
+        }, null, 8, ["item"]))
+      ]);
+    };
+  }
+});
+var AllflameItem = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["__scopeId", "data-v-7e28e39c"]]);
+var BetrayalTab_vue_vue_type_style_index_0_scoped_true_lang = "";
+const _hoisted_1$9 = {
+  class: "absolute flex flex-center",
+  style: { "width": "100%", "height": "50px", "top": "0" }
+};
+const _hoisted_2$6 = { class: "loading-chaos" };
+const _hoisted_3$4 = { class: "betrayal-stash q-mx-auto" };
+const _sfc_main$a = defineComponent({
+  ...{
+    name: "BetrayalTab"
+  },
+  __name: "BetrayalTab",
+  setup(__props) {
+    onMounted(async () => {
+      await getMetaData();
+      registerInterval(async () => {
+        await getMetaData();
+      }, 1e3 * 60 * 10);
+    });
+    onBeforeUnmount(() => {
+      removeInterval();
+    });
+    const { registerInterval, removeInterval } = useInterval();
+    const fetchLoading = ref(false);
+    const list = ref([]);
+    async function getMetaData() {
+      fetchLoading.value = true;
+      setTimeout(() => {
+        fetchLoading.value = false;
+      }, 3e3);
+      list.value = await Allflame.fetch();
+    }
+    return (_ctx, _cache) => {
+      return openBlock(), createElementBlock(Fragment, null, [
+        createVNode(Transition, {
+          "enter-active-class": "animated fadeInDown",
+          "leave-active-class": "animated fadeOutUp"
+        }, {
+          default: withCtx(() => [
+            withDirectives(createBaseVNode("div", _hoisted_1$9, [
+              createBaseVNode("div", _hoisted_2$6, [
+                createVNode(QImg, {
+                  src: "images/chaos.png",
+                  width: "30px"
+                })
+              ])
+            ], 512), [
+              [vShow, fetchLoading.value]
+            ])
+          ]),
+          _: 1
+        }),
+        createBaseVNode("div", _hoisted_3$4, [
+          (openBlock(true), createElementBlock(Fragment, null, renderList(list.value, (item, index) => {
+            return openBlock(), createElementBlock("div", {
+              key: index,
+              class: "absolute",
+              style: normalizeStyle({ top: `${item.top}`, left: `${item.left}` })
+            }, [
+              createVNode(AllflameItem, { item }, null, 8, ["item"])
+            ], 4);
+          }), 128))
+        ])
+      ], 64);
+    };
+  }
+});
+var BetrayalTab = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["__scopeId", "data-v-62868fa2"]]);
 class Fossil {
   constructor() {
     __publicField(this, "id", "");
@@ -3543,8 +3769,18 @@ const _sfc_main = defineComponent({
                 ]),
                 _: 1
               }),
-              createVNode(QTabPanel, { name: "legion" }),
-              createVNode(QTabPanel, { name: "betrayal" }),
+              createVNode(QTabPanel, { name: "legion" }, {
+                default: withCtx(() => [
+                  createVNode(LegionTab)
+                ]),
+                _: 1
+              }),
+              createVNode(QTabPanel, { name: "betrayal" }, {
+                default: withCtx(() => [
+                  createVNode(BetrayalTab)
+                ]),
+                _: 1
+              }),
               createVNode(QTabPanel, { name: "fossil" }, {
                 default: withCtx(() => [
                   createVNode(FossilTab)

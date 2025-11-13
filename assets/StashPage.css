@@ -14,30 +14,30 @@
   background-repeat: no-repeat;
   position: relative;
   margin-top: 32px;
-}.item-tooltip[data-v-10f767c2] {
+}.item-tooltip[data-v-373269a2] {
   position: relative;
   background: rgba(0, 0, 0, 0.8);
   min-width: 365px;
   font-size: 14px;
 }
-.item-tooltip .item-separator[data-v-10f767c2] {
+.item-tooltip .item-separator[data-v-373269a2] {
   background: url("/poe-play/images/item-separator.png") center no-repeat;
   width: 100%;
   height: 8px;
   margin: 4px 0;
 }
-.item-tooltip .tooltip-header[data-v-10f767c2] {
+.item-tooltip .tooltip-header[data-v-373269a2] {
   height: 34px;
   background: url("/poe-play/images/item-header-left.png") top left no-repeat, url("/poe-play/images/item-header-right.png") top right no-repeat, url("/poe-play/images/item-header-middle.png") top center repeat-x;
 }
-.item-tooltip .item-name[data-v-10f767c2] {
+.item-tooltip .item-name[data-v-373269a2] {
   color: #aa9e82;
   font-size: 16px;
 }
-.item-tooltip .item-content[data-v-10f767c2] {
+.item-tooltip .item-content[data-v-373269a2] {
   padding: 16px 50px;
 }
-.item-tooltip .item-description[data-v-10f767c2] {
+.item-tooltip .item-description[data-v-373269a2] {
   color: #88f;
 }.scarab-group.wide .scarab-box[data-v-df5fcf40] {
   margin-right: 7px;
@@ -105,6 +105,25 @@
   z-index: 4;
   top: -12px;
   left: -16px;
+}.legion-stash[data-v-597aa662] {
+  width: 800px;
+  height: 800px;
+  background-image: url("/poe-play/images/legion-stash-3.27.png");
+  background-size: 800px 800px;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: 32px;
+}.allflame-box[data-v-7e28e39c] {
+  width: 72px;
+  height: 72px;
+}.betrayal-stash[data-v-62868fa2] {
+  width: 800px;
+  height: 800px;
+  background-image: url("/poe-play/images/betrayal-stash-3.27.png");
+  background-size: 800px 800px;
+  background-repeat: no-repeat;
+  position: relative;
+  margin-top: 32px;
 }.fossil-box[data-v-3d4fa21b] {
   width: 70px;
   height: 70px;
