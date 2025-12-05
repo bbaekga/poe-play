@@ -1,8 +1,9 @@
 import { c as createComponent, a as computed, h, d as hSlot, i as inject, e as emptyRenderFn, r as ref, w as watch, o as onBeforeUnmount, f as hUniqueSlot, l as layoutKey, g as getCurrentInstance, p as provide, j as pageContainerKey, k as isRuntimeSsrPreHydration, m as reactive, n as onUnmounted, q as hMergeSlot, s as defineComponent, u as useRouter, t as onBeforeMount, v as onMounted, x as resolveComponent, y as openBlock, z as createBlock, A as withCtx, B as createVNode, C as createBaseVNode, D as createTextVNode, Q as QBtn, E as normalizeStyle, F as toDisplayString, G as unref } from "./index.js";
-import { u as useInterval, Q as QImg } from "./use-interval.js";
+import { Q as QImg } from "./QImg.js";
 import { Q as QResizeObserver, g as getScrollbarWidth } from "./scroll.js";
 import { Q as QScrollObserver } from "./QScrollObserver.js";
 import { u as useQuasar } from "./use-quasar.js";
+import { u as useInterval } from "./use-interval.js";
 import { s as store } from "./store.js";
 import "./axios.js";
 import "./axios2.js";
@@ -4367,6 +4368,9 @@ const _sfc_main = defineComponent({
     const beastsPage = computed(() => {
       return currentPage.value === "beasts";
     });
+    const uniqueDustPage = computed(() => {
+      return currentPage.value === "uniqueDust";
+    });
     onBeforeMount(() => {
       $q.dark.set(true);
     });
@@ -4419,6 +4423,12 @@ const _sfc_main = defineComponent({
                       color: beastsPage.value ? "blue-5" : "",
                       flat: "",
                       to: { name: "beasts" }
+                    }, null, 8, ["color"]),
+                    createVNode(QBtn, {
+                      label: "\uB9C8\uC11D\uD559\uAC00\uB8E8",
+                      color: uniqueDustPage.value ? "blue-5" : "",
+                      flat: "",
+                      to: { name: "uniqueDust" }
                     }, null, 8, ["color"])
                   ], 4),
                   createBaseVNode("div", _hoisted_2, [

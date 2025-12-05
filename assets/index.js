@@ -6452,6 +6452,32 @@ function hasCSSTransform(el, root, moveClass) {
   container.removeChild(clone);
   return hasTransform;
 }
+const systemModifiers = ["ctrl", "shift", "alt", "meta"];
+const modifierGuards = {
+  stop: (e) => e.stopPropagation(),
+  prevent: (e) => e.preventDefault(),
+  self: (e) => e.target !== e.currentTarget,
+  ctrl: (e) => !e.ctrlKey,
+  shift: (e) => !e.shiftKey,
+  alt: (e) => !e.altKey,
+  meta: (e) => !e.metaKey,
+  left: (e) => "button" in e && e.button !== 0,
+  middle: (e) => "button" in e && e.button !== 1,
+  right: (e) => "button" in e && e.button !== 2,
+  exact: (e, modifiers) => systemModifiers.some((m) => e[`${m}Key`] && !modifiers.includes(m))
+};
+const withModifiers = (fn, modifiers) => {
+  const cache = fn._withMods || (fn._withMods = {});
+  const cacheKey = modifiers.join(".");
+  return cache[cacheKey] || (cache[cacheKey] = (event, ...args) => {
+    for (let i = 0; i < modifiers.length; i++) {
+      const guard = modifierGuards[modifiers[i]];
+      if (guard && guard(event, modifiers))
+        return;
+    }
+    return fn(event, ...args);
+  });
+};
 const rendererOptions = /* @__PURE__ */ extend({ patchProp }, nodeOps);
 let renderer;
 function ensureRenderer() {
@@ -9419,7 +9445,7 @@ function useRouter() {
 const routes = [
   {
     path: "/",
-    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/use-interval.js","assets/scroll.js","assets/QScrollObserver.js","assets/use-quasar.js","assets/store.js","assets/axios.js","assets/axios2.js"] : void 0),
+    component: () => __vitePreload(() => import("./MainLayout.js"), true ? ["assets/MainLayout.js","assets/MainLayout.css","assets/QImg.js","assets/scroll.js","assets/QScrollObserver.js","assets/use-quasar.js","assets/use-interval.js","assets/store.js","assets/axios.js","assets/axios2.js"] : void 0),
     children: [
       {
         path: "",
@@ -9429,17 +9455,22 @@ const routes = [
       {
         path: "stash",
         name: "stash",
-        component: () => __vitePreload(() => import("./StashPage.js"), true ? ["assets/StashPage.js","assets/StashPage.css","assets/focus-manager.js","assets/scroll.js","assets/use-interval.js","assets/plugin-vue_export-helper.js","assets/QPage.js","assets/axios.js","assets/axios2.js","assets/store.js"] : void 0)
+        component: () => __vitePreload(() => import("./StashPage.js"), true ? ["assets/StashPage.js","assets/StashPage.css","assets/focus-manager.js","assets/scroll.js","assets/QImg.js","assets/use-dark.js","assets/QPage.js","assets/plugin-vue_export-helper.js","assets/use-interval.js","assets/axios.js","assets/axios2.js","assets/store.js"] : void 0)
       },
       {
         path: "beasts",
         name: "beasts",
-        component: () => __vitePreload(() => import("./BeastsPage.js"), true ? ["assets/BeastsPage.js","assets/BeastsPage.css","assets/orderBy.js","assets/plugin-vue_export-helper.js","assets/use-interval.js","assets/QPage.js","assets/axios2.js","assets/use-quasar.js"] : void 0)
+        component: () => __vitePreload(() => import("./BeastsPage.js"), true ? ["assets/BeastsPage.js","assets/BeastsPage.css","assets/QCheckbox.js","assets/use-dark.js","assets/QImg.js","assets/QPage.js","assets/use-interval.js","assets/axios2.js","assets/use-quasar.js","assets/plugin-vue_export-helper.js","assets/orderBy.js"] : void 0)
+      },
+      {
+        path: "uniqueDust",
+        name: "uniqueDust",
+        component: () => __vitePreload(() => import("./UniqueDustPage.js"), true ? ["assets/UniqueDustPage.js","assets/UniqueDustPage.css","assets/QImg.js","assets/QPage.js","assets/axios.js","assets/axios2.js","assets/plugin-vue_export-helper.js","assets/orderBy.js"] : void 0)
       },
       {
         path: "reCombination",
         name: "reCombination",
-        component: () => __vitePreload(() => import("./ReCombinationPage.js"), true ? ["assets/ReCombinationPage.js","assets/ReCombinationPage.css","assets/plugin-vue_export-helper.js","assets/focus-manager.js","assets/orderBy.js","assets/scroll.js","assets/QScrollObserver.js","assets/QPage.js","assets/use-quasar.js"] : void 0)
+        component: () => __vitePreload(() => import("./ReCombinationPage.js"), true ? ["assets/ReCombinationPage.js","assets/ReCombinationPage.css","assets/use-dark.js","assets/focus-manager.js","assets/QCheckbox.js","assets/scroll.js","assets/QScrollObserver.js","assets/QPage.js","assets/use-quasar.js","assets/plugin-vue_export-helper.js","assets/orderBy.js"] : void 0)
       }
     ]
   },
@@ -11080,4 +11111,4 @@ createQuasarApp(createApp, quasarUserOptions).then((app2) => {
     start(app2, boot2);
   });
 });
-export { onActivated as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, toDisplayString as F, unref as G, onDeactivated as H, vmIsDestroyed as I, QSpinner as J, quasarKey as K, noop$1 as L, nextTick as M, listenOpts as N, getElement as O, css as P, QBtn as Q, routes as R, tabsKey as S, Transition as T, withDirectives as U, Ripple as V, stopAndPrevent as W, isKeyCode as X, shouldIgnoreKey as Y, QIcon as Z, isDeepEqual as _, computed as a, createDirective as a0, client as a1, leftClick as a2, addEvt as a3, preventDraggable as a4, position as a5, cleanEvt as a6, getNormalizedVNodes as a7, KeepAlive as a8, hDir as a9, createElementBlock as aa, Fragment as ab, vShow as ac, pushScopeId as ad, popScopeId as ae, prevent as af, vmHasRouter as ag, injectProp as ah, Teleport as ai, createGlobalNode as aj, removeGlobalNode as ak, createCommentVNode as al, renderList as am, normalizeClass as an, Platform as ao, useSize as ap, useSizeProps as aq, toRaw as ar, formKey as as, debounce as at, onBeforeUpdate as au, stop as av, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };
+export { onActivated as $, withCtx as A, createVNode as B, createBaseVNode as C, createTextVNode as D, normalizeStyle as E, toDisplayString as F, unref as G, onDeactivated as H, vmIsDestroyed as I, QSpinner as J, quasarKey as K, noop$1 as L, nextTick as M, listenOpts as N, getElement as O, css as P, QBtn as Q, routes as R, tabsKey as S, Transition as T, withDirectives as U, Ripple as V, stopAndPrevent as W, isKeyCode as X, shouldIgnoreKey as Y, QIcon as Z, isDeepEqual as _, computed as a, createDirective as a0, client as a1, leftClick as a2, addEvt as a3, preventDraggable as a4, position as a5, cleanEvt as a6, getNormalizedVNodes as a7, KeepAlive as a8, hDir as a9, createElementBlock as aa, Fragment as ab, vShow as ac, pushScopeId as ad, popScopeId as ae, prevent as af, vmHasRouter as ag, injectProp as ah, Teleport as ai, createGlobalNode as aj, removeGlobalNode as ak, createCommentVNode as al, renderList as am, normalizeClass as an, Platform as ao, useSize as ap, useSizeProps as aq, toRaw as ar, withModifiers as as, formKey as at, debounce as au, onBeforeUpdate as av, stop as aw, boot as b, createComponent as c, hSlot as d, emptyRenderFn as e, hUniqueSlot as f, getCurrentInstance as g, h, inject as i, pageContainerKey as j, isRuntimeSsrPreHydration as k, layoutKey as l, reactive as m, onUnmounted as n, onBeforeUnmount as o, provide as p, hMergeSlot as q, ref as r, defineComponent as s, onBeforeMount as t, useRouter as u, onMounted as v, watch as w, resolveComponent as x, openBlock as y, createBlock as z };

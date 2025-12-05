@@ -7,9 +7,11 @@ var __publicField = (obj, key, value) => {
 import { i as inject, e as emptyRenderFn, r as ref, a as computed, o as onBeforeUnmount, v as onMounted, S as tabsKey, U as withDirectives, V as Ripple, h, W as stopAndPrevent, X as isKeyCode, Y as shouldIgnoreKey, Z as QIcon, q as hMergeSlot, g as getCurrentInstance, _ as isDeepEqual, c as createComponent, H as onDeactivated, M as nextTick, I as vmIsDestroyed, w as watch, p as provide, $ as onActivated, d as hSlot, a0 as createDirective, a1 as client, L as noop, a2 as leftClick, a3 as addEvt, a4 as preventDraggable, a5 as position, a6 as cleanEvt, T as Transition, a7 as getNormalizedVNodes, a8 as KeepAlive, a9 as hDir, s as defineComponent, y as openBlock, aa as createElementBlock, B as createVNode, A as withCtx, ab as Fragment, ac as vShow, C as createBaseVNode, ad as pushScopeId, ae as popScopeId, af as prevent, N as listenOpts, ag as vmHasRouter, n as onUnmounted, ah as injectProp, ai as Teleport, aj as createGlobalNode, ak as removeGlobalNode, z as createBlock, F as toDisplayString, al as createCommentVNode, am as renderList, an as normalizeClass, E as normalizeStyle } from "./index.js";
 import { u as uid, g as getModifierDirections, s as shouldStart, c as clearSelection, r as removeFocusWaitFlag, a as addFocusWaitFlag } from "./focus-manager.js";
 import { Q as QResizeObserver, g as getScrollbarWidth, a as getScrollTarget } from "./scroll.js";
-import { a as useTimeout, Q as QImg, u as useInterval } from "./use-interval.js";
-import { u as useDarkProps, a as useDark, _ as _export_sfc } from "./plugin-vue_export-helper.js";
+import { u as useTimeout, Q as QImg } from "./QImg.js";
+import { u as useDarkProps, a as useDark } from "./use-dark.js";
 import { Q as QPage } from "./QPage.js";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.js";
+import { u as useInterval } from "./use-interval.js";
 import { api } from "./axios.js";
 import { s as store } from "./store.js";
 import "./axios2.js";
@@ -3694,7 +3696,7 @@ const _sfc_main = defineComponent({
   },
   __name: "StashPage",
   setup(__props) {
-    const currentTab = ref("currency");
+    const currentTab = ref("scarab");
     return (_ctx, _cache) => {
       return openBlock(), createBlock(QPage, { class: "t-page" }, {
         default: withCtx(() => [
@@ -3706,14 +3708,6 @@ const _sfc_main = defineComponent({
             "active-color": "white"
           }, {
             default: withCtx(() => [
-              createVNode(QTab, {
-                name: "currency",
-                label: "\uAE30\uBCF8\uD654\uD3D0"
-              }),
-              createVNode(QTab, {
-                name: "influence",
-                label: "\uC601\uD5A5\uB825\uD654\uD3D0"
-              }),
               createVNode(QTab, {
                 name: "scarab",
                 label: "\uAC11\uCDA9\uC11D"
@@ -3741,6 +3735,14 @@ const _sfc_main = defineComponent({
               createVNode(QTab, {
                 name: "catalyst",
                 label: "\uAE30\uD3ED\uC81C"
+              }),
+              createVNode(QTab, {
+                name: "currency",
+                label: "\uAE30\uBCF8\uD654\uD3D0"
+              }),
+              createVNode(QTab, {
+                name: "influence",
+                label: "\uC601\uD5A5\uB825\uD654\uD3D0"
               })
             ]),
             _: 1

@@ -4,14 +4,16 @@ var __publicField = (obj, key, value2) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value2);
   return value2;
 };
-import { h, c as createComponent, k as isRuntimeSsrPreHydration, r as ref, v as onMounted, w as watch, a as computed, i as inject, o as onBeforeUnmount, as as formKey, g as getCurrentInstance, at as debounce, ah as injectProp, au as onBeforeUpdate, W as stopAndPrevent, M as nextTick, H as onDeactivated, $ as onActivated, af as prevent, Z as QIcon, J as QSpinner, d as hSlot, T as Transition, Y as shouldIgnoreKey, a1 as client, av as stop, a0 as createDirective, L as noop, a2 as leftClick, a3 as addEvt, a4 as preventDraggable, a5 as position, a6 as cleanEvt, q as hMergeSlot, U as withDirectives, s as defineComponent, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, B as createVNode, Q as QBtn, al as createCommentVNode, aa as createElementBlock, am as renderList, ab as Fragment, F as toDisplayString, ad as pushScopeId, ae as popScopeId } from "./index.js";
-import { u as useDarkProps, a as useDark, _ as _export_sfc } from "./plugin-vue_export-helper.js";
+import { h, c as createComponent, k as isRuntimeSsrPreHydration, r as ref, v as onMounted, w as watch, a as computed, i as inject, o as onBeforeUnmount, at as formKey, g as getCurrentInstance, au as debounce, ah as injectProp, av as onBeforeUpdate, W as stopAndPrevent, M as nextTick, H as onDeactivated, $ as onActivated, af as prevent, Z as QIcon, J as QSpinner, d as hSlot, T as Transition, Y as shouldIgnoreKey, a1 as client, aw as stop, a0 as createDirective, L as noop, a2 as leftClick, a3 as addEvt, a4 as preventDraggable, a5 as position, a6 as cleanEvt, q as hMergeSlot, U as withDirectives, s as defineComponent, y as openBlock, z as createBlock, A as withCtx, C as createBaseVNode, B as createVNode, Q as QBtn, al as createCommentVNode, aa as createElementBlock, am as renderList, ab as Fragment, F as toDisplayString, ad as pushScopeId, ae as popScopeId } from "./index.js";
+import { u as useDarkProps, a as useDark } from "./use-dark.js";
 import { u as uid$1, b as addFocusFn, d as removeFocusFn, g as getModifierDirections, s as shouldStart, c as clearSelection } from "./focus-manager.js";
-import { u as useFormProps, a as useFormInputNameAttr, Q as QCheckbox, o as orderBy } from "./orderBy.js";
+import { u as useFormProps, a as useFormInputNameAttr, Q as QCheckbox } from "./QCheckbox.js";
 import { Q as QResizeObserver, s as setVerticalScrollPosition, d as setHorizontalScrollPosition } from "./scroll.js";
 import { Q as QScrollObserver } from "./QScrollObserver.js";
 import { Q as QPage } from "./QPage.js";
 import { u as useQuasar } from "./use-quasar.js";
+import { _ as _export_sfc } from "./plugin-vue_export-helper.js";
+import { o as orderBy } from "./orderBy.js";
 const space = h("div", { class: "q-space" });
 var QSpace = createComponent({
   name: "QSpace",
