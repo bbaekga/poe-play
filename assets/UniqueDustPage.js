@@ -11892,16 +11892,16 @@ class UniqueItem {
         });
       });
     }
-    let response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/weapon/${"Keepers"}`);
+    let response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/weapon/${"Mirage"}`);
     const weaponRes = response.data.lines;
     parsing(weaponRes);
-    response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/armour/${"Keepers"}`);
+    response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/armour/${"Mirage"}`);
     const armourRes = response.data.lines;
     parsing(armourRes);
-    response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/accessory/${"Keepers"}`);
+    response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/accessory/${"Mirage"}`);
     const accessoryRes = response.data.lines;
     parsing(accessoryRes);
-    response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/jewel/${"Keepers"}`);
+    response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/unique/jewel/${"Mirage"}`);
     const jewelRes = response.data.lines;
     parsing(jewelRes);
     return list.filter((u) => u.chaos !== 0);

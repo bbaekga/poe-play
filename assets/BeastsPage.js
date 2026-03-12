@@ -152,7 +152,7 @@ const _sfc_main = defineComponent({
     const preciousRegExpString = ref("");
     const garbageRegExpString = ref("");
     async function getMetaData() {
-      const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Beast/${"Keepers"}`);
+      const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Beast/${"Mirage"}`);
       const res = response.data.lines;
       const beastIds = beastInfos.map((b) => b.id);
       res.forEach((data) => {

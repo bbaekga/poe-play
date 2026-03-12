@@ -4352,7 +4352,7 @@ const _sfc_main = defineComponent({
   setup(__props) {
     const $q = useQuasar();
     const router = useRouter();
-    const currentLeague = computed(() => "Keepers");
+    const currentLeague = computed(() => "Mirage");
     const toolbarStyle = computed(() => {
       return {
         width: "100vw",

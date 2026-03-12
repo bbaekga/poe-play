@@ -39,69 +39,70 @@
 }
 .item-tooltip .item-description[data-v-373269a2] {
   color: #88f;
-}.scarab-group.wide .scarab-box[data-v-df5fcf40] {
-  margin-right: 7px;
+}.scarab-group.vertical .scarab-box[data-v-687826ef] {
+  margin-right: 0;
+  margin-bottom: 3px;
 }
-.scarab-box[data-v-df5fcf40] {
-  width: 46px;
-  height: 46px;
+.scarab-box[data-v-687826ef] {
+  width: 48px;
+  height: 48px;
   margin-right: 3px;
 }
-.scarab-box.empty[data-v-df5fcf40] {
+.scarab-box.empty[data-v-687826ef] {
   border-color: transparent;
   background-color: transparent;
 }
-.scarab-box[data-v-df5fcf40]:last-child {
+.scarab-box[data-v-687826ef]:last-child {
   margin-right: 0;
 }
-.scarab-box .highlight0-text[data-v-df5fcf40] {
+.scarab-box .highlight0-text[data-v-687826ef] {
   color: white;
 }
-.scarab-box .highlight1-text[data-v-df5fcf40] {
+.scarab-box .highlight1-text[data-v-687826ef] {
   color: #fff176;
 }
-.scarab-box .highlight2-text[data-v-df5fcf40] {
+.scarab-box .highlight2-text[data-v-687826ef] {
   color: #ffca28;
 }
-.scarab-box .highlight3-text[data-v-df5fcf40] {
+.scarab-box .highlight3-text[data-v-687826ef] {
   color: #ffb300;
 }
-.scarab-box .highlight4-text[data-v-df5fcf40] {
+.scarab-box .highlight4-text[data-v-687826ef] {
   color: #ffa726;
 }
-.scarab-box .highlight5-text[data-v-df5fcf40] {
+.scarab-box .highlight5-text[data-v-687826ef] {
   color: #ff9800;
 }
-.scarab-box .highlight6-text[data-v-df5fcf40] {
+.scarab-box .highlight6-text[data-v-687826ef] {
   color: #fb8c00;
 }
-.scarab-box .highlight7-text[data-v-df5fcf40] {
+.scarab-box .highlight7-text[data-v-687826ef] {
   color: #ff7043;
 }
-.scarab-box .highlight8-text[data-v-df5fcf40] {
+.scarab-box .highlight8-text[data-v-687826ef] {
   color: #ff5722;
 }
-.scarab-box .highlight9-text[data-v-df5fcf40] {
+.scarab-box .highlight9-text[data-v-687826ef] {
   color: red;
 }
-.scarab-box.highlight9[data-v-df5fcf40]:after {
+.scarab-box.highlight9[data-v-687826ef]:after {
   background-color: rgba(255, 0, 0, 0.3);
 }
-.scarab-box.highlight9 .q-img[data-v-df5fcf40] {
+.scarab-box.highlight9 .q-img[data-v-687826ef] {
   opacity: 1;
-}.scarab-stash[data-v-3f6d0fe0] {
+}.scarab-stash[data-v-ca760abe] {
   width: 800px;
   height: 800px;
-  background-image: url("/poe-play/images/scarab-stash-3.26.png");
+  background-image: url("/poe-play/images/scarab-stash-3.28.png");
   background-size: 800px 800px;
   background-repeat: no-repeat;
   position: relative;
   margin-top: 32px;
 }
-.scarab-group[data-v-3f6d0fe0] {
+.scarab-group[data-v-ca760abe] {
   position: absolute;
 }
-.scarab-type-icon[data-v-3f6d0fe0] {
+.scarab-type-icon[data-v-ca760abe] {
   z-index: 4;
   top: -12px;
   left: -16px;

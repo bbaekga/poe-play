@@ -4,7 +4,7 @@ const store = reactive({
   CHAOS_PER_DIVINE: 0,
   async getMetaData() {
     var _a, _b, _c;
-    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Currency/${"Keepers"}`);
+    const response = await api.get(`https://www.logisnet.co.kr/dev-api/poe/Currency/${"Mirage"}`);
     const divine = (_c = (_b = (_a = response == null ? void 0 : response.data) == null ? void 0 : _a.core) == null ? void 0 : _b.rates) == null ? void 0 : _c.divine;
     if (divine) {
       this.CHAOS_PER_DIVINE = Math.round(1 / divine);
