@@ -1,25 +1,18 @@
 import { reactive } from 'vue'
 import { api } from 'boot/axios'
 
-// poe.ninja serves this endpoint without an Access-Control-Allow-Origin header,
-// so a browser can send the request but cannot read the response. Until the
-// logisnet proxy exposes a passthrough for it, resolution fails in the browser
-// and the FALLBACK_LEAGUE below is used. Point this at the proxy route once it
-// exists — that is the only change needed here.
-const INDEX_STATE_URL = 'https://poe.ninja/poe1/api/data/index-state'
+// The logisnet proxy fetches poe.ninja's index-state server-side (poe.ninja
+// sends no Access-Control-Allow-Origin header, so the browser cannot read it
+// directly) and returns just the current league name with CORS enabled:
+//   GET /dev-api/poe/current-league  ->  { "league": "Allflame" }
+const CURRENT_LEAGUE_URL = 'https://www.logisnet.co.kr/dev-api/poe/current-league'
 
 // Safety net only. If the league API is unreachable the app keeps working on the
 // league that was baked in at build time (build.env.LEAGUE in quasar.config.js).
 const FALLBACK_LEAGUE = String(process.env.LEAGUE || '')
 
-interface LeagueRef {
-  name: string
-  url: string
-  displayName: string
-}
-
-interface IndexStateResponse {
-  economyLeagues?: Array<LeagueRef>
+interface CurrentLeagueResponse {
+  league?: string
 }
 
 export const leagueState = reactive({
@@ -46,10 +39,10 @@ export function resolveLeague(): Promise<string> {
 
 async function requestLeague(): Promise<string> {
   try {
-    const response = await api.get<IndexStateResponse>(INDEX_STATE_URL)
-    const name = response?.data?.economyLeagues?.[0]?.name
+    const response = await api.get<CurrentLeagueResponse>(CURRENT_LEAGUE_URL)
+    const name = response?.data?.league
     if (!name) {
-      throw new Error('economyLeagues[0].name is missing from the index-state response')
+      throw new Error('league is missing from the current-league response')
     }
     return applyLeague(name, false)
   } catch (error: unknown) {
