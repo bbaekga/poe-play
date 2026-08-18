@@ -7,18 +7,44 @@
     </div>
   </transition>
   <div class="currency-stash q-mx-auto">
-
+    <div v-for="(group, index) in currencyGroups" :key="index" class="row currency-group" :class="group.class" :style="{ top: `${group.top}`, left: `${group.left}` }">
+      <currency-item v-for="(currency, cIndex) in group.list" :key="`${index}-${cIndex}`" :currency="currency"></currency-item>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {ref} from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useInterval } from 'quasar'
+import {Currency, CurrencyGroup} from 'src/model/currency'
+import CurrencyItem from 'components/CurrencyItem.vue';
 
 defineOptions({
   name: 'CurrencyTab'
 })
 
+onMounted(async () => {
+  await getCurrencyInfo()
+  registerInterval(async () => {
+    await getCurrencyInfo()
+  }, 1000 * 60 * 10)
+})
+
+onBeforeUnmount(() => {
+  removeInterval()
+})
+
+const { registerInterval, removeInterval } = useInterval()
 const fetchLoading = ref(false)
+const currencyGroups = ref<Array<CurrencyGroup>>([])
+
+async function getCurrencyInfo() {
+  fetchLoading.value = true
+  setTimeout(() => {
+    fetchLoading.value = false
+  }, 3000)
+  currencyGroups.value = await Currency.fetch()
+}
 </script>
 
 <style scoped lang="sass">
@@ -30,4 +56,6 @@ const fetchLoading = ref(false)
   background-repeat: no-repeat
   position: relative
   margin-top: 32px
+.currency-group
+  position: absolute
 </style>
